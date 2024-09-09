@@ -477,8 +477,8 @@ h6.box-header:after
 }
 .header .logo
 {
-	width: 370px;
-	/*float: left;*/
+	width: 300px;
+	/* float: left; */
 }
 .header h1
 {
@@ -495,6 +495,11 @@ h6.box-header:after
 {
 	opacity: 1;
 }
+.text-highlight
+{
+	color: #F4BC16;
+}
+
 /* --- page header --- */
 .page-header
 {
