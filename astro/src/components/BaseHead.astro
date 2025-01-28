@@ -1,15 +1,18 @@
 ---
+import Keywords from './Keywords.astro'
+const { title } = Astro.props;
 ---
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Home Renovations and Rentals in Spartanburg">
-    <meta name="keywords" content="Dumpster, dumpsters, dumpster rental, dumpsters rental, dumpster rental, in Spartanburg, Spartanburg, home remodeling, home renovation, Greenville, in Greenville, Greer, in Greer, ">
+    <meta name="description" content="Home Renovations, Repairs, Remodeling and Rentals in Spartanburg">
+    <Keywords />
+    
 
     <meta name="author" content="HexadicGroup - A. Harvey">
 
-    <title>Joe The Guy - When You Need a Guy</title>
+    <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="images/favicon/hardhat.svg" />
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -31,4 +34,7 @@
     <meta property="twitter:title" content="Joe The Guy - When You Need a Guy">
     <meta property="twitter:description" content="Home Renovations and Rentals in Spartanburg SC">
     <meta property="twitter:image" content="images/logo/logo_1200x630.png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">
 </head>

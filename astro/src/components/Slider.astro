@@ -1,0 +1,60 @@
+---
+// Slider.astro
+import { useState } from 'react';
+
+const images = [
+    '/path/to/image1.jpg',
+    '/path/to/image2.jpg',
+    '/path/to/image3.jpg'
+];
+
+const [currentIndex, setCurrentIndex] = useState(0);
+
+const nextSlide = () => {
+    setCurrentIndex((currentIndex + 1) % images.length);
+};
+
+const prevSlide = () => {
+    setCurrentIndex((currentIndex - 1 + images.length) % images.length);
+};
+---
+
+<style>
+    .carousel {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        margin: auto;
+        overflow: hidden;
+    }
+
+    .carousel img {
+        width: 100%;
+        display: block;
+    }
+
+    .carousel-buttons {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+    }
+
+    .carousel-button {
+        background-color: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+    }
+</style>
+
+<div class="carousel">
+    <img src={images[currentIndex]} alt="Carousel Image" />
+    <div class="carousel-buttons">
+        <!-- <button class="carousel-button" onClick={prevSlide}>Previous</button>
+        <button class="carousel-button" onClick={nextSlide}>Next</button> -->
+    </div>
+</div>

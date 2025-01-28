@@ -1,15 +1,23 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+const { title } = Astro.props;
+
+import '../styles/global.css';
 ---
 
 <!doctype html>
-<html lang="en">
-	<BaseHead />
+<html lang="en" class="bg-bg-light">
+	<BaseHead title={title}/>
+	<Header />
 	<body>
+		<!-- Page Content -->
 		<slot />
 	</body>
+	<Footer />
 </html>
-<style is:global>
+<!-- <style is:global>
 	:root {
 		--accent: 136, 58, 234;
 		--accent-light: 224, 204, 250;
@@ -36,4 +44,4 @@ import BaseHead from '../components/BaseHead.astro';
 			Courier New,
 			monospace;
 	}
-</style>
+</style> -->
