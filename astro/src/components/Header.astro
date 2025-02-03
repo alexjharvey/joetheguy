@@ -2,6 +2,7 @@
 import Navigation from './Navigation.astro';
 import Logo from './Logo.astro';
 import {companyInfo} from "../data/company-details";
+import {Icon} from 'astro-icon/components';
 const {phone, email, hours} = companyInfo;
 ---
 
@@ -10,38 +11,56 @@ const {phone, email, hours} = companyInfo;
     <div class="flex justify-between items-center bg-secondary-light w-full h-auto px-32 font-raleway font-medium text-sm text-slate-400 ">
         <!-- Contact Information Container-->
         <div class="flex justify-between items-center px-4 divide-x-2 divide-solid divide-slate-200 border-x-2 border-slate-200">
-            <a href="tel:{phone}" class="items-center p-4">
-                <span class="template-phone"></span>
+            <a href="tel:{phone}" title="Call Joe" class="items-center p-4 flex">
+                <Icon name="phone-ring" class="pr-2 size-6"/>
                 <span>{phone}</span>
             </a>
-            <a href="mailto:{email}" class="items-center p-4">
-                <span class="template-mail"></span>
+            <a href="mailto:{email}" title="Email Joe" class="items-center flex p-4 ">
+                <Icon name="mail" class="size-6 pr-2"/>
                 <span>{email}</span>
             </a>
-            <div class="items-center p-4">
-                <span class="template-clock"></span>
+            <div class="items-center p-4 flex ">
+                <Icon name="clock" class="size-6 pr-2"/>
                 <span>Mon - Fri: {hours.weekdays}</span>
             </div>
         </div>
         <!-- Social Icons Container-->  
-            <ul class="social-icons flex justify-between">
-                <li>
-                    <a target="_blank" href="#" class="social-facebook" title="facebook">facebook</a>
-                </li>
-                <li>
-                    <a target="_blank" href="#" class="social-twitter" title="twitter">X</a>
-                </li>
-                <li>
-                    <a href="#" class="social-instagram" title="instagram">Insta</a>
-                </li>
-                <li>
-                    Search
-                </li>
-            </ul>
+            <div class="items-center flex divide-x-2 divide-solid divide-slate-200 px-4">
+                
+                <a target="_blank" href="#" class="" title="Facebook">
+                    <Icon name="socials/facebook" class="size-6 mr-2"/></a>
+            
+                <a target="_blank" href="#" class="" title="Instagram">
+                    <Icon name="socials/instagram" class="size-6 mx-2"/></a>
+                
+                <a target="_blank" href="#" class="" title="Twitter">
+                    <Icon name="socials/twitter" class="size-6 mx-2"/></a>
+            
+                <a target="_blank" href="#" class="" title="Search">
+                    <Icon name="search" class="size-6 ml-2"/></a>    
+            </div>
     </div>
     <!-- Navigation Container-->
-   <div class="bg-bg-light flex p-0">
-        <Logo class="cursor-pointer"/>
-        <Navigation />
+   <div class="bg-bg-light flex flex-wrap px-24 w-full h-full ">
+        <div class="w-1/3">
+            <Logo />    
+        </div>
+        <div class="w-2/3">
+            <Navigation class="h-full"/>
+        </div>
     </div>
 </header>
+
+<style>
+.logo {
+    width: 250px; /* Adjust the size as needed */
+    height: auto;
+    flex-grow:1;
+    src: '/images/logo/logo_4168x4168.png';
+}
+.navigation {
+    width: 100%;
+    height: auto;
+    flex-grow:3;
+}
+</style>

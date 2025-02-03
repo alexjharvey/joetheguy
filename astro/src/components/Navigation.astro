@@ -1,12 +1,19 @@
 ---
-// This is the Navigation.astro component
+const links = [
+    { href: '/services', title: 'Services' },
+    { href: '/dumpsters', title: 'Dumpster Rentals' },
+    { href: '/projects', title: 'Project Portfolio' },
+    { href: '/cost-calculator', title: 'Cost Calculator' },
+    { href: '/team', title: 'Our Team' },
+    { href: '/contact', title:'Contact' }
+
+];
 ---
 
-<nav class="">
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/services">Services</a></li>
-        <li><a href="/contact">Contact</a></li>
-    </ul>
+<nav class="flex justify-evenly items-end h-full">
+    
+    {links.map(link => (
+        <a href={link.href} class="p-4 font-raleway text-base hover:text-primary" title={link.title}>{link.title}</a>
+    ))}
+    
 </nav>
