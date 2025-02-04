@@ -13,7 +13,7 @@ const links = [
 <nav class="flex justify-evenly items-end h-full">
     
     {links.map(link => (
-        <a href={link.href} class="p-4 font-raleway text-base hover:text-primary" title={link.title}>{link.title}</a>
+        <a href={link.href} class="p-4 font-raleway text-sm hover:text-primary" title={link.title.toUpperCase()}>{link.title.toUpperCase()}</a>
     ))}
     
 </nav>

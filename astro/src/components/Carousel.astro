@@ -1,14 +1,81 @@
 ---
+// Server-side rendering
 
 ---
 
-<ul class="carousel">
-    <li class="item"></li>
-    <li class="item"></li>
-    <li class="item"></li>
-
-</ul>
+<div class="carousel">
+    <div class="carousel-track">
+      <div class="slide">
+        <img src="/images/carousel/image_01.jpg" alt="Image 1">
+        <div class="overlay">
+          <p>Caption for Image 1</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="/images/carousel/image_02.jpg" alt="Image 2">
+        <div class="overlay">
+          <p>Caption for Image 2</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="/images/carousel/image_03.jpg" alt="Image 3">
+        <div class="overlay">
+          <p>Caption for Image 3</p>
+        </div>
+      </div>
+    </div>
+    <button class="prev">&lt;</button>
+    <button class="next">&gt;</button>
+  </div>
+  
 
 <style>
+    .carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: auto;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  position: relative;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
 
 </style>
