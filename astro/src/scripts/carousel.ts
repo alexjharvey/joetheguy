@@ -1,5 +1,7 @@
+// Lazy-loads on demand. First image is loaded with DOM content. Subsequent images are loaded when the next buttion is pushed.
+
 document.addEventListener("DOMContentLoaded", function () {
-  const track = document.getElementById("carousel-track") as HTMLDivElement;
+  const track = document.getElementById("carousel-track") as unknown as HTMLDivElement;
   const slides = Array.from(track.children) as HTMLDivElement[];
   const prevButton = document.getElementById("prev") as HTMLButtonElement;
   const nextButton = document.getElementById("next") as HTMLButtonElement;
@@ -7,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentIndex: number = 0;
 
   function updateCarousel(): void {
+    console.log("Updating carousel to slide", currentIndex+1);
+    
     const offset: string = `-${currentIndex * 100}%`;
     track.style.transform = `translateX(${offset})`;
     loadImage(currentIndex + 1); // Preload the next image
@@ -25,11 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   nextButton.addEventListener("click", function (): void {
+    console.log("Next button clicked ", currentIndex+1);
+    
     currentIndex = (currentIndex + 1) % slides.length;
     updateCarousel();
   });
 
   prevButton.addEventListener("click", function (): void {
+    console.log("Previous button clicked ", currentIndex+1);
+    
     currentIndex = (currentIndex - 1 + slides.length) % slides.length;
     updateCarousel();
   });
@@ -37,5 +45,5 @@ document.addEventListener("DOMContentLoaded", function () {
   // Auto-slide every 5 seconds
   setInterval(() => {
     nextButton.click();
-  }, 5000);
+  }, 7000);
 });

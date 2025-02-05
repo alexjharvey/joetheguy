@@ -1,10 +1,14 @@
 ---
 // Server-side rendering
-
+const images = [
+  { src: '/images/carousel/image_01.jpg', alt: 'Image 1', caption: 'Caption for Image 1' },
+  { src: '/images/carousel/image_02.jpg', alt: 'Image 2', caption: 'Caption for Image 2' },
+  { src: '/images/carousel/image_03.jpg', alt: 'Image 3', caption: 'Caption for Image 3' }
+]
 ---
 
 <div class="carousel">
-    <div class="carousel-track">
+    <div class="carousel-track" id="carousel-track">
       <div class="slide">
         <img src="/images/carousel/image_01.jpg" alt="Image 1">
         <div class="overlay">
@@ -12,20 +16,20 @@
         </div>
       </div>
       <div class="slide">
-        <img src="/images/carousel/image_02.jpg" alt="Image 2">
+        <img data-src="/images/carousel/image_02.jpg" alt="Image 2">
         <div class="overlay">
           <p>Caption for Image 2</p>
         </div>
       </div>
       <div class="slide">
-        <img src="/images/carousel/image_03.jpg" alt="Image 3">
+        <img data-src="/images/carousel/image_03.jpg" alt="Image 3">
         <div class="overlay">
           <p>Caption for Image 3</p>
         </div>
       </div>
     </div>
-    <button class="prev">&lt;</button>
-    <button class="next">&gt;</button>
+    <button class="prev" id="prev">&lt;</button>
+    <button class="next" id="next">&gt;</button>
   </div>
   
 
@@ -79,3 +83,5 @@ button {
 
 
 </style>
+<script src="../scripts/carousel.ts">
+</script>
