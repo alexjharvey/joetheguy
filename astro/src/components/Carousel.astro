@@ -1,4 +1,6 @@
 ---
+import CarouselOverlay from "./CarouselOverlay.astro"
+
 // Server-side rendering
 const images = [
   { src: '/images/carousel/image_01.jpg', alt: 'Image 1', caption: 'Caption for Image 1' },
@@ -11,25 +13,19 @@ const images = [
     <div class="carousel-track" id="carousel-track">
       <div class="slide">
         <img src="/images/carousel/image_01.jpg" alt="Image 1">
-        <div class="overlay">
-          <p>Caption for Image 1</p>
-        </div>
+        <CarouselOverlay width="30%" topComment="Home Improvement and Remodeling" bottomComment="With over 15 years experience and a real focus on customer satisfaction, you can rely on us for your next renovation, remodeling or home repair in Spartanburg, Greenville or any of our Upstate communities." />
       </div>
       <div class="slide">
         <img data-src="/images/carousel/image_02.jpg" alt="Image 2">
-        <div class="overlay">
-          <p>Caption for Image 2</p>
-        </div>
+        <CarouselOverlay width="30%" topComment="Professional Tiling and Painting" bottomComment="We combine quality workmanship, superior knowledge and low prices to provide you with service unmatched by our competitors in Spartanburg, Greenville or any of our Upstate communities." />
       </div>
       <div class="slide">
         <img data-src="/images/carousel/image_03.jpg" alt="Image 3">
-        <div class="overlay">
-          <p>Caption for Image 3</p>
-        </div>
+        <CarouselOverlay width="30%" topComment="High Quality Work at Affordable Prices" bottomComment="We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget." />
       </div>
     </div>
-    <button class="prev" id="prev">&lt;</button>
-    <button class="next" id="next">&gt;</button>
+    <button class="prev h-16 hover:bg-primary hover:bg-opacity-50" id="prev">&lt;</button>
+    <button class="next h-16 hover:bg-primary hover:bg-opacity-50" id="next">&gt;</button>
   </div>
   
 
@@ -59,9 +55,21 @@ img {
 
 .overlay {
   position: absolute;
-  bottom: 0;
-  width: 100%;
+  display: flex-column;
+  left:100px;
+  top: 50px;
+  bottom: 50px;
+  width: 30%;
   background: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.top-overlay {
+  position: relative;
+  border-bottom: 4px solid white;
+  
   color: white;
   text-align: center;
   padding: 10px;

@@ -1,0 +1,36 @@
+---
+const { width, topComment, bottomComment } = Astro.props;
+---
+
+<style>
+  .overlay {
+    /* position: absolute;
+    top: 30px;
+    left: 100px;
+    bottom: 30px;
+    display: flex-column; */
+    
+    color: white;
+    text-align: left;
+  }
+
+
+
+  .overlay .top-comment,
+  .overlay .bottom-comment {
+    position: relative;
+    
+  }
+
+</style>
+
+<div class="absolute top-8 bottom-8 left-28 flex-col text-left bg-black bg-opacity-50"  style={`max-width: ${width}`}>
+  <div class="relative font-raleway uppercase text-3xl font-semibold border-b-2 border-primary bg-opacity-85">
+    <h2 class="text-primary pt-8 px-8"><a href="interior_revovation.astro">Need a guy?</a></h2>
+    <h2 class="text-white mt-1 px-8 pb-2"><a href="interior_revovation.astro">{topComment}</a></h2>
+  </div>
+  <div class="relative bg-opacity-5">
+    <h2 class="text-white font-normal text-lg/8 px-8 pt-2"><p>{bottomComment}</p></h2>
+    <button class="text-white font-semibold text-base bg-primary px-8 mx-8 mt-4 py-2 rounded-2xl hover:bg-white hover:text-black">Contact Us</button>
+  </div>
+</div>

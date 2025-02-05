@@ -7,6 +7,7 @@ export default {
 				raleway	: ['Raleway', 'sans-serif'],
 			},
 			colors: {
+				primary: '#F7A71D',
 			'bg-dark': '#1A1A1A',
 			'bg-light': '#FFFFFF',
 			'primary': '#F7A71D',
