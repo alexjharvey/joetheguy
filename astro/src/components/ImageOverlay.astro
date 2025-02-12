@@ -1,0 +1,43 @@
+---
+interface Props{
+  src: string;
+  overlayText?: string;
+  overlayButtonText?: string;
+  subheadingText?: string;
+  subtext?: string;
+}
+
+const { src, overlayText, overlayButtonText, subheadingText, subtext } = Astro.props as Props;
+---
+<div class="image-container flex relative items-center justify-center">
+  <img src={src} alt="Image" class="w-full h-auto object-cover z-0" />
+
+  
+  {overlayText && (
+    // <div class="absolute inset-0 z-10 flex justify-center items-center bg-black/50 text-2xl text-white font-semibold opacity-0 hover:opacity-100 hover:translate-y-5 transition-opacity duration-300">
+    <div class="overlay absolute inset-0 z-10 flex justify-center items-center bg-black/50 text-2xl text-white font-semibold opacity-0 hover:opacity-100 hover:translate-y-0 transition-all duration-300 ease-out">
+      {/* Todo: Make the overlayText and button transition in vertically. Something like hover:translate-y-0 translate-y-5 */}
+      <div class="">
+      {overlayText}
+    </div>
+    </div>
+  )}
+
+  {overlayButtonText && (
+    <div class="overlay-button">
+      <button class="absolute inset-0 z-10 flex justify-center items-center bg-black/50 text-2xl text-white font-semibold opacity-0 hover:opacity-100 hover:translate-y-0 transition-all duration-300 ease-out">{overlayButtonText}</button>
+    </div>
+  )}
+
+  {subheadingText && (
+    <div class="subheading-text">
+      {subheadingText}
+    </div>
+  )}
+
+  {subtext && (
+    <div class="subtext">
+      {subtext}
+    </div>
+  )}
+</div>  
