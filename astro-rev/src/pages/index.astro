@@ -2,10 +2,12 @@
 import Carousel from '../components/Carousel.astro';
 import ImageOverlay from '../components/ImageOverlay.astro';
 import MainLayout from '../layouts/MainLayout.astro';
+
+const keywords = ["Dumpster", "dumpsters", "dumpster", "dumpsters rental", "dumpster rental", "in Spartanburg", "Spartanburg", "home remodeling", "home", "Greenville", "in Greenville", "Greer", "in Greer", "Inman", "in Inman", "Boiling Springs", "in Boiling Springs", "Roebuck", "in Roebuck","home renovation", "renovations", "home renovation", "home remodeling", "remodeling", "home repair", "repairman", "repair man", ];
 ---
 
 
-<MainLayout title="Joe The Guy | When You Need a Guy">
+<MainLayout title="Joe The Guy | When You Need a Guy", keywords={keywords}>
 	
 		<!-- <Slider /> -->
 		<Carousel class="w-full h-auto" />
@@ -83,7 +85,17 @@ import MainLayout from '../layouts/MainLayout.astro';
 
 		<!-- About Us -->
 		<div>
-			
+			<div class="w-full h-auto font-raleway bg-white items-center">
+				<h1 class="px-8 pt-8 pb-4 text-3xl uppercase text-black text-center font-semibold">About Us</h1>
+				<div class="mx-auto w-24 h-[1.5px] bg-primary mb-8"><!-- Horizontal line --></div>
+				<div class="mx-60 text-center text-lg text-black">
+					<p>Joe The Guy has been serving the Upstate communities for over 15 years. Our mission is to provide top-notch renovation, remodel, and home repair services to both residential and commercial clients. We pride ourselves on our quality workmanship, superior knowledge, and competitive prices.</p>
+					<p class="mt-4">Our team is dedicated to ensuring that every project is completed on time and within budget. We believe in building lasting relationships with our clients through trust, integrity, and exceptional service.</p>
+				</div>
+				<div class="flex justify-center align-middle">
+					<button class="mx-auto my-8 bg-primary uppercase text-white font-semibold text-sm px-8 py-2 rounded-2xl hover:bg-accent1 hover:text-white">Learn More</button>
+				</div>
+			</div>
 		</div>
 		
 	

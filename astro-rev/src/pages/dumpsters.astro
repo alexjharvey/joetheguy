@@ -1,0 +1,60 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '../layouts/MainLayout.astro';
+import "flatpickr/dist/flatpickr.min.css";
+
+
+const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental", "roll off dumpster", "rental", "roll of dumpster","in Spartanburg", "Spartanburg", "home remodeling", "home", "Greenville", "in Greenville", "Greer", "in Greer", "home renovation", "renovations", "home renovation", "home remodeling", "remodeling", "home repair", "repairman", "repair", "dumpster rental near me", "trash removal", "garbage", "trash", "Inman", "in Inman", "trash pick up", "trash removal service", "trash removal near me", "trash removal service near me", "trash removal service in Spartanburg", "trash removal service in Greenville", "trash removal service in Greer", "trash removal service in Inman"];
+
+
+---
+<Layout title="Joe the Guy - Dumpster Rental", keywords={keywords}>
+  <div class="w-full h-auto relative">
+    
+      <img src="/images/dumpsters/roll-off-dumpster-1200.webp" alt="Dumpster Rental" class="opacity-50 w-full"/>
+      <div class="absolute top-1/3 left-24 p-4 w-1/2">
+        <h1 class="text-white text-xl font-bold">Dumpster Rental Services</h1>
+        <h2 class="text-white mt-2">Affordable Dumpster Rentals in Spartanburg – Fast, Reliable, and Hassle-Free Service</h2>
+        <h2 class="text-white mt-2">Looking for dumpster rental in Spartanburg? We provide affordable, fast, and hassle-free roll-off dumpster rentals for homeowners, contractors, and businesses. Whether you’re handling a home renovation, construction project, or major cleanup, we have the right dumpster size for your needs.</h2>
+        <div class="mt-4">
+          <button class="bg-blue-500 text-white py-2 px-4 rounded mr-2">Learn More</button>
+          <button class="bg-green-500 text-white py-2 px-4 rounded">Contact Us</button>
+        </div>
+      </div>
+    
+  </div>
+
+  <div class="flex justify-center align-middle">
+    <div class="w-1/2 mx-auto mt-8">
+      <img src="/images/dumpsters/10yd.jpg" class="w-full h-auto" alt="10 Yard Dumpster"/>
+    </div>
+  <div class="w-1/2 mx-auto mt-8 ml-8">
+    <div class="flex flex-col">
+      <h1 class="text-3xl font-raleway font-bold">20 Cubic Yard, 2 Ton Max</h1>
+      <h1 class="text-3xl font-raleway font-bold"> General Debris Dumpster</h1>
+      <div class="flex my-8 mr-8">
+        <div>
+          <span class="text-primary">$525</span>/week
+        </div>
+        <div class="flex items-center ml-40">
+          <Icon name="map-pin" class="text-primary mr-2"/> Available in Spartanburg
+        </div>
+      </div>
+      <div>
+        Whether it's time for spring cleaning, a home renovation, or a major construction project, our 20 cubic yard dumpster is the perfect solution for your waste removal needs. This dumpster is ideal for general debris, including household items, furniture, and construction materials.
+      </div>
+      <div class="flex mt-8">
+        <input id="datepicker-start" type="text" class="mt-4 border border-gray-300 p-2 rounded" placeholder="Select Delivery Date"/>
+        <input id="datepicker-end" type="text" class="mt-4 border border-gray-300 p-2 rounded ml-4" placeholder="Select Pickup Date"/>
+      </div>
+      <div class="flex mt-4">
+        <button class="bg-primary text-white py-2 px-4 rounded">Book Now</button>
+        <script src="../scripts/datepicker.ts"></script>
+      </div>
+      
+    </div>
+    <h1></h1>
+  </div>
+
+</div>
+</Layout>
