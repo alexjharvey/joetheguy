@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/MainLayout.astro';
+import Carousel from '../components/Carousel.astro';
+
+const categories = [
+  {
+    id: "kitchens",
+    title: "Kitchens",
+    description: "Transform your kitchen into a stunning culinary space with our expert renovation services. Our team combines functionality with aesthetic appeal to create kitchens that become the heart of your home. From modern minimalist designs to classic traditional styles, we deliver exceptional craftsmanship tailored to your specific needs and budget.",
+    images: [
+      "/images/portfolio/kitchens/kitchen-before-1.jpg",
+      "/images/portfolio/kitchens/kitchen-after-1.jpg",
+      "/images/portfolio/kitchens/kitchen-before-2.jpg",
+      "/images/portfolio/kitchens/kitchen-after-2.jpg"
+    ]
+  },
+  {
+    id: "bathrooms",
+    title: "Bathrooms",
+    description: "Elevate your daily routine with our premium bathroom renovations. We specialize in creating spa-like retreats that offer both luxury and practicality. Our attention to detail ensures waterproof installations, elegant fixtures, and perfect tilework that stands the test of time.",
+    images: [
+      "/images/portfolio/bathrooms/bathroom-before-1.jpg",
+      "/images/portfolio/bathrooms/bathroom-after-1.jpg",
+      "/images/portfolio/bathrooms/bathroom-before-2.jpg",
+      "/images/portfolio/bathrooms/bathroom-after-2.jpg"
+    ]
+  },
+  {
+    id: "interiors",
+    title: "Interiors",
+    description: "Breathe new life into your living spaces with our comprehensive interior renovation services. From flooring and lighting to paint and custom cabinetry, we handle every aspect of interior transformation. Our designers work closely with you to reflect your personal style while maximizing space and functionality.",
+    images: [
+      "/images/portfolio/interiors/interior-before-1.jpg",
+      "/images/portfolio/interiors/interior-after-1.jpg",
+      "/images/portfolio/interiors/interior-before-2.jpg",
+      "/images/portfolio/interiors/interior-after-2.jpg"
+    ]
+  },
+  {
+    id: "exteriors",
+    title: "Exteriors",
+    description: "Make a lasting impression with our exterior renovation expertise. We enhance curb appeal through quality siding, roofing, windows, and outdoor living spaces. Our durable materials and precise installation techniques ensure your home's exterior remains beautiful and protected for years to come.",
+    images: [
+      "/images/portfolio/exteriors/exterior-before-1.jpg",
+      "/images/portfolio/exteriors/exterior-after-1.jpg",
+      "/images/portfolio/exteriors/exterior-before-2.jpg",
+      "/images/portfolio/exteriors/exterior-after-2.jpg"
+    ]
+  },
+  {
+    id: "commercial",
+    title: "Commercial",
+    description: "Elevate your business space with our commercial renovation solutions. We understand that time is money, which is why we deliver efficient, high-quality renovations with minimal disruption to your operations. From office remodels to retail store upgrades, we help businesses create environments that impress clients and enhance productivity.",
+    images: [
+      "/images/portfolio/commercial/commercial-before-1.jpg",
+      "/images/portfolio/commercial/commercial-after-1.jpg",
+      "/images/portfolio/commercial/commercial-before-2.jpg",
+      "/images/portfolio/commercial/commercial-after-2.jpg"
+    ]
+  }
+];
+
+const keywords = ["Home Remodeling", "dumpsters", "dumpster",];
+---
+
+<Layout title="Project Portfolio | Joe The Guy" keywords={keywords}>
+  <main class="w-full bg-white">
+    <!-- Hero Section -->
+    <section class="w-full bg-secondary-light py-16">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold text-center uppercase font-raleway">Joe's Project Portfolio</h1>
+        <div class="mx-auto w-24 h-1 bg-primary mb-6 mt-4"></div>
+        <p class="text-center text-lg max-w-4xl mx-auto mt-8">
+            Discover the exceptional renovation projects we've completed recently. Each transformation highlights our dedication to superior craftsmanship, meticulous attention to detail, and unwavering client satisfaction, and most importantly CLEANING UP AFTER OURSELVES. We shouldn't have to say this but not every handyman leaves your home better than they found it. But we take pride in our tidiness from the beginning of the job, to the end. 
+        </p>
+        <p class="text-center text-lg max-w-4xl mx-auto mt-8">  
+            From kitchen and bathroom remodels to comprehensive home renovations, we bring your vision to life. If you need a reliable expert for repairs or remodels, call Joe The Guy.
+        </p>
+      </div>
+    </section>
+
+    <!-- Category Navigation -->
+    <section class="bg-white py-8 border-b border-gray-200">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-center gap-6">
+          {categories.map(category => (
+            <a href={`#${category.id}`} class="px-6 py-2 bg-gray-100 hover:bg-primary hover:text-white rounded-full transition duration-300 font-raleway font-medium uppercase text-sm">
+              {category.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Categories -->
+    {categories.map((category, index) => (
+      <section id={category.id} class={`py-16 ${index % 2 === 0 ? 'bg-white' : 'bg-secondary-light'}`}>
+        <div class="container mx-auto px-4">
+          <div class="flex flex-col md:flex-row gap-8 items-center">
+            {/* Order of content and carousel alternates for visual interest */}
+            {index % 2 === 0 ? (
+              <>
+                <div class="w-full md:w-1/2">
+                  <h2 class="text-3xl font-semibold uppercase font-raleway text-primary">{category.title}</h2>
+                  <div class="w-16 h-1 bg-primary mt-3 mb-6"></div>
+                  <p class="text-lg mb-8">{category.description}</p>
+                  <a href="/contact" class="inline-block bg-primary text-white font-semibold px-8 py-3 rounded-xl hover:bg-accent1 transition duration-300">
+                    Request a Quote
+                  </a>
+                </div>
+                <div class="w-full md:w-1/2">
+                  <Carousel images={category.images} class="rounded-lg shadow-xl" showCaptions={true} captions={['Before', 'After', 'Before', 'After']} />
+                </div>
+              </>
+            ) : (
+              <>
+                <div class="w-full md:w-1/2 order-2 md:order-1">
+                  <Carousel images={category.images} class="rounded-lg shadow-xl" showCaptions={true} captions={['Before', 'After', 'Before', 'After']} />
+                </div>
+                <div class="w-full md:w-1/2 order-1 md:order-2">
+                  <h2 class="text-3xl font-semibold uppercase font-raleway text-primary">{category.title}</h2>
+                  <div class="w-16 h-1 bg-primary mt-3 mb-6"></div>
+                  <p class="text-lg mb-8">{category.description}</p>
+                  <a href="/contact" class="inline-block bg-primary text-white font-semibold px-8 py-3 rounded-xl hover:bg-accent1 transition duration-300">
+                    Request a Quote
+                  </a>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <!-- Call to Action -->
+    <section class="bg-primary py-16 text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">Ready to Transform Your Space?</h2>
+        <p class="text-xl mb-8 max-w-3xl mx-auto">
+          Let's discuss how we can bring your renovation vision to life. Our team of experts is ready to help you create the space you've always wanted.
+        </p>
+        <div class="flex justify-center gap-6">
+          <a href="/contact" class="bg-white text-primary font-bold py-3 px-8 rounded-xl hover:bg-gray-100 transition duration-300">
+            Contact Us
+          </a>
+          <a href="/cost-calculator" class="bg-accent1 text-white font-bold py-3 px-8 rounded-xl hover:bg-opacity-90 transition duration-300">
+            Get an Estimate
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

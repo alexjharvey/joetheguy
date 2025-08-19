@@ -1,0 +1,322 @@
+---
+// filepath: /c:/Users/alexj/Desktop/Programming/Projects/joetheguy/www/astro-rev/src/pages/team.astro
+import Layout from '../layouts/MainLayout.astro';
+import ImageOverlay from '../components/ImageOverlay.astro';
+
+// Team Members Data
+//todo: update social urls
+const teamMembers = [
+{
+    name: "JOE TOKAR",
+    position: "CO-FOUNDER",
+    image: "/images/team/390x260/team_01.png",
+    description: "Joe's the Guy",
+    socialLinks: [
+      { platform: "facebook", url: "https://facebook.com/QuanticaLabs" },
+      { platform: "twitter", url: "https://twitter.com/quanticalabs" },
+      { platform: "linkedin", url: "https://1.envato.market/quanticalabs-portfolio" }
+    ]
+  },
+  {
+    name: "LARRY SOMETHING",
+    position: "CO-FOUNDER",
+    image: "/images/team/390x260/team_01.png",
+    description: "Joe's the Guy",
+    socialLinks: [
+      { platform: "facebook", url: "https://facebook.com/QuanticaLabs" },
+      { platform: "twitter", url: "https://twitter.com/quanticalabs" },
+      { platform: "linkedin", url: "https://1.envato.market/quanticalabs-portfolio" }
+    ]
+  },
+  {
+    name: "MICHAEL HVAC GUY",
+    position: "CO-FOUNDER",
+    image: "/images/team/390x260/team_01.png",
+    description: "Primus elite lectus tical at node. Porta commodo terminal forks sande. Nulla novum at novelle.",
+    socialLinks: [
+      { platform: "facebook", url: "https://facebook.com/QuanticaLabs" },
+      { platform: "twitter", url: "https://twitter.com/quanticalabs" },
+      { platform: "linkedin", url: "https://1.envato.market/quanticalabs-portfolio" }
+    ]
+  },
+  {
+    name: "STEVEN PLUMBER EXTRAORDINAIRE",
+    position: "CO-FOUNDER",
+    image: "/images/team/390x260/team_02.png",
+    description: "Primus elite lectus tical at node. Porta commodo terminal forks sande. Nulla novum at novelle.",
+    socialLinks: [
+      { platform: "facebook", url: "https://facebook.com/QuanticaLabs" },
+      { platform: "pinterest", url: "https://www.pinterest.com/quanticalabs/" },
+      { platform: "dribbble", url: "https://dribbble.com/QuanticaLabs" }
+    ]
+  },
+  {
+    name: "RANDO RUSSIAN DUDE",
+    position: "CT-OFFICER",
+    image: "/images/team/390x260/team_03.png",
+    description: "Primus elite lectus tical at node. Porta commodo terminal forks sande. Nulla novum at novelle.",
+    socialLinks: [
+      { platform: "youtube", url: "https://www.youtube.com/user/quanticalabs" },
+      { platform: "behance", url: "https://www.behance.net/quanticalabs" },
+      { platform: "facebook", url: "https://facebook.com/QuanticaLabs" }
+    ]
+  },
+  {
+    name: "ALEX BACK OFFICE",
+    position: "CT-OFFICER",
+    image: "/images/team/390x260/team_03.png",
+    description: "Primus elite lectus tical at node. Porta commodo terminal forks sande. Nulla novum at novelle.",
+    socialLinks: [
+      { platform: "youtube", url: "https://www.youtube.com/user/quanticalabs" },
+      { platform: "behance", url: "https://www.behance.net/quanticalabs" },
+      { platform: "facebook", url: "https://facebook.com/QuanticaLabs" }
+    ]
+  },
+  {
+    name: "ELISE MARKETMAKER",
+    position: "CT-OFFICER",
+    image: "/images/team/390x260/team_03.png",
+    description: "Primus elite lectus tical at node. Porta commodo terminal forks sande. Nulla novum at novelle.",
+    socialLinks: [
+      { platform: "youtube", url: "https://www.youtube.com/user/quanticalabs" },
+      { platform: "behance", url: "https://www.behance.net/quanticalabs" },
+      { platform: "facebook", url: "https://facebook.com/QuanticaLabs" }
+    ]
+  },
+  {
+    name: "JOE'S NIECE",
+    position: "CT-OFFICER",
+    image: "/images/team/390x260/team_03.png",
+    description: "Primus elite lectus tical at node. Porta commodo terminal forks sande. Nulla novum at novelle.",
+    socialLinks: [
+      { platform: "youtube", url: "https://www.youtube.com/user/quanticalabs" },
+      { platform: "behance", url: "https://www.behance.net/quanticalabs" },
+      { platform: "facebook", url: "https://facebook.com/QuanticaLabs" }
+    ]
+  }
+];
+
+// Skills Data
+const skillsLeft = [
+  { name: "Interior Renovation", percentage: 95 },
+  { name: "Paver Walkways", percentage: 72 },
+  { name: "Tiling and Painting", percentage: 60 }
+];
+
+const skillsRight = [
+  { name: "Solar Systems", percentage: 75 },
+  { name: "Household Repairs", percentage: 62 },
+  { name: "Design and Build", percentage: 82 }
+];
+
+// Testimonials Data
+const testimonials = [
+  {
+    content: "We would like to thank Joe The Guy for an outstanding effort on this recently completed project located in the Moscow. The project involved a very aggressive schedule and it was completed on time. We would certainly like to use their professional services again.",
+    author: "MITCHEL SMITH",
+    service: "INTERIOR RENOVATION"
+  },
+  {
+    content: "We would like to thank Joe the Guy for an outstanding effort on this recently completed project located in the Moscow. The project involved a very aggressive schedule and it was completed on time. We would certainly like to use their professional services again.",
+    author: "DEBORA HILTON",
+    service: "PAVER WALKWAYS"
+  }
+];
+
+// Client Logos
+const clientLogos = [
+  { url: "https://quanticalabs.com", image: "/images/logos/logo_01.png" },
+  { url: "https://quanticalabs.com", image: "/images/logos/logo_02.png" },
+  { url: "https://quanticalabs.com", image: "/images/logos/logo_04.png" },
+  { url: "https://quanticalabs.com", image: "/images/logos/logo_03.png" },
+  { url: "https://quanticalabs.com", image: "/images/logos/logo_05.png" },
+  { url: "https://quanticalabs.com", image: "/images/logos/logo_06.png" }
+];
+---
+
+<Layout title="Joe The Guy | Our Team">
+  <main class="w-full">
+    <!-- Page Header -->
+    <section class="w-full bg-gray-100 py-16">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div>
+            <h1 class="text-4xl font-bold uppercase font-raleway">OUR TEAM</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-white">
+      {teamMembers.map((member, index) => (
+        <section id="" class={`py-16 ${index % 2 === 0 ? 'bg-white' : 'bg-secondary-light'}`}>
+          <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+              {/* Order of content and carousel alternates for visual interest */}
+              {index % 2 === 0 ? (
+                <>
+                    <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-semibold uppercase font-raleway text-primary">{member.name}</h2>
+                    <div class="w-16 h-1 bg-primary mt-3 mb-6"></div>
+                    <p class="text-lg mb-8">{member.description}</p>
+                    
+                    </div>
+                    <div class="w-full md:w-1/2">
+                    <ImageOverlay src={member.image} />
+                    </div>
+                  </>
+                  ) : (
+                  <>
+                    <div class="w-full md:w-1/2 order-2 md:order-1">
+                    <ImageOverlay src={member.image} />
+                    </div>
+                    <div class="w-full md:w-1/2 order-1 md:order-2">
+                    <h2 class="text-3xl font-semibold uppercase font-raleway text-primary">{member.name}</h2>
+                    <div class="w-16 h-1 bg-primary mt-3 mb-6"></div>
+                    <p class="text-lg mb-8">{member.description}</p>
+                    <a href="/contact" class="inline-block bg-primary text-white font-semibold px-8 py-3 rounded-xl hover:bg-accent1 transition duration-300">
+                      Request a Quote
+                    </a>
+                    </div>
+                  </>
+                  )}
+                </div>
+                </div>
+              </section>
+              ))}
+
+    </section>
+    <!-- Team Members Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {teamMembers.map((member) => (
+            <li class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
+              <img src={member.image} alt={member.name} class="w-full h-auto" />
+              <div class="p-6">
+                <h4 class="text-xl font-bold mb-1 text-primary">{member.name}</h4>
+                <span class="text-sm text-gray-500 block mb-4">{member.position}</span>
+                <p class="text-gray-700 mb-6">{member.description}</p>
+              </div>
+              <div class="flex justify-center py-4 bg-gray-50 border-t">
+                {member.socialLinks.map((social) => (
+                  <a 
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="mx-2 text-gray-400 hover:text-primary transition-colors duration-300"
+                    title={social.platform}
+                  >
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-16 bg-secondary-light">
+      <div class="container mx-auto px-4">
+        <h3 class="text-3xl font-semibold uppercase font-raleway mb-8">OUR SKILLS</h3>
+        <div class="mx-auto w-24 h-1 bg-primary mb-8"></div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+          <div>
+            {skillsLeft.map((skill) => (
+              <div class="mb-6">
+                <div class="flex justify-between mb-2">
+                  <span class="text-lg font-medium">{skill.name}</span>
+                  <span class="text-lg font-medium">{skill.percentage}%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                  <div class="bg-primary h-2.5 rounded-full" style={`width: ${skill.percentage}%`}></div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div>
+            {skillsRight.map((skill) => (
+              <div class="mb-6">
+                <div class="flex justify-between mb-2">
+                  <span class="text-lg font-medium">{skill.name}</span>
+                  <span class="text-lg font-medium">{skill.percentage}%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                  <div class="bg-primary h-2.5 rounded-full" style={`width: ${skill.percentage}%`}></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials and Clients Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Testimonials -->
+          <div>
+            <h3 class="text-3xl font-semibold uppercase font-raleway mb-8">TESTIMONIALS</h3>
+            <div class="mx-auto w-24 h-1 bg-primary mb-8"></div>
+            
+            <div class="space-y-8 mt-8">
+              {testimonials.map((testimonial) => (
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border-l-4 border-primary">
+                  <p class="italic text-gray-700 mb-4">{testimonial.content}</p>
+                  <div class="flex items-center">
+                    <div>
+                      <div class="font-bold text-gray-900">{testimonial.author}</div>
+                      <div class="text-sm text-gray-500">{testimonial.service}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <!-- Clients -->
+          <div>
+            <h3 class="text-3xl font-semibold uppercase font-raleway mb-8">WE WORK WITH</h3>
+            <div class="mx-auto w-24 h-1 bg-primary mb-8"></div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-8">
+              {clientLogos.map((client) => (
+                <div class="flex items-center justify-center p-4 border rounded-lg bg-white hover:shadow-lg transition-shadow duration-300">
+                  <a href={client.url} target="_blank" rel="noopener noreferrer">
+                    <img src={client.image} alt="Client Logo" class="max-h-16" />
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Yellow Contact Bar -->
+    <section class="bg-primary text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div>
+            <h4 class="font-bold mb-2">Phone:</h4>
+            <p>+149 75 23 222 35</p>
+          </div>
+          <div>
+            <h4 class="font-bold mb-2">Address:</h4>
+            <p>272 Linden Avenue<br>Winter Park, FL 32789</p>
+          </div>
+          <div>
+            <h4 class="font-bold mb-2">E-mail:</h4>
+            <p><a href="mailto:joetheguy@example.com" class="underline">joetheguy@example.com</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

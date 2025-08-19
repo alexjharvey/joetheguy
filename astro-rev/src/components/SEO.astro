@@ -1,4 +1,4 @@
 ---
-const {keywords} = Astro.props;
+const { keywords = [] } = Astro.props;
 ---
 <meta name="keywords" content={keywords.join(", ")} />
