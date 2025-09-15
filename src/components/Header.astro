@@ -1,0 +1,203 @@
+---
+import { companyInfo } from "../data/company-details";
+import { Icon } from "astro-icon/components";
+const { phone, email, hours } = companyInfo;
+
+const logoSrc = "/images/logo/logo_4168x4168.png";
+
+const links = [
+  { href: "/services", title: "Services" },
+  { href: "/dumpsters", title: "Dumpster Rentals" },
+  { href: "/projects", title: "Project Portfolio" },
+  { href: "/cost-calculator", title: "Cost Calculator" },
+  { href: "/team", title: "Our Team" },
+  { href: "/contact", title: "Contact" },
+];
+---
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet"
+  />
+</head>
+
+<!-- Info Header-->
+<header
+  class="p-0 m-0 grid gap-2 grid-cols-1 md:grid-cols-[1fr_auto] lg:grid-cols-[1fr_auto_1fr]
+  items-center bg-secondary-light w-full h-auto px-2 font-raleway
+  font-medium text-xs sm:text-sm text-slate-400"
+>
+  <!-- Info Container-->
+  <div
+    class="col-start-1 md:col-start-2 justify-self-center items-center px-1
+    sm:px-2 md:px-4 whitespace-nowrap overflow-x-auto flex"
+  >
+    <a
+      href="tel:{phone}"
+      title="Call Joe"
+      class="items-center p-1 sm:p-2 md:p-4 flex hover:text-black min-w-fit"
+    >
+      <Icon name="phone-ring" class="pr-1 sm:pr-2 size-5 sm:size-6" />
+      <span class="text-xs sm:text-sm">{phone}</span>
+    </a>
+    <div class="h-6 w-0.5 bg-slate-300 self-center"></div>
+    <a
+      href="mailto:{email}"
+      title="Email Joe"
+      class="items-center flex p-1 sm:p-2 md:p-4 hover:text-black min-w-fit"
+    >
+      <Icon name="mail" class="size-5 sm:size-6 pr-1 sm:pr-2" />
+      <span class="text-xs sm:text-sm">{email}</span>
+    </a>
+    <div class="h-6 w-0.5 bg-slate-300 self-center"></div>
+    <div class="items-center p-1 sm:p-2 md:p-4 flex min-w-fit">
+      <Icon name="clock" class="size-5 sm:size-6 pr-1 sm:pr-2" />
+      <span class="text-xs sm:text-sm">Mon - Fri: {hours.weekdays}</span>
+    </div>
+  </div>
+
+  <!-- Social Icons Container-->
+  <div
+    class="col-start-1 md:col-start-3 justify-self-center md:justify-self-end items-center flex divide-x divide-solid divide-slate-300 px-1 sm:px-2 md:px-4 mb-2 md:mb-0 md:mt-0"
+  >
+    <a target="_blank" href="#" class="" title="Facebook">
+      <Icon
+        name="socials/facebook"
+        class="size-5 sm:size-5 mx-1 sm:mx-2 hover:text-black"
+      /></a
+    >
+
+    <a target="_blank" href="#" class="" title="Instagram">
+      <Icon
+        name="socials/instagram"
+        class="size-5 sm:size-5 mx-1 sm:mx-2 hover:text-black"
+      /></a
+    >
+
+    <a target="_blank" href="#" class="" title="Twitter">
+      <Icon
+        name="socials/twitter"
+        class="size-5 sm:size-5 mx-1 sm:mx-2 hover:text-black"
+      /></a
+    >
+  </div>
+</header>
+
+<!-- Navigation Header -->
+<header
+  class="sticky top-0 z-40 bg-bg-light/80 backdrop-blur-lg flex flex-col lg:flex-row justify-center
+  lg:justify-between items-center px-4 w-full h-full border-b border-bg-dark/20"
+>
+  <!-- Hamburger Menu Button -->
+  <div class="md:hidden absolute left-4 top-1/2 transform -translate-y-1/2">
+    <button
+      id="hamburgerBtn"
+      class="p-2 hover:text-primary"
+      aria-label="Toggle navigation menu"
+    >
+      <Icon name="menu" class="size-6" />
+    </button>
+  </div>
+
+  <!-- Logo -->
+  <div class="flex justify-center lg:justify-start w-full lg:w-auto">
+    <a href="/" class="flex items-center h-full logo">
+      <img src={logoSrc} alt="Logo" class="w-16" />
+      <span class="text-2xl font-bold font-merriweatherSans">JOE THE GUY</span>
+    </a>
+  </div>
+
+  <!-- Navigation -->
+  <nav
+    class="w-full lg:w-auto hidden md:flex flex-wrap justify-center lg:justify-evenly
+    items-center gap-2 lg:gap-0 py-2 lg:py-0 lg:h-full text-nowrap"
+  >
+    {
+      links.map((link) => (
+        <a
+          href={link.href}
+          class="px-3 py-2 lg:p-4 font-raleway hover:text-primary text-center leading-tight
+           text-sm font-medium transition-colors lg:text-center lg:leading-tight"
+          title={link.title}
+        >
+          {link.title}
+        </a>
+      ))
+    }
+  </nav>
+</header>
+
+<!-- Side Panel Tint -->
+<div
+  id="overlay"
+  class="fixed inset-0 bg-black bg-opacity-50 z-[998] hidden lg:hidden"
+>
+</div>
+
+<!-- Navigation Side Panel -->
+<div
+  id="navPanel"
+  class="fixed top-0 left-0 h-full w-72 bg-white shadow-lg transform -translate-x-full
+  transition-transform duration-300 ease-in-out z-[999] lg:hidden"
+>
+  <div class="p-6">
+    <div class="flex justify-between items-center mb-6">
+      <button
+        id="closeNavBtn"
+        class="p-2 hover:text-primary"
+        aria-label="Close navigation panel"
+      >
+        <Icon name="menu" class="size-6" />
+      </button>
+    </div>
+    <nav class="space-y-2">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="block p-3 text-lg font-raleway hover:text-primary transition-colors font-medium"
+            title={link.title}
+          >
+            {link.title}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</div>
+
+<!-- Navigation panel functionality -->
+<script>
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const navPanel = document.getElementById("navPanel");
+  const closeNavBtn = document.getElementById("closeNavBtn");
+  const overlay = document.getElementById("overlay");
+
+  function openPanel() {
+    if (navPanel) navPanel.classList.remove("-translate-x-full");
+    if (overlay) overlay.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closePanel() {
+    if (navPanel) navPanel.classList.add("-translate-x-full");
+    if (overlay) overlay.classList.add("hidden");
+    document.body.style.overflow = "auto";
+  }
+
+  hamburgerBtn?.addEventListener("click", () => openPanel());
+  closeNavBtn?.addEventListener("click", () => closePanel());
+
+  overlay?.addEventListener("click", () => {
+    closePanel();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closePanel();
+    }
+  });
+</script>

@@ -1,0 +1,69 @@
+@config "../../tailwind.config.mjs";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Flatpickr custom styles */
+.flatpickr-calendar {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.flatpickr-day {
+  border-radius: 0.5rem;
+}
+
+.flatpickr-day:hover {
+  background: rgba(247, 167, 29, 0.1);
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.selected:hover {
+  background: #F7A71D !important;
+  border-color: #F7A71D !important;
+  color: white !important;
+}
+
+.flatpickr-day.today {
+  border-color: #F7A71D;
+  color: #F7A71D;
+}
+
+.flatpickr-day.today:hover {
+  background: rgba(247, 167, 29, 0.1);
+  color: #F7A71D;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover,
+.flatpickr-months .flatpickr-next-month:hover {
+  color: #F7A71D;
+}
+
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+  fill: currentColor;
+}
+
+.flatpickr-current-month {
+  color: #111827;
+}
+
+.flatpickr-weekday {
+  color: #6B7280;
+}
+
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay {
+  color: #D1D5DB;
+  cursor: not-allowed;
+}
+
+.flatpickr-day.flatpickr-disabled:hover,
+.flatpickr-day.prevMonthDay:hover,
+.flatpickr-day.nextMonthDay:hover {
+  background: transparent;
+}

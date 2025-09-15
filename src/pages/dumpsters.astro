@@ -1,0 +1,228 @@
+---
+import { Icon } from "astro-icon/components";
+import Layout from "../layouts/MainLayout.astro";
+import "flatpickr/dist/flatpickr.min.css";
+import PaymentOverlay from "../components/PaymentOverlay.astro";
+
+const keywords = [
+  "dumpsters",
+  "dumpster",
+  "dumpsters rental",
+  "dumpster rental",
+  "roll off dumpster",
+  "rental",
+  "roll of dumpster",
+  "in Spartanburg",
+  "Spartanburg",
+  "home remodeling",
+  "home",
+  "Greenville",
+  "in Greenville",
+  "Greer",
+  "in Greer",
+  "home renovation",
+  "renovations",
+  "home renovation",
+  "home remodeling",
+  "remodeling",
+  "home repair",
+  "repairman",
+  "repair",
+  "dumpster rental near me",
+  "trash removal",
+  "garbage",
+  "trash",
+  "Inman",
+  "in Inman",
+  "trash pick up",
+  "trash removal service",
+  "trash removal near me",
+  "trash removal service near me",
+  "trash removal service in Spartanburg",
+  "trash removal service in Greenville",
+  "trash removal service in Greer",
+  "trash removal service in Inman",
+];
+---
+
+<Layout title="Joe the Guy - Dumpster Rental" , keywords={keywords}>
+  <!-- Hero Section -->
+  <div
+    class="relative w-full h-[calc(100vh-70px)] min-h-[600px] overflow-hidden"
+  >
+    <!-- Background Image -->
+    <img
+      src="/images/dumpsters/white_truck5.png"
+      alt="Dumpster Rental"
+      class="w-full h-full object-cover absolute inset-0 object-right"
+    />
+
+    <!-- Content Container -->
+    <div class="relative z-10 flex items-center h-full px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl">
+        <h1
+          class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-6 sm:mb-8 leading-tight drop-shadow-lg max-w-5xl"
+        >
+          Dumpster Rental Services
+        </h1>
+
+        <p
+          class="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-8 sm:mb-10 leading-relaxed max-w-3xl drop-shadow-md"
+        >
+          Professional dumpster rental service for homeowners, contractors, and
+          businesses. Fast delivery, competitive pricing, and reliable waste
+          management solutions.
+        </p>
+
+        <!-- Key Points -->
+        <div class="space-y-3 sm:space-y-4 mb-8 sm:mb-10">
+          <h3
+            class="text-lg sm:text-xl font-semibold text-gray-800 mb-3 drop-shadow-sm"
+          >
+            Perfect for:
+          </h3>
+          <div class="flex items-center space-x-3 sm:space-x-4">
+            <div class="w-2 h-2 sm:w-3 sm:h-3 bg-gray-400 rounded-full"></div>
+            <span class="text-base sm:text-lg text-gray-700 drop-shadow-sm"
+              >Homeowners</span
+            >
+          </div>
+          <div class="flex items-center space-x-3 sm:space-x-4">
+            <div class="w-2 h-2 sm:w-3 sm:h-3 bg-gray-400 rounded-full"></div>
+            <span class="text-base sm:text-lg text-gray-700 drop-shadow-sm"
+              >Contractors</span
+            >
+          </div>
+          <div class="flex items-center space-x-3 sm:space-x-4">
+            <div class="w-2 h-2 sm:w-3 sm:h-3 bg-gray-400 rounded-full"></div>
+            <span class="text-base sm:text-lg text-gray-700 drop-shadow-sm"
+              >Businesses</span
+            >
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="space-y-3 sm:space-y-4">
+          <button
+            id="scrollToRentalBtn"
+            class="bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 sm:py-3 sm:px-8 rounded-xl text-base sm:text-lg transition-all duration-300 shadow-lg"
+          >
+            Book a Dumpster
+          </button>
+          <p class="text-xs sm:text-sm text-gray-500 drop-shadow-sm">
+            Same day delivery available in Spartanburg County
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dumpster Details Section -->
+  <div id="dumpster-form" class="bg-white py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Dumpster Image -->
+        <div class="relative h-full">
+          <img
+            src="/images/dumpsters/10yd.png"
+            class="w-full h-auto max-w-[400px] lg:max-w-max object-cover"
+            alt="10 Yard Dumpster"
+          />
+        </div>
+
+        <!-- Dumpster Details -->
+        <div class="space-y-6 max-w-[700px]">
+          <div class="space-y-3">
+            <h2 class="text-3xl lg:text-4xl font-bold text-gray-900">
+              20 Cubic Yard Dumpster
+            </h2>
+            <h3 class="text-xl text-gray-600 font-medium">
+              General Debris & Construction Waste
+            </h3>
+            <div class="flex items-center text-primary font-semibold">
+              <Icon name="map-pin" class="w-5 h-5 mr-2" />
+              <span>Available in Spartanburg County</span>
+            </div>
+          </div>
+
+          <p class="text-gray-600 leading-relaxed text-lg">
+            Perfect for spring cleaning, home renovations, or major construction
+            projects. This dumpster handles general debris including household
+            items, furniture, and construction materials with ease.
+          </p>
+
+          <div class="flex items-center space-x-8">
+            <div class="text-start">
+              <div class="text-3xl font-bold text-lime-600">$525</div>
+              <div class="text-sm text-gray-600">per week</div>
+            </div>
+            <div class="text-start">
+              <div class="text-2xl font-bold text-gray-900">2 Ton</div>
+              <div class="text-sm text-gray-600">max weight</div>
+            </div>
+            <div class="text-start">
+              <div class="text-2xl font-bold text-gray-900">20 yd³</div>
+              <div class="text-sm text-gray-600">capacity</div>
+            </div>
+          </div>
+
+          <div class="pt-4 max-w-[380px] sm:max-w-[380px]">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-3">
+              <div class="w-full">
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Delivery Date</label
+                >
+                <input
+                  id="datepicker-start"
+                  type="text"
+                  class="w-full text-sm px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                  placeholder="Select Delivery Date"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Pickup Date</label
+                >
+                <input
+                  id="datepicker-end"
+                  type="text"
+                  class="w-full text-sm px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                  placeholder="Select Pickup Date"
+                />
+              </div>
+            </div>
+
+            <div
+              id="booking-date-error-container"
+              class="hidden gap-2 items-center mb-2"
+            >
+              <Icon name="error" class="text-red-500" />
+              <span id="booking-date-error-span" class="text-red-500 text-sm"
+              ></span>
+            </div>
+            <div
+              id="cost-estimate-container"
+              class="text-sm text-gray-600 hidden flex-col"
+            >
+              <span id="estimated-cost-span" class="text-gray-600"></span>
+              <span id="disclaimer-span" class="text-xs text-gray-700/50"
+                >* Additional fees may apply</span
+              >
+            </div>
+            <button
+              id="openOverlayBtn"
+              class="mt-3 bg-primary hover:bg-primary/90 text-white font-semibold py-2 px-3 rounded-lg text-md transition-all duration-300"
+            >
+              Book Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <PaymentOverlay />
+</Layout>
+
+<script src="../scripts/datepicker.ts"></script>
+<script src="../scripts/dumpsters.ts"></script>
