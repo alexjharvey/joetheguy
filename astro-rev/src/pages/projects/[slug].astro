@@ -1,0 +1,118 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const stats = project.data.projectStats;
+const keywords = project.data.tags || [];
+---
+
+<MainLayout title={`${project.data.title} | Joe The Guy`} keywords={keywords}>
+
+  <!-- Project Header -->
+  <div class="w-full h-auto font-raleway bg-secondary-light items-center py-8">
+    <h1 class="px-8 pt-8 pb-4 text-3xl uppercase text-black text-center font-semibold">{project.data.title}</h1>
+    <div class="mx-auto w-24 h-[1.5px] bg-primary mb-8"><!-- Horizontal line --></div>
+
+    <!-- Project Stats Card -->
+    {stats && (
+      <div class="mx-32 mb-8 bg-white p-6 rounded-lg shadow-sm">
+        <div class="flex justify-center gap-12 flex-wrap">
+          {stats.location && (
+            <div class="text-center">
+              <p class="text-sm uppercase text-gray-500 font-semibold">Location</p>
+              <p class="text-lg text-primary font-bold">{stats.location}</p>
+            </div>
+          )}
+          {stats.squareFeet && (
+            <div class="text-center">
+              <p class="text-sm uppercase text-gray-500 font-semibold">Size</p>
+              <p class="text-lg text-primary font-bold">{stats.squareFeet}</p>
+            </div>
+          )}
+          {stats.duration && (
+            <div class="text-center">
+              <p class="text-sm uppercase text-gray-500 font-semibold">Duration</p>
+              <p class="text-lg text-primary font-bold">{stats.duration}</p>
+            </div>
+          )}
+          {stats.yearCompleted && (
+            <div class="text-center">
+              <p class="text-sm uppercase text-gray-500 font-semibold">Completed</p>
+              <p class="text-lg text-primary font-bold">{stats.yearCompleted}</p>
+            </div>
+          )}
+          {stats.budgetRange && (
+            <div class="text-center">
+              <p class="text-sm uppercase text-gray-500 font-semibold">Investment</p>
+              <p class="text-lg text-primary font-bold">{stats.budgetRange}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    )}
+
+    <!-- Description -->
+    {project.data.description && (
+      <div class="mx-60 text-center text-lg text-black mb-8">
+        <p>{project.data.description}</p>
+      </div>
+    )}
+  </div>
+
+  <!-- Featured Image -->
+  {project.data.featuredImage && (
+    <div class="w-full h-auto bg-white py-12 flex justify-center">
+      <div class="w-2/3">
+        <Image src={project.data.featuredImage} alt={project.data.title} class="w-full h-auto rounded-lg shadow-lg" />
+      </div>
+    </div>
+  )}
+
+  <!-- Before Gallery -->
+  {project.data.beforeGallery && project.data.beforeGallery.length > 0 && (
+    <div class="w-full h-auto font-raleway bg-secondary-light items-center py-12">
+      <h2 class="px-8 pb-4 text-3xl uppercase text-black text-center font-semibold">Before</h2>
+      <div class="mx-auto w-24 h-[1.5px] bg-primary mb-8"><!-- Horizontal line --></div>
+      <div class="mx-32 grid grid-cols-3 gap-6">
+        {project.data.beforeGallery.map((img) => (
+          <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+            <Image src={img} alt="Before photo" class="w-full h-auto" />
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- After Gallery -->
+  {project.data.afterGallery && project.data.afterGallery.length > 0 && (
+    <div class="w-full h-auto font-raleway bg-white items-center py-12">
+      <h2 class="px-8 pb-4 text-3xl uppercase text-black text-center font-semibold">After</h2>
+      <div class="mx-auto w-24 h-[1.5px] bg-primary mb-8"><!-- Horizontal line --></div>
+      <div class="mx-32 grid grid-cols-3 gap-6">
+        {project.data.afterGallery.map((img) => (
+          <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+            <Image src={img} alt="After photo" class="w-full h-auto" />
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Back to Projects Button -->
+  <div class="w-full h-auto bg-secondary-light py-12">
+    <div class="flex justify-center align-middle">
+      <a href="/projects" class="bg-primary uppercase text-white font-semibold text-sm px-8 py-2 rounded-2xl hover:bg-accent1 hover:text-white transition-colors duration-300">Back to Projects</a>
+    </div>
+  </div>
+
+</MainLayout>

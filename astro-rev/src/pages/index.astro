@@ -12,45 +12,87 @@ const keywords = ["Dumpster", "dumpsters", "dumpster", "dumpsters rental", "dump
 		<!-- <Slider /> -->
 		<Carousel class="w-full h-auto" />
 		<!--  Services -->
-		<div class="mt-8 w-full h-auto font-raleway bg-secondary-light items-center">
+		<div class="my-8 w-full h-auto font-raleway bg-secondary-light items-center">
 			<h1 class="px-8 pt-8 pb-4 text-3xl uppercase text-black text-center font-semibold">Our Services</h1>
 			<h2 class="mx-60 text-center text-lg text-black">
 				<div class="mx-auto w-24 h-[1.5px] bg-primary mb-8"><!-- Horizontal line --></div>
 				With over 15 years experience in Spartanburg, Greenville and our Upstate communities if you <span class="text-primary font-bold">need a guy</span> for your renovation, remodel or home repair, <span class="text-primary"><a href="#" class="font-bold">Call Joe the Guy!</a></span> We offer a wide range of services to meet your needs. We are a full-service contractor providing quality service to residential and commercial clients.
 			</h2>
-			<div class="mx-32 mt-12 flex bg-white">
-				<div class="w-1/3 flex-col">
+			<div class="mx-32 mt-12 flex gap-6 bg-white">
+				<div class="w-1/3 flex-col ml-6">
 					<a href="#">
-						<img src="/images/services/interior_renovation.jpg" alt="Interior Renovation" class="w-full h-auto"/>
+						<img src="/images/services/19.png" alt="Interior Renovation" class="w-full mt-6 h-auto"/>
 						<h3 class="text-2xl text-center font-semibold text-primary uppercase p-2">Interior Renovation</h3>
 						<p class="text-center p-2">We combine quality workmanship, superior knowledge and low prices to provide you with service unmatched by our competitors.</p>
 				</a>
 				</div>
 				<div class="w-1/3">
-					<img src="/images/services/interior_renovation.jpg" alt="Interior Renovation" class="w-full h-auto"/>
+					<img src="/images/services/23.png" alt="Exterior Renovation" class="w-full mt-6 h-auto"/>
 					<h3 class="text-2xl text-center font-semibold text-primary p-2 uppercase">Exterior Renovation</h3>
 					<p class="text-center p-2">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
 				</div>
-				<div class="w-1/3">
-					<img src="/images/services/interior_renovation.jpg" alt="Interior Renovation" class="w-full h-auto"/>
+				<div class="w-1/3 mr-6">
+					<img src="/images/services/24.png" alt="Home Repair" class="w-full mt-6 h-auto"/>
 					<h3 class="text-2xl text-center font-semibold text-primary p-2 uppercase">Home Repair</h3>
 					<p class="text-center p-2">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
 				</div>
 
 			</div>
+			<!-- Second Row (Hidden Initially) -->
+			<div id="services-row-2" class="mx-32 mt-12 flex gap-6 bg-white hidden">
+				<div class="w-1/3 flex-col">
+					<a href="#">
+						<img src="/images/services/20.png" alt="Kitchen Remodeling" class="w-full mt-6 h-auto"/>
+						<h3 class="text-2xl text-center font-semibold text-primary uppercase p-2">Kitchen Remodeling</h3>
+						<p class="text-center p-2">We combine quality workmanship, superior knowledge and low prices to provide you with service unmatched by our competitors.</p>
+				</a>
+				</div>
+				<div class="w-1/3">
+					<img src="/images/services/21.png" alt="Bathroom Remodeling" class="w-full mt-6 h-auto"/>
+					<h3 class="text-2xl text-center font-semibold text-primary p-2 uppercase">Bathroom Remodeling</h3>
+					<p class="text-center p-2">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
+				</div>
+				<div class="w-1/3">
+					<img src="/images/services/22.png" alt="Flooring Installation" class="w-full mt-6 h-auto"/>
+					<h3 class="text-2xl text-center font-semibold text-primary p-2 uppercase">Flooring Installation</h3>
+					<p class="text-center p-2">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
+				</div>
+
+			</div>
+			<!-- Third Row (Hidden Initially) -->
+			<div id="services-row-3" class="mx-32 mt-12 mb-8 flex gap-6 bg-white hidden">
+				<div class="w-1/3 flex-col">
+					<a href="#">
+						<img src="/images/services/25.png" alt="Painting Services" class="w-full mt-6 h-auto"/>
+						<h3 class="text-2xl text-center font-semibold text-primary uppercase p-2">Painting Services</h3>
+						<p class="text-center p-2">We combine quality workmanship, superior knowledge and low prices to provide you with service unmatched by our competitors.</p>
+				</a>
+				</div>
+				<div class="w-1/3">
+					<img src="/images/services/26.png" alt="Deck & Patio" class="w-full mt-6 h-auto"/>
+					<h3 class="text-2xl text-center font-semibold text-primary p-2 uppercase">Deck & Patio</h3>
+					<p class="text-center p-2">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
+				</div>
+				<div class="w-1/3">
+					<img src="/images/services/27.png" alt="Roofing Services" class="w-full mt-6 h-auto"/>
+					<h3 class="text-2xl text-center font-semibold text-primary p-2 uppercase">Roofing Services</h3>
+					<p class="text-center p-2">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
+				</div>
+
+			</div>
 			<div class="flex justify-center align-middle">
-			<button class="mx-auto my-8 bg-primary uppercase text-white font-semibold text-sm px-8 py-2 rounded-2xl hover:bg-accent1 hover:text-white">View All Services</button>
+			<button id="view-all-services-btn" class="mx-auto my-8 bg-primary uppercase text-white font-semibold text-sm px-8 py-2 rounded-2xl hover:bg-accent1 hover:text-white">View All Services</button>
 			</div>
 			
 		</div> 
 
 		<!-- Recent Projects -->
-		<div class="mt-8 w-full h-auto font-raleway bg-white items-center">
+		<div class="w-full h-auto font-raleway bg-white items-center">
 			<h1 class="px-8 pt-8 pb-4 text-3xl uppercase text-black text-center font-semibold">Recent Projects</h1>
 			<div class="mx-auto w-24 h-[1.5px] bg-primary mb-8"><!-- Horizontal line --></div> 
 			<h2 class="mx-60 text-center text-lg text-black">Here are a few of many projects we have completed for our customers. We provide a professional service
 				which includes consultation, free estimate, design, supply of materials and installation.</h2>
-			<div class="mx-32 mt-12 flex bg-white">
+			<div class="mx-32 mt-12 flex gap-6 bg-white">
 				<div class="w-1/4 relative">
 					<ImageOverlay src="/images/services/interior_renovation.jpg" overlayText="Interior Renovation" overlayButtonText="View Projects"/>
 					<!-- <a href="#">
@@ -79,7 +121,7 @@ const keywords = ["Dumpster", "dumpsters", "dumpster", "dumpsters rental", "dump
 			</div>
 			<div class="flex justify-center items-center bg-secondary-light">
 				<h2 class=" text-2xl uppercase text-black text-center font-semibold">Explore our projects</h2>
-			<a href="projects" class="bg-primary uppercase text-white font-semibold text-sm p-2 m-8 rounded-2xl hover:bg-accent1 hover:text-white">View Projects</button>
+			<a href="projects" class="bg-primary uppercase text-white font-semibold text-sm p-2 m-8 rounded-2xl hover:bg-accent1 hover:text-white">View Projects</button></a>
 			</div>
 		</div>
 
@@ -98,64 +140,25 @@ const keywords = ["Dumpster", "dumpsters", "dumpster", "dumpsters rental", "dump
 			</div>
 		</div>
 		
-	
+
 </MainLayout>
 
-<!-- <style>
-	main {
-		margin: auto;
-		padding: 0;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		margin-bottom: 2rem;
-		border: 1px solid rgba(var(--accent-light), 25%);
-		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-	.instructions code {
-		font-size: 0.8em;
-		font-weight: bold;
-		background: rgba(var(--accent-light), 12%);
-		color: rgb(var(--accent-light));
-		border-radius: 4px;
-		padding: 0.3em 0.4em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent-light));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
-</style> -->
+<script>
+	document.getElementById('view-all-services-btn')?.addEventListener('click', () => {
+		const row2 = document.getElementById('services-row-2');
+		const row3 = document.getElementById('services-row-3');
+		const btn = document.getElementById('view-all-services-btn');
+
+		if (row2 && row3) {
+			row2.classList.remove('hidden');
+			row3.classList.remove('hidden');
+		}
+
+		if (btn) {
+			btn.style.display = 'none';
+		}
+	});
+</script>
+
+
+	
