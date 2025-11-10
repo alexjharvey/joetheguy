@@ -94,25 +94,25 @@ const recentProjects = allProjects.slice(0, 4);
 
 		<!-- Recent Projects -->
 		<div class="w-full h-auto font-raleway bg-white items-center">
-			<h1 class="px-8 pt-8 pb-4 text-3xl uppercase text-black text-center font-semibold">Recent Projects</h1>
-			<div class="mx-auto w-24 h-[1.5px] bg-primary mb-8"><!-- Horizontal line --></div> 
-			<h2 class="mx-60 text-center text-lg text-black">Here are a few of many projects we have completed for our customers. We provide a professional service
+			<h1 class="px-4 md:px-8 pt-8 pb-4 text-2xl md:text-3xl uppercase text-black text-center font-semibold">Recent Projects</h1>
+			<div class="mx-auto w-24 h-[1.5px] bg-primary mb-8"><!-- Horizontal line --></div>
+			<h2 class="mx-4 md:mx-12 lg:mx-32 xl:mx-60 text-center text-base md:text-lg text-black">Here are a few of many projects we have completed for our customers. We provide a professional service
 				which includes consultation, free estimate, design, supply of materials and installation.</h2>
-			<div class="mx-32 mt-12 flex gap-6 bg-white">
+			<div class="mx-4 md:mx-8 lg:mx-32 mt-8 md:mt-12 flex flex-col md:flex-row gap-4 md:gap-6 bg-white">
 				{recentProjects.map((project) => (
-					<div class="w-1/4 flex-col">
+					<div class="w-full md:w-1/4 flex-col">
 						<a href={`/projects/${project.slug}`}>
 							{project.data.featuredImage && (
 								<Image src={project.data.featuredImage} alt={project.data.title} class="w-full h-auto"/>
 							)}
-							<h3 class="text-2xl text-center font-semibold text-primary p-2 uppercase">{project.data.title}</h3>
+							<h3 class="text-xl md:text-2xl text-center font-semibold text-primary p-2 uppercase">{project.data.title}</h3>
 						</a>
 					</div>
 				))}
 
 			</div>
 			<div class="flex justify-center items-center bg-secondary-light">
-				<h2 class=" text-2xl uppercase text-black text-center font-semibold">Explore our projects</h2>
+				<h2 class="text-xl md:text-2xl uppercase text-black text-center font-semibold">Explore our projects</h2>
 			<a href="projects" class="bg-primary uppercase text-white font-semibold text-sm p-2 m-8 rounded-2xl hover:bg-accent1 hover:text-white">View Projects</button></a>
 			</div>
 		</div>
@@ -120,9 +120,9 @@ const recentProjects = allProjects.slice(0, 4);
 		<!-- About Us -->
 		<div>
 			<div class="w-full h-auto font-raleway bg-white items-center">
-				<h1 class="px-8 pt-8 pb-4 text-3xl uppercase text-black text-center font-semibold">About Us</h1>
+				<h1 class="px-4 md:px-8 pt-8 pb-4 text-2xl md:text-3xl uppercase text-black text-center font-semibold">About Us</h1>
 				<div class="mx-auto w-24 h-[1.5px] bg-primary mb-8"><!-- Horizontal line --></div>
-				<div class="mx-60 text-center text-lg text-black">
+				<div class="mx-4 md:mx-12 lg:mx-32 xl:mx-60 text-center text-base md:text-lg text-black">
 					<p>Joe The Guy has been serving the Upstate communities for over 15 years. Our mission is to provide top-notch renovation, remodel, and home repair services to both residential and commercial clients. We pride ourselves on our quality workmanship, superior knowledge, and competitive prices.</p>
 					<p class="mt-4">Our team is dedicated to ensuring that every project is completed on time and within budget. We believe in building lasting relationships with our clients through trust, integrity, and exceptional service.</p>
 				</div>
