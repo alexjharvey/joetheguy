@@ -5,6 +5,7 @@ const projectsCollection = defineCollection({
   type: 'content',
   schema: ({ image }) => z.object({
     title: z.string(),
+    subTitle: z.string().optional(),
     date: z.date(),
     featuredImage: image().optional(),
     beforeGallery: z.array(image()).optional(),

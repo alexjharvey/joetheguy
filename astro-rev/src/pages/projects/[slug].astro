@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
-import MainLayout from '../../layouts/MainLayout.astro';
+import MainLayout from '@/layouts/MainLayout.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -21,6 +21,7 @@ const keywords = project.data.tags || [];
   <!-- Project Header -->
   <div class="w-full h-auto font-raleway bg-secondary-light items-center py-8">
     <h1 class="px-8 pt-8 pb-4 text-3xl uppercase text-black text-center font-semibold">{project.data.title}</h1>
+    <h2 class="pb-4 text-xl uppercase text-primary text-center font-semibold">{project.data.subTitle}</h2>
     <div class="mx-auto w-24 h-[1.5px] bg-primary mb-8"><!-- Horizontal line --></div>
 
     <!-- Project Stats Card -->

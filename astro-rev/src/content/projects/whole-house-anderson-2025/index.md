@@ -1,5 +1,6 @@
 ---
-title: "Whole House Renovation – Near-Campus Anderson Home 2025"
+title: "Whole House Renovation"
+subTitle: "Near-Campus Rental House, Anderson SC 2025"
 date: 2025-11-01
 featuredImage: "./after3.jpg"
 beforeGallery: []

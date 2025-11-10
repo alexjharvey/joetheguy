@@ -2,8 +2,14 @@
 import Carousel from '../components/Carousel.astro';
 import ImageOverlay from '../components/ImageOverlay.astro';
 import MainLayout from '../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 
-const keywords = ["Dumpster", "dumpsters", "dumpster", "dumpsters rental", "dumpster rental", "in Spartanburg", "Spartanburg", "home remodeling", "home", "Greenville", "in Greenville", "Greer", "in Greer", "Inman", "in Inman", "Boiling Springs", "in Boiling Springs", "Roebuck", "in Roebuck","home renovation", "renovations", "home renovation", "home remodeling", "remodeling", "home repair", "repairman", "repair man", ];
+const keywords = ["Dumpster", "dumpsters", "dumpster", "dumpsters rental", "dumpster rental", "in Spartanburg", "Spartanburg", "home remodeling", "home", "Greenville", "in Greenville", "Greer", "in Greer", "Inman", "in Inman", "Boiling Springs", "in Boiling Springs", "Roebuck", "in Roebuck","home renovation", "renovations", "home renovation", "home remodeling", "remodeling", "home repair", "repairman", "repair man", "upstate", ];
+
+// Get up to 4 recent projects
+const allProjects = await getCollection('projects');
+const recentProjects = allProjects.slice(0, 4);
 ---
 
 
@@ -93,30 +99,16 @@ const keywords = ["Dumpster", "dumpsters", "dumpster", "dumpsters rental", "dump
 			<h2 class="mx-60 text-center text-lg text-black">Here are a few of many projects we have completed for our customers. We provide a professional service
 				which includes consultation, free estimate, design, supply of materials and installation.</h2>
 			<div class="mx-32 mt-12 flex gap-6 bg-white">
-				<div class="w-1/4 relative">
-					<ImageOverlay src="/images/services/interior_renovation.jpg" overlayText="Interior Renovation" overlayButtonText="View Projects"/>
-					<!-- <a href="#">
-						<img src="/images/services/interior_renovation.jpg" alt="Interior Renovation" class="absolute inset-0 bg-cover bg-center z-0"/>
-						<div class="flex opacity-0 hover:opacity-100 duration-300 absolute inset-0 z-10 justify-center items-center text-2xl text-white font-semibold">Dwayne</div>
-						<h3 class="text-2xl text-center font-semibold text-primary uppercase p-2">Interior Renovation</h3>
-						<p class="text-center p-2">We combine quality workmanship, superior knowledge and low prices to provide you with service unmatched by our competitors.</p>
-				</a> -->
-				</div>
-				<div class="w-1/4 flex-col">
-					<img src="/images/services/interior_renovation.jpg" alt="Interior Renovation" class="w-full h-auto"/>
-					<h3 class="text-2xl text-center font-semibold text-primary p-2 uppercase">Exterior Renovation</h3>
-					<p class="text-center p-2">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
-				</div>
-				<div class="w-1/4 flex-col">
-					<img src="/images/services/interior_renovation.jpg" alt="Interior Renovation" class="w-full h-auto"/>
-					<h3 class="text-2xl text-center font-semibold text-primary p-2 uppercase">Home Repair</h3>
-					<p class="text-center p-2">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
-				</div>
-				<div class="w-1/4 flex-col">
-					<img src="/images/services/interior_renovation.jpg" alt="Interior Renovation" class="w-full h-auto"/>
-					<h3 class="text-2xl text-center font-semibold text-primary p-2 uppercase">Home Repair</h3>
-					<p class="text-center p-2">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
-				</div>
+				{recentProjects.map((project) => (
+					<div class="w-1/4 flex-col">
+						<a href={`/projects/${project.slug}`}>
+							{project.data.featuredImage && (
+								<Image src={project.data.featuredImage} alt={project.data.title} class="w-full h-auto"/>
+							)}
+							<h3 class="text-2xl text-center font-semibold text-primary p-2 uppercase">{project.data.title}</h3>
+						</a>
+					</div>
+				))}
 
 			</div>
 			<div class="flex justify-center items-center bg-secondary-light">

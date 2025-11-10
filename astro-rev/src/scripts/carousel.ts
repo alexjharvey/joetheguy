@@ -42,6 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCarousel();
   });
 
+  // Preload the second image on initial load
+  updateCarousel();
+
   // Auto-slide every 5 seconds
   setInterval(() => {
     nextButton.click();
