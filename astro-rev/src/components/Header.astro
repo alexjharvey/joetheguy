@@ -8,43 +8,43 @@ const {phone, email, hours} = companyInfo;
 
  
 <header class="p-0 m-0 bg-bg-light">
-    
-    <div class="flex justify-between items-center bg-primary w-full h-auto px-32 font-raleway font-medium text-med text-black ">
+
+    <!-- Top bar - hidden on mobile, visible on lg screens -->
+    <div class="hidden lg:flex justify-between items-center bg-primary w-full h-auto px-4 lg:px-8 xl:px-32 font-raleway font-medium text-sm xl:text-med text-black">
         <!-- Contact Information Container-->
-        <div class="flex justify-between items-center px-4 divide-x-2 divide-solid divide-white border-x-2 border-white ">
-            <a href="tel:{phone}" title="Call Joe" class="items-center p-4 flex hover:text-black">
-                <Icon name="phone-ring" class="pr-2 size-6"/>
-                <span>{phone}</span>
+        <div class="flex justify-between items-center px-2 lg:px-4 divide-x-2 divide-solid divide-white border-x-2 border-white">
+            <a href="tel:{phone}" title="Call Joe" class="items-center p-2 lg:p-4 flex hover:text-black">
+                <Icon name="phone-ring" class="pr-1 lg:pr-2 size-5 lg:size-6"/>
+                <span class="text-xs lg:text-sm xl:text-base">{phone}</span>
             </a>
-            <a href="mailto:{email}" title="Email Joe" class="items-center flex p-4 hover:text-black">
-                <Icon name="mail" class="size-6 pr-2"/>
-                <span>{email}</span>
+            <a href="mailto:{email}" title="Email Joe" class="items-center flex p-2 lg:p-4 hover:text-black">
+                <Icon name="mail" class="size-5 lg:size-6 pr-1 lg:pr-2"/>
+                <span class="text-xs lg:text-sm xl:text-base">{email}</span>
             </a>
-            <div class="items-center p-4 flex ">
-                <Icon name="clock" class="size-6 pr-2"/>
-                <span>Mon - Fri: {hours.weekdays}</span>
+            <div class="items-center p-2 lg:p-4 flex">
+                <Icon name="clock" class="size-5 lg:size-6 pr-1 lg:pr-2"/>
+                <span class="text-xs lg:text-sm xl:text-base">Mon - Fri: {hours.weekdays}</span>
             </div>
         </div>
-        <!-- Social Icons Container-->  
-            <div class="items-center flex px-4">
-                
-                <a target="_blank" href="#" class="" title="Facebook">
-                    <Icon name="socials/facebook" class="size-6 mr-2"/></a>
-            
-                <a target="_blank" href="#" class="" title="Instagram">
-                    <Icon name="socials/instagram" class="size-6 mx-2"/></a>
-                
-                <a target="_blank" href="#" class="" title="Twitter">
-                    <Icon name="socials/twitter" class="size-6 mx-2"/></a>
-            
-                <a target="_blank" href="#" class="" title="Search">
-                    <Icon name="search" class="size-6 ml-2"/></a>    
-            </div>
+        <!-- Social Icons Container-->
+        <div class="items-center flex px-2 lg:px-4">
+            <a target="_blank" href="#" class="" title="Facebook">
+                <Icon name="socials/facebook" class="size-5 lg:size-6 mr-1 lg:mr-2"/></a>
+
+            <a target="_blank" href="#" class="" title="Instagram">
+                <Icon name="socials/instagram" class="size-5 lg:size-6 mx-1 lg:mx-2"/></a>
+
+            <a target="_blank" href="#" class="" title="Twitter">
+                <Icon name="socials/twitter" class="size-5 lg:size-6 mx-1 lg:mx-2"/></a>
+
+            <a target="_blank" href="#" class="" title="Search">
+                <Icon name="search" class="size-5 lg:size-6 ml-1 lg:ml-2"/></a>
+        </div>
     </div>
     <!-- Navigation Container-->
-   <div class="bg-bg-light flex flex-wrap px-24 w-full h-full border-b-8 border-primary">
+   <div class="bg-bg-light flex flex-wrap px-4 md:px-8 lg:px-16 xl:px-24 w-full h-full border-b-4 md:border-b-8 border-primary relative">
         <div class="w-1/3">
-            <Logo />    
+            <Logo />
         </div>
         <div class="w-2/3">
             <Navigation class="h-full"/>

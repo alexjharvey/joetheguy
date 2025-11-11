@@ -10,10 +10,44 @@ const links = [
 ];
 ---
 
-<nav class="flex justify-evenly items-end h-full">
-    
+<!-- Desktop Navigation - hidden on mobile -->
+<nav id="desktop-nav" class="hidden md:flex justify-evenly md:items-end h-full">
     {links.map(link => (
-        <a href={link.href} class="pr-2 font-semibold uppercase font-raleway text-black text-med hover:text-primary" title={link.title}>{link.title}</a>
-                    ))}
-    
+        <a href={link.href} class="pr-1 md:pr-2 font-semibold uppercase font-raleway text-black text-xs md:text-sm lg:text-base xl:text-med hover:text-primary" title={link.title}>{link.title}</a>
+    ))}
 </nav>
+
+<!-- Mobile Navigation - hamburger menu -->
+<div class="md:hidden flex items-center justify-end h-full">
+    <button id="mobile-menu-button" class="text-black p-2" aria-label="Toggle menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+</div>
+
+<!-- Mobile Menu Dropdown -->
+<div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-bg-light shadow-lg z-50 border-t-2 border-primary">
+    <nav class="flex flex-col">
+        {links.map(link => (
+            <a href={link.href} class="px-4 py-3 font-semibold uppercase font-raleway text-black text-sm hover:bg-primary hover:text-white border-b border-gray-200" title={link.title}>{link.title}</a>
+        ))}
+    </nav>
+</div>
+
+<script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (event) => {
+        const target = event.target as HTMLElement;
+        if (!mobileMenuButton?.contains(target) && !mobileMenu?.contains(target)) {
+            mobileMenu?.classList.add('hidden');
+        }
+    });
+</script>
