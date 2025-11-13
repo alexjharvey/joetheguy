@@ -24,6 +24,16 @@ const projectsCollection = defineCollection({
   }),
 });
 
+const servicesCollection = defineCollection({
+  type: 'content',
+  schema: ({ image }) => z.object({
+    title: z.string(),
+    description: z.string(),
+    gallery: z.array(image()),
+  }),
+});
+
 export const collections = {
   projects: projectsCollection,
+  services: servicesCollection,
 };
