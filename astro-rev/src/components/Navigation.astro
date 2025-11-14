@@ -11,7 +11,28 @@ const links = [
 ---
 
 <!-- Desktop Navigation - hidden on mobile -->
-<nav id="desktop-nav" class="hidden md:flex justify-evenly md:items-end h-full">
+<nav id="desktop-nav" class="hidden md:flex justify-evenly md:items-end h-full relative">
+    <!-- Curly Arrow pointing at Dumpster Rentals -->
+    <svg
+        class="hidden md:block absolute bottom-5 left-[47%] w-48 h-auto pointer-events-none text-primary"
+        style="transform: translateX(-50%);"
+        viewBox="0 0 512 512"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Check out our dumpster rentals"
+    >
+        <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M287.885 164.634C354.191 104.386 417.982 62.8787 505.381 68.5109C509.279 68.7622 512.237 72.1214 511.985 76.0136C511.733 79.9058 508.369 82.8579 504.47 82.6069C424.712 77.467 365.486 113.95 301.578 171.315C332.525 187.661 353.002 207.191 365.145 227.86C378.494 250.582 381.506 274.243 377.732 295.567C373.974 316.796 363.501 335.689 349.881 349.158C336.336 362.552 319.07 371.127 301.658 370.312C269.091 368.788 234.693 345.462 223.792 308.242C213.262 272.287 225.141 225.63 276.582 175.222C240.76 161.131 209.955 165.897 183.362 181.564C153.973 198.879 129.257 229.825 109.312 265.148C89.4311 300.355 74.6645 339.237 64.8681 371.567C59.9751 387.716 56.3423 402.161 53.9403 413.611C53.4099 416.139 52.9465 418.499 52.5429 420.681L98.2723 384.57C101.336 382.15 105.785 382.668 108.209 385.726C110.633 388.785 110.114 393.227 107.05 395.647L47.7486 442.477C44.7881 444.814 40.5111 444.42 38.0298 441.58L1.74292 400.052C-0.824926 397.113 -0.519969 392.652 2.42387 390.088C5.36798 387.524 9.83704 387.828 12.4052 390.767L38.2301 420.323C38.7533 417.353 39.376 414.136 40.0933 410.716C42.5863 398.832 46.3235 383.987 51.3261 367.478C61.321 334.492 76.4504 294.581 96.9874 258.212C117.46 221.957 143.684 188.54 176.17 169.399C208.03 150.629 245.454 145.891 287.885 164.634ZM290.46 181.485C237.725 231.311 228.601 274.329 237.372 304.278C246.48 335.374 275.43 354.945 302.32 356.203C314.637 356.779 328.262 350.655 339.924 339.123C351.511 327.665 360.562 311.402 363.8 293.109C367.021 274.911 364.5 254.68 352.941 235.005C341.852 216.129 322.2 197.367 290.46 181.485Z"
+            fill="currentColor"
+            stroke="currentColor"
+        />
+    </svg>
+    <p class="hidden md:block absolute top-[10%] left-[75%] text-primary font-raleway font-bold lg:text-3xl md:text-2xl text-base"
+        style="transform: translateX(-50%);">
+        Joe Now Has Dumpsters!
+    </p>
     {links.map(link => (
         <a href={link.href} class="pr-1 md:pr-2 font-semibold uppercase font-raleway text-black text-xs md:text-sm lg:text-base xl:text-med hover:text-primary" title={link.title}>{link.title}</a>
     ))}
