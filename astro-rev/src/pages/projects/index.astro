@@ -2,6 +2,9 @@
 import Layout from '@/layouts/MainLayout.astro';
 import Carousel from '@/components/Carousel.astro';
 
+// Import all images from the content/projects folder
+const projectImages = import.meta.glob<{ default: ImageMetadata }>('/src/content/projects/**/*.{jpg,jpeg,png,webp}', { eager: true });
+
 const categories = [
   {
     id: "handyman",
@@ -19,7 +22,7 @@ const categories = [
     title: "Kitchens",
     description: "Transform your kitchen into a stunning culinary space with our expert renovation services. Our team combines functionality with aesthetic appeal to create kitchens that become the heart of your home. From modern minimalist designs to classic traditional styles, we deliver exceptional craftsmanship tailored to your specific needs and budget.",
     images: [
-      "/images/portfolio/kitchens/kitchen-before-1.jpg",
+      projectImages['/src/content/projects/whole-house-anderson-2025/after2.jpg']?.default,
       "/images/portfolio/kitchens/kitchen-after-1.jpg",
       "/images/portfolio/kitchens/kitchen-before-2.jpg",
       "/images/portfolio/kitchens/kitchen-after-2.jpg"
@@ -108,7 +111,7 @@ const keywords = ["Home Remodeling", "dumpsters", "dumpster",];
       <section id={category.id} class={`py-16 ${index % 2 === 0 ? 'bg-white' : 'bg-secondary-light'}`}>
         <div class="container mx-auto px-4">
           <div class="flex flex-col md:flex-row gap-8 items-center">
-            {/* Order of content and carousel alternates for visual interest */}
+            {/* Order of content and carousel alternates */}
             {index % 2 === 0 ? (
               <>
                 <div class="w-full md:w-1/2">

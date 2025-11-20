@@ -32,4 +32,5 @@ tags:
   - hvac
   - kitchen
   - bathroom
+  - interior
 ---

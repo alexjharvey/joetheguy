@@ -1,28 +1,53 @@
 ---
 import CarouselOverlay from "./CarouselOverlay.astro"
+import type { ImageMetadata } from 'astro';
 
-// Server-side rendering
-const images = [
-  { src: '/images/carousel/image_01.jpg', alt: 'Image 1', caption: 'Caption for Image 1' },
-  { src: '/images/carousel/image_02.jpg', alt: 'Image 2', caption: 'Caption for Image 2' },
-  { src: '/images/carousel/image_03.jpg', alt: 'Image 3', caption: 'Caption for Image 3' }
-]
+interface SlideData {
+  image: string | ImageMetadata;
+  topComment?: string;
+  bottomComment?: string;
+}
+
+interface Props {
+  images?: (string | ImageMetadata)[];
+  slides?: SlideData[];
+  showCaptions?: boolean;
+  captions?: string[];
+  class?: string;
+}
+
+const { images, slides, showCaptions = false, captions = [], class: className = '' } = Astro.props;
+
+// Helper function to get image src from either string or ImageMetadata
+const getImageSrc = (image: string | ImageMetadata): string => {
+  return typeof image === 'string' ? image : image.src;
+};
+
+// Use slides if provided, otherwise create simple slides from images array
+const slideData = slides || (images || []).map((image, index) => ({
+  image,
+  topComment: undefined,
+  bottomComment: undefined
+}));
 ---
 
-<div class="carousel">
+<div class={`carousel ${className}`}>
     <div class="carousel-track" id="carousel-track">
-      <div class="slide">
-        <img src="/images/carousel/image_01.jpg" alt="Image 1">
-        <CarouselOverlay width="30%" topComment="Home Improvement and Remodeling" bottomComment="With over 15 years experience and a real focus on customer satisfaction, you can rely on us for your next renovation, remodeling or home repair in Spartanburg, Greenville or any of our Upstate communities." />
-      </div>
-      <div class="slide">
-        <img data-src="/images/carousel/image_02.jpg" alt="Image 2">
-        <CarouselOverlay width="30%" topComment="Professional Tile work and Painting" bottomComment="We combine quality workmanship, superior knowledge and low prices to provide you with service unmatched by our competitors in Spartanburg, Greenville or any of our Upstate communities." />
-      </div>
-      <div class="slide">
-        <img data-src="/images/carousel/image_03.jpg" alt="Image 3">
-        <CarouselOverlay width="30%" topComment="High Quality Work at Affordable Prices" bottomComment="We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget. If you're in Spartanburg, Greenville, or anywhere in the Upstate, Joe's your Guy!" />
-      </div>
+      {slideData.map((slide, index) => {
+        const imageSrc = getImageSrc(slide.image);
+        return (
+          <div class="slide">
+            <img src={index === 0 ? imageSrc : undefined} data-src={imageSrc} alt={captions[index] || `Image ${index + 1}`}>
+            {slide.topComment && slide.bottomComment ? (
+              <CarouselOverlay width="30%" topComment={slide.topComment} bottomComment={slide.bottomComment} />
+            ) : showCaptions && captions[index] && (
+              <div class="caption">
+                {captions[index]}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
     <button class="prev h-16 hover:bg-primary hover:bg-opacity-50" id="prev">&lt;</button>
     <button class="next h-16 hover:bg-primary hover:bg-opacity-50" id="next">&gt;</button>
@@ -89,6 +114,19 @@ button {
 .prev { left: 10px; }
 .next { right: 10px; }
 
+.caption {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
 
 </style>
 <script src="../scripts/carousel.ts">

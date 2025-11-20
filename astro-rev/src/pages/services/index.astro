@@ -1,0 +1,184 @@
+---
+import Layout from '@/layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+
+// Import service images
+const serviceImages = import.meta.glob<{ default: ImageMetadata }>('/src/images/services/*.png', { eager: true });
+
+const services = [
+  {
+    id: "home-repair",
+    title: "Home Repair",
+    description: "We have the experience, personnel, and resources to make your home repair project run smoothly and ensure your job is done on time and on budget. From minor fixes to major repairs, Joe handles it all with skill and attention to detail. Whether it's a leaky faucet, broken door, or electrical issue, you can count on Joe to get the job done right.",
+    image: serviceImages['/src/images/services/home_repair2.png']?.default,
+    features: ["Quick turnaround", "Reliable service", "Fair pricing", "Quality workmanship"]
+  },
+  {
+    id: "interior-renovation",
+    title: "Interior Renovation",
+    description: "We combine quality workmanship, superior knowledge and low prices to provide you with interior renovation services unmatched by our competitors. From complete room makeovers to custom built-ins, we transform your interior spaces into beautiful, functional areas that reflect your personal style and enhance your daily living experience.",
+    image: serviceImages['/src/images/services/Interior_Reno2.png']?.default,
+    features: ["Custom designs", "Quality materials", "Expert installation", "Timely completion"]
+  },
+  {
+    id: "kitchen-remodeling",
+    title: "Kitchen Remodeling",
+    description: "Transform your kitchen into the heart of your home with our expert remodeling services. We handle everything from cabinet installation and countertop replacement to full kitchen renovations. Our team works with you to design a kitchen that combines functionality with aesthetic appeal, creating a space where memories are made and meals are enjoyed.",
+    image: serviceImages['/src/images/services/Kitchen_Reno.png']?.default,
+    features: ["Custom cabinetry", "Countertop installation", "Modern appliances", "Complete renovations"]
+  },
+  {
+    id: "bathroom-remodeling",
+    title: "Bathroom Remodeling",
+    description: "Elevate your daily routine with our premium bathroom renovation services. We specialize in creating spa-like retreats that offer both luxury and practicality. From tub-to-shower conversions to complete bathroom overhauls, our attention to detail ensures waterproof installations, elegant fixtures, and perfect tilework that stands the test of time.",
+    image: serviceImages['/src/images/services/Bathroom_Reno.png']?.default,
+    features: ["Custom tile work", "Modern fixtures", "Waterproof installations", "Accessibility upgrades"]
+  },
+  {
+    id: "flooring-installation",
+    title: "Flooring Installation",
+    description: "Whether you're looking for hardwood, laminate, tile, or vinyl, we provide expert flooring installation services that stand the test of time. Our skilled craftsmen ensure proper preparation, precise installation, and beautiful finishing touches that will enhance the look and value of your home for years to come.",
+    image: serviceImages['/src/images/services/Flooring_Install.png']?.default,
+    features: ["Hardwood flooring", "Tile installation", "Laminate & vinyl", "Floor refinishing"]
+  },
+  {
+    id: "painting-services",
+    title: "Painting Services",
+    description: "Give your home a fresh new look with our professional painting services. We handle both interior and exterior painting projects with precision and care. Our team uses premium paints and proper preparation techniques to ensure a flawless, long-lasting finish that protects and beautifies your property.",
+    image: serviceImages['/src/images/services/Painting.png']?.default,
+    features: ["Interior painting", "Exterior painting", "Cabinet refinishing", "Deck staining"]
+  },
+  {
+    id: "exterior-renovation",
+    title: "Exterior Renovation",
+    description: "Make a lasting impression with our exterior renovation expertise. We enhance curb appeal through quality siding, windows, doors, and outdoor living spaces. Our durable materials and precise installation techniques ensure your home's exterior remains beautiful and protected from the elements for years to come.",
+    image: serviceImages['/src/images/services/Exterior_Reno1.png']?.default,
+    features: ["Siding installation", "Window replacement", "Door installation", "Trim & fascia"]
+  },
+  {
+    id: "deck-patio",
+    title: "Deck & Patio",
+    description: "Extend your living space outdoors with custom deck and patio construction. We design and build beautiful outdoor areas perfect for entertaining, relaxing, and enjoying the Upstate weather. From composite decking to stone patios, we create durable outdoor spaces that complement your home and lifestyle.",
+    image: serviceImages['/src/images/services/Deck_Patio.png']?.default,
+    features: ["Custom deck building", "Patio installation", "Pergolas & gazebos", "Outdoor kitchens"]
+  },
+  {
+    id: "roofing-services",
+    title: "Roofing Services",
+    description: "Protect your home with professional roofing services from Joe The Guy. We handle roof repairs, replacements, and maintenance with expertise and care. Our quality materials and skilled installation ensure your roof provides reliable protection from the elements while enhancing your home's curb appeal and value.",
+    image: serviceImages['/src/images/services/Roofing.png']?.default,
+    features: ["Roof replacement", "Repairs & maintenance", "Shingle installation", "Gutter services"]
+  }
+];
+
+const keywords = ["Home Repair", "Interior Renovation", "Kitchen Remodeling", "Bathroom Remodeling", "Flooring Installation", "Painting Services", "Exterior Renovation", "Deck & Patio", "Roofing Services", "Spartanburg", "Greenville", "Upstate SC"];
+---
+
+<Layout title="Our Services | Joe The Guy" keywords={keywords}>
+  <main class="w-full bg-white">
+    <!-- Hero Section -->
+    <section class="w-full bg-secondary-light py-16">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold text-center uppercase font-raleway">Our Services</h1>
+        <div class="mx-auto w-24 h-1 bg-primary mb-6 mt-4"></div>
+        <p class="text-center text-lg max-w-4xl mx-auto mt-8">
+          With over 15 years of experience serving Spartanburg, Greenville, and the Upstate communities, Joe The Guy offers comprehensive home improvement and renovation services. We pride ourselves on quality workmanship, reliable service, and competitive pricing.
+        </p>
+        <p class="text-center text-lg max-w-4xl mx-auto mt-8">
+          From minor repairs to major renovations, we handle every project with professionalism and attention to detail. When you need a guy who gets the job done right, call Joe The Guy!
+        </p>
+      </div>
+    </section>
+
+    <!-- Service Navigation -->
+    <section class="bg-white py-8 border-b border-gray-200">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-center gap-6">
+          {services.map(service => (
+            <a href={`#${service.id}`} class="px-6 py-2 bg-gray-100 hover:bg-primary hover:text-white rounded-full transition duration-300 font-raleway font-medium uppercase text-sm">
+              {service.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Service Categories -->
+    {services.map((service, index) => (
+      <section id={service.id} class={`py-16 ${index % 2 === 0 ? 'bg-white' : 'bg-secondary-light'}`}>
+        <div class="container mx-auto px-4">
+          <div class="flex flex-col md:flex-row gap-8 items-center">
+            {/* Order of content and image alternates for visual interest */}
+            {index % 2 === 0 ? (
+              <>
+                <div class="w-full md:w-1/2">
+                  <h2 class="text-3xl font-semibold uppercase font-raleway text-primary">{service.title}</h2>
+                  <div class="w-16 h-1 bg-primary mt-3 mb-6"></div>
+                  <p class="text-lg mb-6">{service.description}</p>
+                  <ul class="mb-8 space-y-2">
+                    {service.features.map(feature => (
+                      <li class="flex items-center">
+                        <svg class="w-5 h-5 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a href="/contact" class="inline-block bg-primary text-white font-semibold px-8 py-3 rounded-xl hover:bg-accent1 transition duration-300">
+                    Request a Quote
+                  </a>
+                </div>
+                <div class="w-full md:w-1/2">
+                  <Image src={service.image} alt={service.title} class="rounded-lg shadow-xl w-full h-auto"/>
+                </div>
+              </>
+            ) : (
+              <>
+                <div class="w-full md:w-1/2 order-2 md:order-1">
+                  <Image src={service.image} alt={service.title} class="rounded-lg shadow-xl w-full h-auto"/>
+                </div>
+                <div class="w-full md:w-1/2 order-1 md:order-2">
+                  <h2 class="text-3xl font-semibold uppercase font-raleway text-primary">{service.title}</h2>
+                  <div class="w-16 h-1 bg-primary mt-3 mb-6"></div>
+                  <p class="text-lg mb-6">{service.description}</p>
+                  <ul class="mb-8 space-y-2">
+                    {service.features.map(feature => (
+                      <li class="flex items-center">
+                        <svg class="w-5 h-5 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a href="/contact" class="inline-block bg-primary text-white font-semibold px-8 py-3 rounded-xl hover:bg-accent1 transition duration-300">
+                    Request a Quote
+                  </a>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <!-- Call to Action -->
+    <section class="bg-primary py-16 text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+        <p class="text-xl mb-8 max-w-3xl mx-auto">
+          Whether you need a quick repair or a complete renovation, our team is ready to help. Contact us today for a free consultation and estimate.
+        </p>
+        <div class="flex justify-center gap-6">
+          <a href="/contact" class="bg-white text-primary font-bold py-3 px-8 rounded-xl hover:bg-gray-100 transition duration-300">
+            Contact Us
+          </a>
+          <a href="/cost-calculator" class="bg-accent1 text-white font-bold py-3 px-8 rounded-xl hover:bg-opacity-90 transition duration-300">
+            Get an Estimate
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

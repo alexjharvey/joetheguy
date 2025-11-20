@@ -7,6 +7,28 @@ import { Image } from 'astro:assets';
 
 const keywords = ["Dumpster", "dumpsters", "dumpster", "dumpsters rental", "dumpster rental", "in Spartanburg", "Spartanburg", "home remodeling", "home", "Greenville", "in Greenville", "Greer", "in Greer", "Inman", "in Inman", "Boiling Springs", "in Boiling Springs", "Roebuck", "in Roebuck","home renovation", "renovations", "home renovation", "home remodeling", "remodeling", "home repair", "repairman", "repair man", "upstate", ];
 
+// Import service images
+const serviceImages = import.meta.glob<{ default: ImageMetadata }>('/src/images/services/*.png', { eager: true });
+
+// Carousel slides data
+const carouselSlides = [
+  {
+    image: '/images/carousel/image_01.jpg',
+    topComment: 'Home Improvement and Remodeling',
+    bottomComment: 'With over 15 years experience and a real focus on customer satisfaction, you can rely on us for your next renovation, remodeling or home repair in Spartanburg, Greenville or any of our Upstate communities.'
+  },
+  {
+    image: '/images/carousel/image_02.jpg',
+    topComment: 'Professional Tile work and Painting',
+    bottomComment: 'We combine quality workmanship, superior knowledge and low prices to provide you with service unmatched by our competitors in Spartanburg, Greenville or any of our Upstate communities.'
+  },
+  {
+    image: '/images/carousel/image_03.jpg',
+    topComment: 'High Quality Work at Affordable Prices',
+    bottomComment: 'We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget. If you\'re in Spartanburg, Greenville, or anywhere in the Upstate, Joe\'s your Guy!'
+  }
+];
+
 // Get up to 4 recent projects
 const allProjects = await getCollection('projects');
 const recentProjects = allProjects.slice(0, 4);
@@ -14,9 +36,9 @@ const recentProjects = allProjects.slice(0, 4);
 
 
 <MainLayout title="Joe The Guy | When You Need a Guy", keywords={keywords}>
-	
+
 		<!-- <Slider /> -->
-		<Carousel class="w-full h-auto" />
+		<Carousel slides={carouselSlides} class="w-full h-auto" />
 		<!--  Services -->
 		<div class="my-8 w-full h-auto font-raleway bg-secondary-light items-center">
 			<h1 class="px-4 md:px-8 pt-8 pb-4 text-2xl md:text-3xl uppercase text-black text-center font-semibold">Our Services</h1>
@@ -26,66 +48,66 @@ const recentProjects = allProjects.slice(0, 4);
 			</h2>
 			<div class="mx-4 md:mx-8 lg:mx-32 mt-8 md:mt-12 flex flex-col md:flex-row gap-4 md:gap-6 bg-white px-4 md:px-0">
 				<div class="w-full md:w-1/3 ml-6">
-					<img src="/images/services/24.png" alt="Home Repair" class="w-full mt-4 md:mt-6 h-auto"/>
+					<Image src={serviceImages['/src/images/services/Interior_Reno1.png']?.default} alt="Home Repair" class="w-full mt-4 md:mt-6 h-auto"/>
 					<h3 class="text-xl md:text-2xl text-center font-semibold text-primary p-2 uppercase">Home Repair</h3>
 					<p class="text-center p-2 text-sm md:text-base">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
 				</div>
 				<div class="w-full md:w-1/3 flex-col">
 					<a href="#">
-						<img src="/images/services/19.png" alt="Interior Renovation" class="w-full mt-4 md:mt-6 h-auto"/>
+						<Image src={serviceImages['/src/images/services/Interior_Reno2.png']?.default} alt="Interior Renovation" class="w-full mt-4 md:mt-6 h-auto"/>
 						<h3 class="text-xl md:text-2xl text-center font-semibold text-primary uppercase p-2">Interior Renovation</h3>
 						<p class="text-center p-2 text-sm md:text-base">We combine quality workmanship, superior knowledge and low prices to provide you with service unmatched by our competitors.</p>
 				</a>
 				</div>
 				<div class="w-full md:w-1/3 mr-6">
-					<img src="/images/services/23.png" alt="Exterior Renovation" class="w-full mt-4 md:mt-6 h-auto"/>
+					<Image src={serviceImages['/src/images/services/Exterior_Reno1.png']?.default} alt="Exterior Renovation" class="w-full mt-4 md:mt-6 h-auto"/>
 					<h3 class="text-xl md:text-2xl text-center font-semibold text-primary p-2 uppercase">Exterior Renovation</h3>
 					<p class="text-center p-2 text-sm md:text-base">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
 				</div>
-				
+
 
 			</div>
 			<!-- Second Row (Hidden Initially) -->
 			<div id="services-row-2" class="mx-4 md:mx-8 lg:mx-32 mt-8 md:mt-12 flex flex-col md:flex-row gap-4 md:gap-6 bg-white px-4 md:px-0 hidden">
 				<div class="w-full md:w-1/3 ml-6 flex-col">
 					<a href="#">
-						<img src="/images/services/20.png" alt="Kitchen Remodeling" class="w-full mt-4 md:mt-6 h-auto"/>
+						<Image src={serviceImages['/src/images/services/Kitchen_Reno.png']?.default} alt="Kitchen Remodeling" class="w-full mt-4 md:mt-6 h-auto"/>
 						<h3 class="text-xl md:text-2xl text-center font-semibold text-primary uppercase p-2">Kitchen Remodeling</h3>
 						<p class="text-center p-2 text-sm md:text-base">We combine quality workmanship, superior knowledge and low prices to provide you with service unmatched by our competitors.</p>
 				</a>
 				</div>
 				<div class="w-full md:w-1/3">
-					<img src="/images/services/21.png" alt="Bathroom Remodeling" class="w-full mt-4 md:mt-6 h-auto"/>
+					<Image src={serviceImages['/src/images/services/Bathroom_Reno.png']?.default} alt="Bathroom Remodeling" class="w-full mt-4 md:mt-6 h-auto"/>
 					<h3 class="text-xl md:text-2xl text-center font-semibold text-primary p-2 uppercase">Bathroom Remodeling</h3>
 					<p class="text-center p-2 text-sm md:text-base">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
 				</div>
-				
+
 				<div class="w-full md:w-1/3 mr-6">
 					<a href="/services/flooring">
-					<img src="/images/services/22.png" alt="Flooring Installation" class="w-full mt-4 md:mt-6 h-auto"/>
+					<Image src={serviceImages['/src/images/services/Flooring_Install.png']?.default} alt="Flooring Installation" class="w-full mt-4 md:mt-6 h-auto"/>
 					<h3 class="text-xl md:text-2xl text-center font-semibold text-primary p-2 uppercase">Flooring Installation</h3>
 					<p class="text-center p-2 text-sm md:text-base">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
 					</a>
 				</div>
-				
+
 
 			</div>
 			<!-- Third Row (Hidden Initially) -->
 			<div id="services-row-3" class="mx-4 md:mx-8 lg:mx-32 mt-8 md:mt-12 mb-8 flex flex-col md:flex-row gap-4 md:gap-6 bg-white px-4 md:px-0 hidden">
 				<div class="w-full md:w-1/3 ml-6 flex-col">
 					<a href="#">
-						<img src="/images/services/25.png" alt="Painting Services" class="w-full mt-4 md:mt-6 h-auto"/>
+						<Image src={serviceImages['/src/images/services/Painting.png']?.default} alt="Painting Services" class="w-full mt-4 md:mt-6 h-auto"/>
 						<h3 class="text-xl md:text-2xl text-center font-semibold text-primary uppercase p-2">Painting Services</h3>
 						<p class="text-center p-2 text-sm md:text-base">We combine quality workmanship, superior knowledge and low prices to provide you with service unmatched by our competitors.</p>
 				</a>
 				</div>
 				<div class="w-full md:w-1/3">
-					<img src="/images/services/26.png" alt="Deck & Patio" class="w-full mt-4 md:mt-6 h-auto"/>
+					<Image src={serviceImages['/src/images/services/Deck_Patio.png']?.default} alt="Deck & Patio" class="w-full mt-4 md:mt-6 h-auto"/>
 					<h3 class="text-xl md:text-2xl text-center font-semibold text-primary p-2 uppercase">Deck & Patio</h3>
 					<p class="text-center p-2 text-sm md:text-base">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
 				</div>
 				<div class="w-full md:w-1/3 mr-6">
-					<img src="/images/services/27.png" alt="Roofing Services" class="w-full mt-4 md:mt-6 h-auto"/>
+					<Image src={serviceImages['/src/images/services/Roofing.png']?.default} alt="Roofing Services" class="w-full mt-4 md:mt-6 h-auto"/>
 					<h3 class="text-xl md:text-2xl text-center font-semibold text-primary p-2 uppercase">Roofing Services</h3>
 					<p class="text-center p-2 text-sm md:text-base">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
 				</div>
@@ -93,6 +115,12 @@ const recentProjects = allProjects.slice(0, 4);
 			</div>
 			<div class="flex justify-center align-middle">
 			<button id="view-all-services-btn" class="mx-auto my-8 bg-primary uppercase text-white font-semibold text-sm px-8 py-2 rounded-2xl hover:bg-accent1 hover:text-white">View All Services</button>
+			</div>
+			<div id="contact-services" class="flex justify-center align-middle hidden">
+				<p class="mx-4 md:mx-12 lg:mx-32 xl:mx-60 text-center text-base md:text-lg text-black">Ready to get started your home project? Give Joe a call!
+
+				</p>
+			<button class="mx-auto my-8 bg-primary uppercase text-white font-semibold text-sm px-8 py-2 rounded-2xl hover:bg-accent1 hover:text-white">Get a Quote</button>
 			</div>
 			
 		</div> 
@@ -145,6 +173,7 @@ const recentProjects = allProjects.slice(0, 4);
 		const row2 = document.getElementById('services-row-2');
 		const row3 = document.getElementById('services-row-3');
 		const btn = document.getElementById('view-all-services-btn');
+		const quoteBtn = document.getElementById('contact-services');
 
 		if (row2 && row3) {
 			row2.classList.remove('hidden');
@@ -154,6 +183,14 @@ const recentProjects = allProjects.slice(0, 4);
 		if (btn) {
 			btn.style.display = 'none';
 		}
+
+		if (quoteBtn) {
+			quoteBtn.classList.remove('hidden');
+		}
+	});
+
+	document.getElementById('contact-services')?.addEventListener('click', () => {
+		window.location.href = '/contact';
 	});
 </script>
 
