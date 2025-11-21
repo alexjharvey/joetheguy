@@ -39,7 +39,7 @@ const slideData = slides || (images || []).map((image, index) => ({
           <div class="slide">
             <img src={index === 0 ? imageSrc : undefined} data-src={imageSrc} alt={captions[index] || `Image ${index + 1}`}>
             {slide.topComment && slide.bottomComment ? (
-              <CarouselOverlay width="30%" topComment={slide.topComment} bottomComment={slide.bottomComment} />
+              <CarouselOverlay topComment={slide.topComment} bottomComment={slide.bottomComment} />
             ) : showCaptions && captions[index] && (
               <div class="caption">
                 {captions[index]}
@@ -49,8 +49,8 @@ const slideData = slides || (images || []).map((image, index) => ({
         );
       })}
     </div>
-    <button class="prev h-16 hover:bg-primary hover:bg-opacity-50" id="prev">&lt;</button>
-    <button class="next h-16 hover:bg-primary hover:bg-opacity-50" id="next">&gt;</button>
+    <button class="prev h-12 sm:h-14 lg:h-16 px-2 sm:px-3 lg:px-4 hover:bg-primary hover:bg-opacity-50" id="prev">&lt;</button>
+    <button class="next h-12 sm:h-14 lg:h-16 px-2 sm:px-3 lg:px-4 hover:bg-primary hover:bg-opacity-50" id="next">&gt;</button>
   </div>
   
 
@@ -60,6 +60,25 @@ const slideData = slides || (images || []).map((image, index) => ({
   width: 100%;
   overflow: hidden;
   margin: auto;
+  max-height: 400px;
+}
+
+@media (min-width: 640px) {
+  .carousel {
+    max-height: 500px;
+  }
+}
+
+@media (min-width: 768px) {
+  .carousel {
+    max-height: 600px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .carousel {
+    max-height: none;
+  }
 }
 
 .carousel-track {
@@ -70,12 +89,39 @@ const slideData = slides || (images || []).map((image, index) => ({
 .slide {
   min-width: 100%;
   position: relative;
+  height: 400px;
+}
+
+@media (min-width: 640px) {
+  .slide {
+    height: 500px;
+  }
+}
+
+@media (min-width: 768px) {
+  .slide {
+    height: 600px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .slide {
+    height: auto;
+  }
 }
 
 img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  img {
+    height: auto;
+    object-fit: initial;
+  }
 }
 
 .overlay {
@@ -116,16 +162,32 @@ button {
 
 .caption {
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.7);
   color: white;
-  padding: 8px 20px;
+  padding: 6px 12px;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 600;
   text-align: center;
+}
+
+@media (min-width: 640px) {
+  .caption {
+    bottom: 15px;
+    padding: 8px 16px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .caption {
+    bottom: 20px;
+    padding: 8px 20px;
+    font-size: 1rem;
+  }
 }
 
 </style>

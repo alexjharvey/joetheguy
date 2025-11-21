@@ -70,7 +70,12 @@ const links = [
 <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-bg-light shadow-lg z-50 border-t-2 border-primary">
     <nav class="flex flex-col">
         {links.map(link => (
-            <a href={link.href} class="px-4 py-3 font-semibold uppercase font-raleway text-black text-sm hover:bg-primary hover:text-white border-b border-gray-200" title={link.title}>{link.title}</a>
+            <a href={link.href} class="px-4 py-3 font-semibold uppercase font-raleway text-black text-sm hover:bg-primary hover:text-white border-b border-gray-200 flex items-center justify-between" title={link.title}>
+                <span>{link.title}</span>
+                {link.href === '/dumpsters' && (
+                    <span class="new-badge ml-2 text-red-600 font-bold text-xs blink-animation">NEW</span>
+                )}
+            </a>
         ))}
     </nav>
 </div>
@@ -95,6 +100,18 @@ const links = [
     }
     .flash-animation{
     animation: flash 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes blink {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.2;
+        }
+    }
+    .blink-animation {
+        animation: blink 1.75s ease-in-out infinite;
     }
 </style>
 

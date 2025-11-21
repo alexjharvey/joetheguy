@@ -1,5 +1,5 @@
 ---
-const { width, topComment, bottomComment } = Astro.props;
+const { topComment, bottomComment } = Astro.props;
 ---
 
 <style>
@@ -24,13 +24,13 @@ const { width, topComment, bottomComment } = Astro.props;
 
 </style>
 
-<div class="absolute top-8 bottom-8 left-28 flex-col text-left bg-black bg-opacity-50"  style={`max-width: ${width}`}>
-  <div class="relative font-raleway uppercase text-3xl font-semibold border-b-2 border-primary bg-opacity-85">
-    <h2 class="text-primary pt-8 px-8 font-extrabold " style=""><a href="interior_revovation.astro">Need a guy?</a></h2>
-    <h2 class="text-white mt-1 px-8 pb-2"><a href="interior_revovation.astro">{topComment}</a></h2>
+<div class="absolute top-4 bottom-4 left-4 sm:top-6 sm:bottom-6 sm:left-8 md:left-16 lg:top-8 lg:bottom-8 lg:left-28 flex-col text-left bg-black bg-opacity-50 w-[85%] sm:w-3/4 md:w-2/3 lg:w-[30%]">
+  <div class="relative font-raleway uppercase text-xl sm:text-2xl lg:text-3xl font-semibold border-b-2 border-primary bg-opacity-85">
+    <h2 class="text-primary pt-4 px-4 sm:pt-6 sm:px-6 lg:pt-8 lg:px-8 font-extrabold " style=""><a href="interior_revovation.astro">Need a guy?</a></h2>
+    <h2 class="text-white mt-1 px-4 sm:px-6 lg:px-8 pb-2"><a href="interior_revovation.astro">{topComment}</a></h2>
   </div>
   <div class="relative bg-opacity-5">
-    <h2 class="text-white font-normal text-lg/8 px-8 pt-2"><p>{bottomComment}</p></h2>
-    <button class="text-white font-semibold text-base bg-primary px-8 mx-8 mt-4 py-2 rounded-2xl hover:bg-accent1 hover:text-white">Contact Us</button>
+    <h2 class="text-white font-normal text-sm sm:text-base lg:text-lg/8 px-4 sm:px-6 lg:px-8 pt-2"><p>{bottomComment}</p></h2>
+    <button class="text-white font-semibold text-sm sm:text-base bg-primary px-4 sm:px-6 lg:px-8 mx-4 sm:mx-6 lg:mx-8 mt-4 py-2 rounded-2xl hover:bg-accent1 hover:text-white">Contact Us</button>
   </div>
 </div>

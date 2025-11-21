@@ -28,25 +28,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  nextButton.addEventListener("click", function (): void {
+  function goToNext(): void {
     console.log("Next button clicked ", currentIndex+1);
-    
+
     currentIndex = (currentIndex + 1) % slides.length;
     updateCarousel();
-  });
+  }
 
-  prevButton.addEventListener("click", function (): void {
+  function goToPrev(): void {
     console.log("Previous button clicked ", currentIndex+1);
-    
+
     currentIndex = (currentIndex - 1 + slides.length) % slides.length;
     updateCarousel();
-  });
+  }
+
+  nextButton.addEventListener("click", goToNext);
+  prevButton.addEventListener("click", goToPrev);
 
   // Preload the second image on initial load
   updateCarousel();
 
-  // Auto-slide every 5 seconds
+  // Auto-slide every 7 seconds
   setInterval(() => {
-    nextButton.click();
+    goToNext();
   }, 7000);
 });
