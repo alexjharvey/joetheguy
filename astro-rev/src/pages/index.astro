@@ -116,11 +116,18 @@ const recentProjects = allProjects.slice(0, 4);
 			<div class="flex justify-center align-middle">
 			<button id="view-all-services-btn" class="mx-auto my-8 bg-primary uppercase text-white font-semibold text-sm px-8 py-2 rounded-2xl hover:bg-accent1 hover:text-white">View All Services</button>
 			</div>
-			<div id="contact-services" class="flex justify-center align-middle hidden">
-				<p class="mx-4 md:mx-12 lg:mx-32 xl:mx-60 text-center text-base md:text-lg text-black">Ready to get started your home project? Give Joe a call!
-
+			<div id="contact-services" class="flex flex-col md:flex-row justify-center items-center gap-4 hidden">
+				<p class="font-bold mx-4 md:mx-12 text-center md:text-left text-base md:text-lg text-black max-w-md">Ready to get started your home project?<br>Give Joe a call!
 				</p>
-			<button class="mx-auto my-8 bg-primary uppercase text-white font-semibold text-sm px-8 py-2 rounded-2xl hover:bg-accent1 hover:text-white">Get a Quote</button>
+				<svg class="w-32 h-16 flex-shrink-0" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+							<polygon points="0 0, 10 3, 0 6" class="fill-primary" />
+						</marker>
+					</defs>
+					<path d="M 10 50 Q 60 10, 110 30" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#arrowhead)" class="text-primary"/>
+				</svg>
+				<button id="get-quote-btn" class="bg-primary uppercase text-white font-semibold text-sm px-8 py-2 rounded-2xl hover:bg-accent1 hover:text-white">Get a Quote</button>
 			</div>
 			
 		</div> 
@@ -136,7 +143,7 @@ const recentProjects = allProjects.slice(0, 4);
 					<div class="w-full md:w-1/4 flex-col">
 						<a href={`/projects/${project.slug}`}>
 							{project.data.featuredImage && (
-								<Image src={project.data.featuredImage} alt={project.data.title} class="w-full h-auto"/>
+								<Image src={project.data.featuredImage} alt={project.data.title} class="w-full h-64 object-cover"/>
 							)}
 							<h3 class="text-xl md:text-2xl text-center font-semibold text-primary p-2 uppercase">{project.data.title}</h3>
 						</a>
@@ -189,7 +196,7 @@ const recentProjects = allProjects.slice(0, 4);
 		}
 	});
 
-	document.getElementById('contact-services')?.addEventListener('click', () => {
+	document.getElementById('get-quote-btn')?.addEventListener('click', () => {
 		window.location.href = '/contact';
 	});
 </script>

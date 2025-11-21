@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/MainLayout.astro';
 import "flatpickr/dist/flatpickr.min.css";
+import ProhibitedMaterials from '@/components/ProhibitedMaterials.astro';
 
 
 const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental", "roll off dumpster", "rental", "roll of dumpster","in Spartanburg", "Spartanburg", "home remodeling", "home", "Greenville", "in Greenville", "Greer", "in Greer", "home renovation", "renovations", "home renovation", "home remodeling", "remodeling", "home repair", "repairman", "repair", "dumpster rental near me", "trash removal", "garbage", "trash", "Inman", "in Inman", "trash pick up", "trash removal service", "trash removal near me", "trash removal service near me", "trash removal service in Spartanburg", "trash removal service in Greenville", "trash removal service in Greer", "trash removal service in Inman"];
@@ -44,6 +45,40 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
       <div>
         Whether it's time for spring cleaning, a home renovation, or a major construction project, our 20 cubic yard dumpster is the perfect solution for your waste removal needs. This dumpster is ideal for general debris, including household items, furniture, and construction materials.
       </div>
+      <div class="mt-6 space-y-3">
+  <button
+    data-toggle-prohibited
+    class="text-blue-600 underline hover:no-underline text-sm font-medium"
+  >
+    Prohibited materials
+  </button>
+
+  <ProhibitedMaterials />
+</div>
+
+<script>
+  if (typeof window !== "undefined") {
+    window.addEventListener("DOMContentLoaded", () => {
+      const btn = document.querySelector("[data-toggle-prohibited]");
+      const panel = document.getElementById("prohibited-materials-panel");
+
+      if (!btn || !panel) return;
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const hidden = panel.hasAttribute("hidden");
+
+        if (hidden) {
+          panel.removeAttribute("hidden");
+          btn.textContent = "Hide prohibited materials";
+        } else {
+          panel.setAttribute("hidden", "");
+          btn.textContent = "Prohibited materials";
+        }
+      });
+    });
+  }
+</script>
       <div class="flex mt-8">
         <input id="datepicker-start" type="text" class="mt-4 border border-gray-300 p-2 rounded" placeholder="Select Delivery Date"/>
         <input id="datepicker-end" type="text" class="mt-4 border border-gray-300 p-2 rounded ml-4" placeholder="Select Pickup Date"/>
