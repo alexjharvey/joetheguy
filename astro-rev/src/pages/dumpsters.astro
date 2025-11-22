@@ -26,9 +26,76 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
 
   </div>
 
-  <div class="flex flex-col lg:flex-row justify-center align-middle px-4 md:px-8 lg:px-16">
+  <div class="flex flex-col">
+  <!-- 15 Yard Dumpster Section -->
+  <div class="flex flex-col lg:flex-row justify-center align-middle px-4 md:px-8 lg:px-16 mb-12 md:mb-16 lg:mb-20">
     <div class="w-full lg:w-1/2 mx-auto mt-8">
-      <img src="/images/dumpsters/10yd.jpg" class="w-full h-auto" alt="10 Yard Dumpster"/>
+      <img src="/images/dumpsters/10yd.jpg" class="w-full h-auto" alt="15 Yard Dumpster"/>
+    </div>
+    <div class="w-full lg:w-1/2 mx-auto mt-8 lg:ml-8">
+      <div class="flex flex-col">
+        <h1 class="text-2xl md:text-3xl font-raleway font-bold">15 Cubic Yard, 1.5 Ton Max</h1>
+        <h1 class="text-2xl md:text-3xl font-raleway font-bold"> General Debris Dumpster</h1>
+        <div class="flex flex-col sm:flex-row sm:items-center my-6 md:my-8 gap-4 sm:gap-0">
+          <div class="text-lg md:text-xl">
+            <span class="text-primary font-bold text-2xl md:text-3xl">$425</span>/week
+          </div>
+          <div class="flex items-center sm:ml-8 md:ml-16 lg:ml-40">
+            <Icon name="map-pin" class="text-primary mr-2 w-5 h-5"/> <span class="text-sm md:text-base">Available in Spartanburg County</span>
+          </div>
+        </div>
+        <div class="text-sm md:text-base">
+          Perfect for smaller projects like garage cleanouts, yard work, or minor renovations. Our 15 cubic yard dumpster is ideal for residential cleanups, small remodeling projects, and disposing of general household debris and junk.
+        </div>
+        <div class="mt-6 space-y-3">
+          <button
+            data-toggle-prohibited-15
+            class="text-blue-600 underline hover:no-underline text-sm font-medium"
+          >
+            Prohibited materials
+          </button>
+
+          <ProhibitedMaterials />
+        </div>
+
+        <script>
+          if (typeof window !== "undefined") {
+            window.addEventListener("DOMContentLoaded", () => {
+              const btn = document.querySelector("[data-toggle-prohibited-15]");
+              const panel = document.getElementById("prohibited-materials-panel");
+
+              if (!btn || !panel) return;
+
+              btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                const hidden = panel.hasAttribute("hidden");
+
+                if (hidden) {
+                  panel.removeAttribute("hidden");
+                  btn.textContent = "Hide prohibited materials";
+                } else {
+                  panel.setAttribute("hidden", "");
+                  btn.textContent = "Prohibited materials";
+                }
+              });
+            });
+          }
+        </script>
+        <div class="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
+          <input id="datepicker-start-15" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Delivery Date"/>
+          <input id="datepicker-end-15" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Pickup Date"/>
+        </div>
+        <div class="flex mt-4 md:mt-6">
+          <button class="bg-primary text-white py-2 md:py-3 px-6 md:px-8 rounded-2xl text-sm md:text-base font-semibold hover:bg-accent1 transition-colors">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 20 Yard Dumpster Section -->
+  <div class="flex flex-col lg:flex-row justify-center align-middle px-4 md:px-8 lg:px-16 mb-12 md:mb-16 lg:mb-20">
+    <div class="w-full lg:w-1/2 mx-auto mt-8">
+      <img src="/images/dumpsters/10yd.jpg" class="w-full h-auto" alt="20 Yard Dumpster"/>
     </div>
   <div class="w-full lg:w-1/2 mx-auto mt-8 lg:ml-8">
     <div class="flex flex-col">
@@ -80,17 +147,81 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
   }
 </script>
       <div class="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
-        <input id="datepicker-start" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Delivery Date"/>
-        <input id="datepicker-end" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Pickup Date"/>
+        <input id="datepicker-start-20" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Delivery Date"/>
+        <input id="datepicker-end-20" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Pickup Date"/>
       </div>
       <div class="flex mt-4 md:mt-6">
         <button class="bg-primary text-white py-2 md:py-3 px-6 md:px-8 rounded-2xl text-sm md:text-base font-semibold hover:bg-accent1 transition-colors">Book Now</button>
-        <script src="../scripts/datepicker.ts"></script>
       </div>
-      
     </div>
-    <h1></h1>
+  </div>
   </div>
 
+  <!-- 30 Yard Dumpster Section -->
+  <div class="flex flex-col lg:flex-row justify-center align-middle px-4 md:px-8 lg:px-16 mb-12 md:mb-16 lg:mb-20">
+    <div class="w-full lg:w-1/2 mx-auto mt-8">
+      <img src="/images/dumpsters/10yd.jpg" class="w-full h-auto" alt="30 Yard Dumpster"/>
+    </div>
+    <div class="w-full lg:w-1/2 mx-auto mt-8 lg:ml-8">
+      <div class="flex flex-col">
+        <h1 class="text-2xl md:text-3xl font-raleway font-bold">30 Cubic Yard, 3 Ton Max</h1>
+        <h1 class="text-2xl md:text-3xl font-raleway font-bold"> General Debris Dumpster</h1>
+        <div class="flex flex-col sm:flex-row sm:items-center my-6 md:my-8 gap-4 sm:gap-0">
+          <div class="text-lg md:text-xl">
+            <span class="text-primary font-bold text-2xl md:text-3xl">$625</span>/week
+          </div>
+          <div class="flex items-center sm:ml-8 md:ml-16 lg:ml-40">
+            <Icon name="map-pin" class="text-primary mr-2 w-5 h-5"/> <span class="text-sm md:text-base">Available in Spartanburg County</span>
+          </div>
+        </div>
+        <div class="text-sm md:text-base">
+          Our largest option, perfect for major construction projects, large-scale renovations, or commercial cleanouts. The 30 cubic yard dumpster can handle significant amounts of construction debris, roofing materials, and heavy-duty waste removal needs.
+        </div>
+        <div class="mt-6 space-y-3">
+          <button
+            data-toggle-prohibited-30
+            class="text-blue-600 underline hover:no-underline text-sm font-medium"
+          >
+            Prohibited materials
+          </button>
+
+          <ProhibitedMaterials />
+        </div>
+      </div>
+        <script>
+          if (typeof window !== "undefined") {
+            window.addEventListener("DOMContentLoaded", () => {
+              const btn = document.querySelector("[data-toggle-prohibited-30]");
+              const panel = document.getElementById("prohibited-materials-panel");
+
+              if (!btn || !panel) return;
+
+              btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                const hidden = panel.hasAttribute("hidden");
+
+                if (hidden) {
+                  panel.removeAttribute("hidden");
+                  btn.textContent = "Hide prohibited materials";
+                } else {
+                  panel.setAttribute("hidden", "");
+                  btn.textContent = "Prohibited materials";
+                }
+              });
+            });
+          }
+        </script>
+        <div class="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
+          <input id="datepicker-start-30" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Delivery Date"/>
+          <input id="datepicker-end-30" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Pickup Date"/>
+        </div>
+        <div class="flex mt-4 md:mt-6">
+          <button class="bg-primary text-white py-2 md:py-3 px-6 md:px-8 rounded-2xl text-sm md:text-base font-semibold hover:bg-accent1 transition-colors">Book Now</button>
+        </div>
+    </div>
+    
+  </div>
+
+  <script src="../scripts/datepicker.ts"></script>
 </div>
 </Layout>
