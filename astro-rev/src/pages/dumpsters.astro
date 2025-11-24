@@ -5,6 +5,11 @@ import "flatpickr/dist/flatpickr.min.css";
 
 const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental", "roll off dumpster", "rental", "roll of dumpster","in Spartanburg", "Spartanburg", "home remodeling", "home", "Greenville", "in Greenville", "Greer", "in Greer", "home renovation", "renovations", "home renovation", "home remodeling", "remodeling", "home repair", "repairman", "repair", "dumpster rental near me", "trash removal", "garbage", "trash", "Inman", "in Inman", "trash pick up", "trash removal service", "trash removal near me", "trash removal service near me", "trash removal service in Spartanburg", "trash removal service in Greenville", "trash removal service in Greer", "trash removal service in Inman"];
 
+// Dumpster Pricing (in dollars per week)
+const price15Yard = 500;
+const price20Yard = 525;
+const price30Yard = 750;
+
 ---
 <Layout title="Joe the Guy - Dumpster Rental", keywords={keywords}>
   <div class="w-full h-auto relative max-h-[400px] sm:max-h-[500px] md:max-h-[600px] lg:max-h-none overflow-hidden">
@@ -35,7 +40,7 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
         <h1 class="text-2xl md:text-3xl font-raleway font-bold"> General Debris Dumpster</h1>
         <div class="flex flex-col sm:flex-row sm:items-center my-6 md:my-8 gap-4 sm:gap-0">
           <div class="text-lg md:text-xl">
-            <span class="text-primary font-bold text-2xl md:text-3xl">$500</span>/week
+            <span class="text-primary font-bold text-2xl md:text-3xl">${price15Yard}</span>/week
           </div>
           <div class="flex items-center sm:ml-8 md:ml-16 lg:ml-40">
             <Icon name="map-pin" class="text-primary mr-2 w-5 h-5"/> <span class="text-sm md:text-base">Available in Spartanburg County</span>
@@ -52,11 +57,11 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
           </button>
         </div>
         <div class="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
-          <input id="datepicker-start-15" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Delivery Date"/>
-          <input id="datepicker-end-15" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Pickup Date"/>
+          <input id="datepicker-start-15" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Delivery Date" required/>
+          <input id="datepicker-end-15" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Pickup Date" required/>
         </div>
         <div class="flex mt-4 md:mt-6">
-          <button class="bg-primary text-white py-2 md:py-3 px-6 md:px-8 rounded-2xl text-sm md:text-base font-semibold hover:bg-accent1 transition-colors">Book Now</button>
+          <button data-dumpster-type="15" data-dumpster-price={price15Yard} class="book-now-btn bg-primary text-white py-2 md:py-3 px-6 md:px-8 rounded-2xl text-sm md:text-base font-semibold hover:bg-accent1 transition-colors">Book Now</button>
         </div>
       </div>
     </div>
@@ -73,7 +78,7 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
       <h1 class="text-2xl md:text-3xl font-raleway font-bold"> General Debris Dumpster</h1>
       <div class="flex flex-col sm:flex-row sm:items-center my-6 md:my-8 gap-4 sm:gap-0">
         <div class="text-lg md:text-xl">
-          <span class="text-primary font-bold text-2xl md:text-3xl">$525</span>/week
+          <span class="text-primary font-bold text-2xl md:text-3xl">${price20Yard}</span>/week
         </div>
         <div class="flex items-center sm:ml-8 md:ml-16 lg:ml-40">
           <Icon name="map-pin" class="text-primary mr-2 w-5 h-5"/> <span class="text-sm md:text-base">Available in Spartanburg County</span>
@@ -90,11 +95,11 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
         </button>
       </div>
       <div class="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
-        <input id="datepicker-start-20" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Delivery Date"/>
-        <input id="datepicker-end-20" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Pickup Date"/>
+        <input id="datepicker-start-20" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Delivery Date" required/>
+        <input id="datepicker-end-20" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Pickup Date" required/>
       </div>
       <div class="flex mt-4 md:mt-6">
-        <button class="bg-primary text-white py-2 md:py-3 px-6 md:px-8 rounded-2xl text-sm md:text-base font-semibold hover:bg-accent1 transition-colors">Book Now</button>
+        <button data-dumpster-type="20" data-dumpster-price={price20Yard} class="book-now-btn bg-primary text-white py-2 md:py-3 px-6 md:px-8 rounded-2xl text-sm md:text-base font-semibold hover:bg-accent1 transition-colors">Book Now</button>
       </div>
     </div>
   </div>
@@ -111,7 +116,7 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
         <h1 class="text-2xl md:text-3xl font-raleway font-bold"> General Debris Dumpster</h1>
         <div class="flex flex-col sm:flex-row sm:items-center my-6 md:my-8 gap-4 sm:gap-0">
           <div class="text-lg md:text-xl">
-            <span class="text-primary font-bold text-2xl md:text-3xl">$750</span>/week
+            <span class="text-primary font-bold text-2xl md:text-3xl">${price30Yard}</span>/week
           </div>
           <div class="flex items-center sm:ml-8 md:ml-16 lg:ml-40">
             <Icon name="map-pin" class="text-primary mr-2 w-5 h-5"/> <span class="text-sm md:text-base">Available in Spartanburg County</span>
@@ -129,11 +134,11 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
         </div>
       </div>
         <div class="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
-          <input id="datepicker-start-30" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Delivery Date"/>
-          <input id="datepicker-end-30" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Pickup Date"/>
+          <input id="datepicker-start-30" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Delivery Date" required/>
+          <input id="datepicker-end-30" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Pickup Date" required/>
         </div>
         <div class="flex mt-4 md:mt-6">
-          <button class="bg-primary text-white py-2 md:py-3 px-6 md:px-8 rounded-2xl text-sm md:text-base font-semibold hover:bg-accent1 transition-colors">Book Now</button>
+          <button data-dumpster-type="30" data-dumpster-price={price30Yard} class="book-now-btn bg-primary text-white py-2 md:py-3 px-6 md:px-8 rounded-2xl text-sm md:text-base font-semibold hover:bg-accent1 transition-colors">Book Now</button>
         </div>
     </div>
     
@@ -256,6 +261,40 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
           if (e.key === "Escape" && !modal?.classList.contains("hidden")) {
             modal?.classList.add("hidden");
           }
+        });
+
+        // Handle Book Now buttons
+        const bookNowButtons = document.querySelectorAll(".book-now-btn");
+        bookNowButtons.forEach(button => {
+          button.addEventListener("click", (e) => {
+            e.preventDefault();
+            const dumpsterType = button.getAttribute("data-dumpster-type");
+            const dumpsterPrice = button.getAttribute("data-dumpster-price");
+
+            // Find the corresponding date inputs
+            const deliveryInput = document.getElementById(`datepicker-start-${dumpsterType}`) as HTMLInputElement;
+            const pickupInput = document.getElementById(`datepicker-end-${dumpsterType}`) as HTMLInputElement;
+
+            const deliveryDate = deliveryInput?.value;
+            const pickupDate = pickupInput?.value;
+
+            // Validate dates are selected
+            if (!deliveryDate || !pickupDate) {
+              alert("Please select both delivery and pickup dates before booking.");
+              return;
+            }
+
+            // Store data in sessionStorage
+            sessionStorage.setItem("dumpsterOrder", JSON.stringify({
+              type: dumpsterType,
+              price: dumpsterPrice,
+              deliveryDate: deliveryDate,
+              pickupDate: pickupDate
+            }));
+
+            // Navigate to delivery info page
+            window.location.href = "/dumpster-delivery-info";
+          });
         });
       });
     }
