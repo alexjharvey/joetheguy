@@ -1,0 +1,10 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { message } = Astro.props;
+---
+
+<div>
+  <Icon name="error" class="text-red-500" />
+  <span class="text-red-500 text-xs">{message}</span>
+</div>

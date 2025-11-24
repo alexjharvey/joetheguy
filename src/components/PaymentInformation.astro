@@ -1,0 +1,199 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<!-- Information Step -->
+<div
+  id="step-0"
+  class="p-6 space-y-6 mx-auto max-w-sm md:max-w-md sm:max-w-md lg:max-w-md"
+>
+  <div class="mt-6 space-y-1">
+    <h3 class="text-xl font-semibold">Information</h3>
+    <p class="text-gray-600">
+      Fill in your details below to complete your booking.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 gap-4">
+    <div class="flex flex-col gap-2">
+      <label for="first-name" class="text-sm font-medium text-gray-700"
+        >First name</label
+      >
+      <input
+        id="first-name"
+        name="first-name"
+        type="text"
+        placeholder="e.g. John"
+        class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+      />
+      <div
+        class="payment-info-input-individual-error-container hidden gap-2 pt-2 items-center"
+      >
+        <Icon name="error" class="text-red-500 w-[14px] h-[14px]" />
+        <span
+          class="payment-info-input-individual-error-span text-red-500 text-xs"
+        ></span>
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="last-name" class="text-sm font-medium text-gray-700"
+        >Last name</label
+      >
+      <input
+        id="last-name"
+        name="last-name"
+        type="text"
+        placeholder="e.g. Doe"
+        class="w-full rounded-lg border text-sm border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+      />
+      <div
+        class="payment-info-input-individual-error-container hidden gap-2 pt-2 items-center"
+      >
+        <Icon name="error" class="text-red-500 w-[14px] h-[14px]" />
+        <span
+          class="payment-info-input-individual-error-span text-red-500 text-xs"
+        ></span>
+      </div>
+    </div>
+  </div>
+  <!-- 
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+-->
+  <div class="flex flex-col gap-2 md:col-span-2">
+    <label for="email" class="text-sm font-medium text-gray-700">Email</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      placeholder="e.g. mail@example.com"
+      class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+    />
+    <div
+      class="payment-info-input-individual-error-container hidden gap-2 pt-2 items-center"
+    >
+      <Icon name="error" class="text-red-500 w-[14px] h-[14px]" />
+      <span
+        class="payment-info-input-individual-error-span text-red-500 text-xs"
+      ></span>
+    </div>
+  </div>
+  <!--
+              <div class="flex flex-col gap-2 md:col-span-2">
+                <label for="phone" class="text-sm font-medium text-gray-700"
+                  >Phone</label
+                >
+                <div class="flex items-center gap-2 relative">
+                  <Icon name="usa_flag" class="w-[42px] h-[20px]" />
+                  <span class="absolute left-14 text-sm">+1</span>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    placeholder="e.g. (555) 123-4567"
+                    pattern="\d{3}[\-.\s]?\d{3}[\-.\s]?\d{4}"
+                    maxlength="14"
+                    class="w-full rounded-lg border border-gray-300 pr-3 pl-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    required
+                  />
+                </div>
+                <div class="hidden gap-2">
+                  <Icon name="error" class="text-red-500" />
+                  <span id="first-name-error" class="text-red-500 text-xs"
+                  ></span>
+                </div>
+              </div>
+            -->
+
+  <div class="pt-4 pb-2">
+    <div class="h-px bg-gray-200"></div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="address" class="text-sm font-medium text-gray-700"
+      >Address</label
+    >
+    <input
+      id="address"
+      name="address"
+      type="text"
+      placeholder="123 Main St."
+      class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+    />
+    <div
+      class="payment-info-input-individual-error-container hidden gap-2 pt-2 items-center"
+    >
+      <Icon name="error" class="text-red-500 w-[14px] h-[14px]" />
+      <span
+        class="payment-info-input-individual-error-span text-red-500 text-xs"
+      ></span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div class="flex flex-col gap-2">
+      <label for="state" class="text-sm font-medium text-gray-700">State</label>
+      <select
+        id="state"
+        name="state"
+        class="w-full rounded-lg border bg-white border-gray-300 px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+      >
+        <option value="" disabled selected>Select State</option>
+      </select>
+      <div
+        class="payment-info-input-individual-error-container hidden gap-2 pt-2 items-center"
+      >
+        <Icon name="error" class="text-red-500 w-[14px] h-[14px]" />
+        <span
+          class="payment-info-input-individual-error-span text-red-500 text-xs"
+        ></span>
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="city" class="text-sm font-medium text-gray-700">City</label>
+      <div class="relative">
+        <input
+          id="city"
+          name="city"
+          type="text"
+          autocomplete="off"
+          placeholder="Search city"
+          class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+        />
+        <!-- Dropdown list -->
+        <ul
+          id="city-list"
+          class="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1 hidden max-h-40 overflow-y-auto"
+        >
+        </ul>
+        <div
+          class="payment-info-input-individual-error-container hidden gap-2 pt-2 items-center"
+        >
+          <Icon name="error" class="text-red-500 w-[14px] h-[14px]" />
+          <span
+            class="payment-info-input-individual-error-span text-red-500 text-xs"
+          ></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <label for="zip" class="text-sm font-medium text-gray-700">Zip Code</label
+      >
+      <input
+        id="zip"
+        name="zip"
+        type="text"
+        placeholder="e.g. 27007"
+        class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+      />
+      <div
+        class="payment-info-input-individual-error-container hidden gap-2 pt-2 items-center"
+      >
+        <Icon name="error" class="text-red-500 w-[14px] h-[14px]" />
+        <span
+          class="payment-info-input-individual-error-span text-red-500 text-xs"
+        ></span>
+      </div>
+    </div>
+  </div>
+</div>

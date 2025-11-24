@@ -1,0 +1,86 @@
+---
+import PaymentConfirmation from "./PaymentConfirmation.astro";
+import PaymentCard from "./PaymentCard.astro";
+import PaymentInformation from "./PaymentInformation.astro";
+---
+
+<!-- Fullscreen Booking Overlay -->
+<div
+  id="bookingOverlay"
+  class="fixed inset-0 bg-white z-[1000] hidden overflow-hideen"
+>
+  <div class="w-full min-h-full bg-white flex flex-col">
+    <div
+      class="w-full h-16 bg-white border-b border-gray-200 grid grid-cols-[1fr_auto_1fr] items-center px-4"
+    >
+      <!-- Process Tracker -->
+      <div
+        id="processTracker"
+        class="col-start-2 justify-self-end flex justify-center items-center gap-6"
+      >
+        <div class="flex items-center gap-2">
+          <div data-step="0" class="size-3 rounded-full bg-primary"></div>
+          <span class="text-sm text-gray-600 whitespace-nowrap"
+            >Information</span
+          >
+        </div>
+        <div class="flex items-center gap-2">
+          <div data-step="1" class="size-3 rounded-full bg-gray-300"></div>
+          <span class="text-sm text-gray-600 whitespace-nowrap">Payment</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div data-step="2" class="size-3 rounded-full bg-gray-300"></div>
+          <span class="text-sm text-gray-600 whitespace-nowrap"
+            >Confirmation</span
+          >
+        </div>
+      </div>
+      <button
+        id="closeOverlayBtn"
+        class="col-start-3 justify-self-end p-1 w-10 h-10 rounded-full bg-none hover:bg-primary/20 text-primary text-xl transition grid place-items-center"
+      >
+        ✕
+      </button>
+    </div>
+    <div class="w-full flex-1 overflow-auto pb-20" id="click-background">
+      <div class="max-w-2xl mx-auto w-full">
+        <div class="w-full bg-white">
+          <PaymentInformation />
+
+          <PaymentCard />
+
+          <PaymentConfirmation />
+
+          <!-- Navigation bottom Section -->
+          <div class="pt-6">
+            <div
+              class="max-w-sm md:max-w-md sm:max-w-md lg:max-w-md mx-auto px-6"
+            >
+              <!-- Navigation Buttons (Previous/Next) -->
+              <div class="flex justify-between items-center mb-6">
+                <button
+                  type="button"
+                  id="prevStepBtn"
+                  class="inline-flex invisible items-center justify-center gap-2 px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 whitespace-nowrap"
+                >
+                  ← Previous
+                </button>
+                <button
+                  type="button"
+                  id="nextStepBtn"
+                  class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 whitespace-nowrap"
+                >
+                  Next →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://tokenization.sandbox.accept.blue/tokenization/v0.3"
+></script>
+<script src="../scripts/paymentOverlay.ts"></script>

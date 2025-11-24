@@ -1,0 +1,109 @@
+---
+import { Icon } from "astro-icon/components";
+import emptyCard from "../icons/payment_cards/empty.svg?url";
+---
+
+<!-- Confirmation Step -->
+<div id="step-2" class="p-6 max-w-sm sm:max-w-md mx-auto hidden">
+  <div>
+    <h3 class="text-xl font-semibold mb-4">Confirmation</h3>
+    <p class="text-gray-600">Review your booking details and confirm.</p>
+  </div>
+
+  <div class="flex flex-col mt-14 gap-4">
+    <div class="flex flex-col gap-4">
+      <div class="relative h-full">
+        <img
+          src="/images/dumpsters/10yd.png"
+          class="w-full max-w-[340px] h-auto lg:max-w-max object-cover"
+          alt="10 Yard Dumpster"
+        />
+      </div>
+      <span class="text-lg font-semibold">10 Yard Dumpster</span>
+    </div>
+
+    <div>
+      <div class="flex gap-8">
+        <div class="flex flex-col items-start">
+          <span id="confirmation-cost"></span>
+          <span class="text-gray-600 text-xs">Total of</span>
+        </div>
+
+        <div class="flex flex-col items-start">
+          <span id="confirmation-period"></span>
+          <span class="text-gray-600 text-xs">Booking for</span>
+        </div>
+      </div>
+      <div class="flex mt-4 max-w-[340px]">
+        <div class="flex flex-col items-start">
+          <span id="confirmation-dates"></span>
+          <span class="text-gray-600 text-xs">Starting from / Until</span>
+        </div>
+      </div>
+      <div class="flex mt-4 max-w-[340px]">
+        <div class="flex flex-col items-start">
+          <span id="confirmation-location"></span>
+          <span class="text-gray-600 text-xs">Shipping to</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-4 pb-2">
+    <div class="h-px bg-gray-200"></div>
+  </div>
+  <div>
+    <div class="flex flex-col mb-4">
+      <div class="flex mt-4 max-w-[340px]">
+        <div class="flex flex-col items-start">
+          <span id="confirmation-name"></span>
+          <span class="text-gray-600 text-xs">First / Last name</span>
+        </div>
+      </div>
+      <div class="flex mt-4 max-w-[340px]">
+        <div class="flex flex-col items-start">
+          <span id="confirmation-email"></span>
+          <span class="text-gray-600 text-xs">Email</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="h-[160px] w-full max-w-[260px] bg-gray-50 border border-gray-300 rounded-xl pt-6 shadow-md"
+      >
+        <div class="w-full h-[30px] bg-black"></div>
+
+        <div class="grid grid-cols-[1fr_auto_1fr] items-center mt-4 w-full">
+          <div
+            class="bg-gray-200 w-min min-w-[140px] justify-center flex mx-auto rounded-md px-2 py-1 col-start-2"
+          >
+            <span id="confirmation-card-number" class="text-sm text-gray-700"
+            ></span>
+          </div>
+          <div class="col-start-3 justify-self-end mr-2 items-center pr-2">
+            <img
+              id="confirmation-card-icon"
+              src={emptyCard}
+              width="32"
+              height="28"
+            />
+          </div>
+        </div>
+        <div class="grid grid-cols-[1fr_auto_1fr]">
+          <div class="mt-4 bg-gray-200 mx-auto rounded-md col-start-2 px-2">
+            <span id="confirmation-card-exp" class="text-xs text-gray-700"
+            ></span>
+          </div>
+          <div class="mt-4 bg-gray-200 mx-auto rounded-md col-start-3 px-2">
+            <span id="confirmation-card-cvv" class="text-xs text-gray-700"
+            ></span>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2 mt-6">
+        <span class="text-gray-600 text-sm"
+          >Please review your details before confirming.</span
+        >
+      </div>
+    </div>
+  </div>
+</div>
