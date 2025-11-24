@@ -9,4 +9,5 @@ export const companyInfo = {
       weekends: "10:00 AM - 4:00 PM",
     },
     email: "info@JoeTheGuy.com",
+    bookingEmail: "booking@JoeTheGuy.com",
   };
