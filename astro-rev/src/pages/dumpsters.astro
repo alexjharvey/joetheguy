@@ -2,11 +2,8 @@
 import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/MainLayout.astro';
 import "flatpickr/dist/flatpickr.min.css";
-import ProhibitedMaterials from '@/components/ProhibitedMaterials.astro';
-
 
 const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental", "roll off dumpster", "rental", "roll of dumpster","in Spartanburg", "Spartanburg", "home remodeling", "home", "Greenville", "in Greenville", "Greer", "in Greer", "home renovation", "renovations", "home renovation", "home remodeling", "remodeling", "home repair", "repairman", "repair", "dumpster rental near me", "trash removal", "garbage", "trash", "Inman", "in Inman", "trash pick up", "trash removal service", "trash removal near me", "trash removal service near me", "trash removal service in Spartanburg", "trash removal service in Greenville", "trash removal service in Greer", "trash removal service in Inman"];
-
 
 ---
 <Layout title="Joe the Guy - Dumpster Rental", keywords={keywords}>
@@ -38,7 +35,7 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
         <h1 class="text-2xl md:text-3xl font-raleway font-bold"> General Debris Dumpster</h1>
         <div class="flex flex-col sm:flex-row sm:items-center my-6 md:my-8 gap-4 sm:gap-0">
           <div class="text-lg md:text-xl">
-            <span class="text-primary font-bold text-2xl md:text-3xl">$425</span>/week
+            <span class="text-primary font-bold text-2xl md:text-3xl">$500</span>/week
           </div>
           <div class="flex items-center sm:ml-8 md:ml-16 lg:ml-40">
             <Icon name="map-pin" class="text-primary mr-2 w-5 h-5"/> <span class="text-sm md:text-base">Available in Spartanburg County</span>
@@ -49,38 +46,11 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
         </div>
         <div class="mt-6 space-y-3">
           <button
-            data-toggle-prohibited-15
-            class="text-blue-600 underline hover:no-underline text-sm font-medium"
+            class="prohibited-materials-trigger text-blue-600 underline hover:no-underline text-sm font-medium"
           >
             Prohibited materials
           </button>
-
-          <ProhibitedMaterials />
         </div>
-
-        <script>
-          if (typeof window !== "undefined") {
-            window.addEventListener("DOMContentLoaded", () => {
-              const btn = document.querySelector("[data-toggle-prohibited-15]");
-              const panel = document.getElementById("prohibited-materials-panel");
-
-              if (!btn || !panel) return;
-
-              btn.addEventListener("click", (e) => {
-                e.preventDefault();
-                const hidden = panel.hasAttribute("hidden");
-
-                if (hidden) {
-                  panel.removeAttribute("hidden");
-                  btn.textContent = "Hide prohibited materials";
-                } else {
-                  panel.setAttribute("hidden", "");
-                  btn.textContent = "Prohibited materials";
-                }
-              });
-            });
-          }
-        </script>
         <div class="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
           <input id="datepicker-start-15" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Delivery Date"/>
           <input id="datepicker-end-15" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Pickup Date"/>
@@ -113,39 +83,12 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
         Whether it's time for spring cleaning, a home renovation, or a major construction project, our 20 cubic yard dumpster is the perfect solution for your waste removal needs. This dumpster is ideal for general debris, including household items, furniture, and construction materials.
       </div>
       <div class="mt-6 space-y-3">
-  <button
-    data-toggle-prohibited
-    class="text-blue-600 underline hover:no-underline text-sm font-medium"
-  >
-    Prohibited materials
-  </button>
-
-  <ProhibitedMaterials />
-</div>
-
-<script>
-  if (typeof window !== "undefined") {
-    window.addEventListener("DOMContentLoaded", () => {
-      const btn = document.querySelector("[data-toggle-prohibited]");
-      const panel = document.getElementById("prohibited-materials-panel");
-
-      if (!btn || !panel) return;
-
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        const hidden = panel.hasAttribute("hidden");
-
-        if (hidden) {
-          panel.removeAttribute("hidden");
-          btn.textContent = "Hide prohibited materials";
-        } else {
-          panel.setAttribute("hidden", "");
-          btn.textContent = "Prohibited materials";
-        }
-      });
-    });
-  }
-</script>
+        <button
+          class="prohibited-materials-trigger text-blue-600 underline hover:no-underline text-sm font-medium"
+        >
+          Prohibited materials
+        </button>
+      </div>
       <div class="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
         <input id="datepicker-start-20" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Delivery Date"/>
         <input id="datepicker-end-20" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Pickup Date"/>
@@ -168,7 +111,7 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
         <h1 class="text-2xl md:text-3xl font-raleway font-bold"> General Debris Dumpster</h1>
         <div class="flex flex-col sm:flex-row sm:items-center my-6 md:my-8 gap-4 sm:gap-0">
           <div class="text-lg md:text-xl">
-            <span class="text-primary font-bold text-2xl md:text-3xl">$625</span>/week
+            <span class="text-primary font-bold text-2xl md:text-3xl">$750</span>/week
           </div>
           <div class="flex items-center sm:ml-8 md:ml-16 lg:ml-40">
             <Icon name="map-pin" class="text-primary mr-2 w-5 h-5"/> <span class="text-sm md:text-base">Available in Spartanburg County</span>
@@ -179,38 +122,12 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
         </div>
         <div class="mt-6 space-y-3">
           <button
-            data-toggle-prohibited-30
-            class="text-blue-600 underline hover:no-underline text-sm font-medium"
+            class="prohibited-materials-trigger text-blue-600 underline hover:no-underline text-sm font-medium"
           >
             Prohibited materials
           </button>
-
-          <ProhibitedMaterials />
         </div>
       </div>
-        <script>
-          if (typeof window !== "undefined") {
-            window.addEventListener("DOMContentLoaded", () => {
-              const btn = document.querySelector("[data-toggle-prohibited-30]");
-              const panel = document.getElementById("prohibited-materials-panel");
-
-              if (!btn || !panel) return;
-
-              btn.addEventListener("click", (e) => {
-                e.preventDefault();
-                const hidden = panel.hasAttribute("hidden");
-
-                if (hidden) {
-                  panel.removeAttribute("hidden");
-                  btn.textContent = "Hide prohibited materials";
-                } else {
-                  panel.setAttribute("hidden", "");
-                  btn.textContent = "Prohibited materials";
-                }
-              });
-            });
-          }
-        </script>
         <div class="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
           <input id="datepicker-start-30" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Delivery Date"/>
           <input id="datepicker-end-30" type="text" class="w-full sm:w-auto flex-1 border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base" placeholder="Select Pickup Date"/>
@@ -221,6 +138,128 @@ const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental"
     </div>
     
   </div>
+
+  <!-- Prohibited Materials Modal -->
+  <div id="prohibited-materials-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-3xl max-h-[90vh] overflow-y-auto relative">
+      <button id="close-modal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl font-bold">&times;</button>
+      <div class="p-6">
+        <h3 class="mb-2 text-xl md:text-2xl font-bold">Prohibited Materials</h3>
+
+        <p class="mb-4 text-slate-700 text-sm md:text-base">
+          For safety and to comply with local regulations, the following items
+          <strong>may not</strong> be placed in our dumpsters. If you're unsure about
+          an item, please contact us before loading it.
+        </p>
+
+        <!-- CATEGORY -->
+        <h4 class="mt-4 mb-1 text-base md:text-lg font-semibold text-slate-900">
+          Hazardous Materials & Chemicals
+        </h4>
+        <ul class="ml-5 list-disc space-y-1 text-sm md:text-base">
+          <li>Oil-based paints, stains, lacquers, solvents, paint thinner</li>
+          <li>Motor oil, antifreeze, gasoline, fuels, automotive fluids</li>
+          <li>Pesticides, herbicides, strong pool/landscaping chemicals</li>
+          <li>Adhesives, resins, large quantities of glue</li>
+          <li>Corrosive or toxic household cleaners</li>
+        </ul>
+
+        <h4 class="mt-4 mb-1 text-base md:text-lg font-semibold text-slate-900">
+          Flammable / Pressurized Items
+        </h4>
+        <ul class="ml-5 list-disc space-y-1 text-sm md:text-base">
+          <li>Propane tanks or any pressurized cylinders</li>
+          <li>Gasoline, diesel, kerosene, other flammable liquids</li>
+        </ul>
+
+        <h4 class="mt-4 mb-1 text-base md:text-lg font-semibold text-slate-900">
+          Batteries, Electronics & Refrigerated Appliances
+        </h4>
+        <ul class="ml-5 list-disc space-y-1 text-sm md:text-base">
+          <li>Car batteries, lithium-ion batteries, rechargeable packs</li>
+          <li>Televisions, monitors, and electronic waste (e-waste)</li>
+          <li>Refrigerators, freezers, AC units containing refrigerants</li>
+        </ul>
+
+        <h4 class="mt-4 mb-1 text-base md:text-lg font-semibold text-slate-900">
+          Special Construction & Industrial Materials
+        </h4>
+        <ul class="ml-5 list-disc space-y-1 text-sm md:text-base">
+          <li>Asbestos-containing materials</li>
+          <li>Railroad ties, telephone poles, creosote-treated lumber</li>
+          <li>Large tree stumps or heavy concrete/brick loads</li>
+        </ul>
+
+        <h4 class="mt-4 mb-1 text-base md:text-lg font-semibold text-slate-900">
+          Tires, Mattresses & Certain Furniture
+        </h4>
+        <ul class="ml-5 list-disc space-y-1 text-sm md:text-base">
+          <li>Tires of any size</li>
+          <li>Mattresses or box springs (may incur extra fees)</li>
+          <li>Restricted upholstered furniture</li>
+        </ul>
+
+        <h4 class="mt-4 mb-1 text-base md:text-lg font-semibold text-slate-900">
+          Medical & Biohazardous Waste
+        </h4>
+        <ul class="ml-5 list-disc space-y-1 text-sm md:text-base">
+          <li>Medical waste, sharps, needles</li>
+          <li>Biological or pathological waste</li>
+        </ul>
+
+        <h4 class="mt-4 mb-1 text-base md:text-lg font-semibold text-slate-900">
+          Other Restricted Items
+        </h4>
+        <ul class="ml-5 list-disc space-y-1 text-sm md:text-base">
+          <li>Fluorescent tubes and ballasts (mercury)</li>
+          <li>Contaminated soil</li>
+          <li>Large volumes of food/organic waste where restricted</li>
+        </ul>
+
+        <p class="mt-4 text-slate-600 text-sm">
+          <strong>Note:</strong> Additional fees or refused pickup may occur if
+          prohibited items are found in the dumpster.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if (typeof window !== "undefined") {
+      window.addEventListener("DOMContentLoaded", () => {
+        const modal = document.getElementById("prohibited-materials-modal");
+        const closeBtn = document.getElementById("close-modal");
+        const triggers = document.querySelectorAll(".prohibited-materials-trigger");
+
+        // Open modal when any trigger is clicked
+        triggers.forEach(trigger => {
+          trigger.addEventListener("click", (e) => {
+            e.preventDefault();
+            modal?.classList.remove("hidden");
+          });
+        });
+
+        // Close modal when close button is clicked
+        closeBtn?.addEventListener("click", () => {
+          modal?.classList.add("hidden");
+        });
+
+        // Close modal when clicking outside the content
+        modal?.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            modal.classList.add("hidden");
+          }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && !modal?.classList.contains("hidden")) {
+            modal?.classList.add("hidden");
+          }
+        });
+      });
+    }
+  </script>
 
   <script src="../scripts/datepicker.ts"></script>
 </div>
