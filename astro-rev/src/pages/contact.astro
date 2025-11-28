@@ -1,5 +1,8 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import { companyInfo } from '@/data/company-details';
+const phone = companyInfo.phone;
+const emailKey = companyInfo.emailKey;
 ---
 
 <MainLayout title="Request a Quote Form">
@@ -34,8 +37,96 @@ import MainLayout from "../layouts/MainLayout.astro";
       </form>
     </div>
   </div>
+
+  <!-- Success Modal -->
+  <div id="success-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-md w-full p-8 relative animate-scale-in">
+      <div class="text-center">
+        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
+          <svg class="h-10 w-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-raleway font-bold text-gray-900 mb-3">Message Sent!</h3>
+        <p class="text-gray-600 mb-6">Thank you for contacting us! We'll get back to you shortly.</p>
+        <button id="success-modal-close" class="w-full bg-primary hover:bg-accent1 text-white font-semibold py-3 px-6 rounded-xl transition-colors">
+          Got It
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div id="error-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-md w-full p-8 relative animate-scale-in">
+      <div class="text-center">
+        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
+          <svg class="h-10 w-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-raleway font-bold text-gray-900 mb-3">Submission Failed</h3>
+        <p id="error-modal-message" class="text-gray-600 mb-6">There was an error sending your message. Please try again or call us directly at {phone}</p>
+        <button id="error-modal-close" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-xl transition-colors">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
 </MainLayout>
-<script>
+<script define:vars={{ phone, emailKey }}>
+  // Modal utility functions
+  const showSuccessModal = () => {
+    const modal = document.getElementById("success-modal");
+    modal?.classList.remove("hidden");
+  };
+
+  const showErrorModal = (message?: string) => {
+    const modal = document.getElementById("error-modal");
+    const messageEl = document.getElementById("error-modal-message");
+    if (message && messageEl) {
+      messageEl.textContent = message;
+    }
+    modal?.classList.remove("hidden");
+  };
+
+  const hideModal = (modalId: string) => {
+    const modal = document.getElementById(modalId);
+    modal?.classList.add("hidden");
+  };
+
+  // Modal close button handlers
+  document.getElementById("success-modal-close")?.addEventListener("click", () => {
+    hideModal("success-modal");
+    // Reset the form
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    form?.reset();
+  });
+
+  document.getElementById("error-modal-close")?.addEventListener("click", () => {
+    hideModal("error-modal");
+  });
+
+  // Close modals on backdrop click
+  document.getElementById("success-modal")?.addEventListener("click", (e) => {
+    if (e.target === document.getElementById("success-modal")) {
+      hideModal("success-modal");
+    }
+  });
+
+  document.getElementById("error-modal")?.addEventListener("click", (e) => {
+    if (e.target === document.getElementById("error-modal")) {
+      hideModal("error-modal");
+    }
+  });
+
+  // Close modals on escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      hideModal("success-modal");
+      hideModal("error-modal");
+    }
+  });
 
   const contactForm = document.querySelector("#contact-form");
   if (contactForm) {
@@ -43,9 +134,16 @@ import MainLayout from "../layouts/MainLayout.astro";
       e.preventDefault();
 
       // Collect form data
-      const form = e.target as HTMLFormElement;//<-- This?
+      const form = e.target as HTMLFormElement;
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
+
+      // Disable submit button and show loading state
+      const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
+      }
 
       try {
         const response = await fetch(
@@ -54,7 +152,7 @@ import MainLayout from "../layouts/MainLayout.astro";
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "x-client-key": "${companyInfo.emailKey}",
+              "x-client-key": emailKey,
             },
             body: JSON.stringify(data),
           }
@@ -63,13 +161,19 @@ import MainLayout from "../layouts/MainLayout.astro";
         const result = await response.json();
 
         if (response.ok) {
-          alert("Message sent successfully!");
+          showSuccessModal();
         } else {
-          alert("Error: " + result.error);
+          showErrorModal(`Error: ${result.error || 'Failed to send message'}. Please try again or call us directly at ${phone}`);
         }
       } catch (err) {
         console.error(err);
-        alert("Network error. Please try again later. "+ err);
+        showErrorModal(`Network error. Please try again later or call us directly at ${phone}`);
+      } finally {
+        // Re-enable submit button
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = "Submit";
+        }
       }
     });
   }
@@ -174,5 +278,19 @@ import MainLayout from "../layouts/MainLayout.astro";
   button:hover {
     background: #fff;
     color: var(--accent1)
+  }
+
+  @keyframes scale-in {
+    0% {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  .animate-scale-in {
+    animation: scale-in 0.2s ease-out;
   }
 </style>

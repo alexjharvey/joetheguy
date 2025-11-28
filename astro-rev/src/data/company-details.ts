@@ -2,7 +2,7 @@ import { EmitFlags } from "typescript";
 
 export const companyInfo = {
     name: "Joe The Guy",
-    phone: "(843) 263-1737",
+    phone: "(864) 256-0864",
     address: "123 Main St, Spartanburg, SC",
     hours: {
       weekdays: "7:30 AM - 6:00 PM",
