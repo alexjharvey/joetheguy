@@ -10,10 +10,10 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     // Parse the request body from the frontend
     const body = await request.json();
-    const { firstName, lastName, email, phone, address, deliveryNotes, order } = body;
+    const { firstName, lastName, email, phone, street, city, state, zipCode, deliveryNotes, order } = body;
 
     // Validate required fields
-    if (!firstName || !lastName || !email || !phone || !address || !order) {
+    if (!firstName || !lastName || !email || !phone || !street || !city || !state || !zipCode || !order) {
       return new Response(
         JSON.stringify({ error: 'Missing required fields' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
@@ -49,7 +49,10 @@ export const POST: APIRoute = async ({ request }) => {
             </tr>
             <tr>
               <td style="padding: 8px 0; font-weight: bold; color: #4b5563; vertical-align: top;">Address:</td>
-              <td style="padding: 8px 0; color: #1f2937; white-space: pre-line;">${address}</td>
+              <td style="padding: 8px 0; color: #1f2937; line-height: 1.6;">
+                ${street}<br>
+                ${city}, ${state.toUpperCase()} ${zipCode}
+              </td>
             </tr>
           </table>
         </div>

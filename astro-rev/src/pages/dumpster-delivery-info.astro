@@ -93,15 +93,48 @@ const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "sche
 
               <!-- Address -->
               <div>
-                <label for="address" class="block text-sm font-semibold text-gray-700 mb-2">Delivery Address *</label>
-                <textarea
-                  id="address"
-                  name="address"
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Delivery Address *</label>
+
+                <!-- Street Address -->
+                <input
+                  type="text"
+                  id="street"
+                  name="street"
                   required
-                  rows="3"
-                  class="w-full border border-gray-300 rounded-lg p-3 text-sm md:text-base focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
-                  placeholder="123 Main Street, Spartanburg, SC 29123"
-                ></textarea>
+                  class="w-full border border-gray-300 rounded-lg p-3 text-sm md:text-base focus:ring-2 focus:ring-primary focus:border-transparent mb-3"
+                  placeholder="Street Address"
+                />
+
+                <!-- City, State, Zip Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    required
+                    class="w-full border border-gray-300 rounded-lg p-3 text-sm md:text-base focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="City"
+                  />
+                  <input
+                    type="text"
+                    id="state"
+                    name="state"
+                    required
+                    maxlength="2"
+                    class="w-full border border-gray-300 rounded-lg p-3 text-sm md:text-base focus:ring-2 focus:ring-primary focus:border-transparent uppercase"
+                    placeholder="State"
+                  />
+                  <input
+                    type="text"
+                    id="zipCode"
+                    name="zipCode"
+                    required
+                    pattern="[0-9]{5}"
+                    maxlength="5"
+                    class="w-full border border-gray-300 rounded-lg p-3 text-sm md:text-base focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="Zip Code"
+                  />
+                </div>
               </div>
 
               <!-- Delivery Notes -->
@@ -191,7 +224,10 @@ const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "sche
             lastName: (document.getElementById("lastName") as HTMLInputElement).value,
             email: (document.getElementById("email") as HTMLInputElement).value,
             phone: (document.getElementById("phone") as HTMLInputElement).value,
-            address: (document.getElementById("address") as HTMLTextAreaElement).value,
+            street: (document.getElementById("street") as HTMLInputElement).value,
+            city: (document.getElementById("city") as HTMLInputElement).value,
+            state: (document.getElementById("state") as HTMLInputElement).value,
+            zipCode: (document.getElementById("zipCode") as HTMLInputElement).value,
             deliveryNotes: (document.getElementById("deliveryNotes") as HTMLTextAreaElement).value,
             order: order
           };
