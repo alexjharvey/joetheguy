@@ -10,4 +10,5 @@ export const companyInfo = {
     },
     email: "info@JoeTheGuy.com",
     bookingEmail: "booking@JoeTheGuy.com",
+    emailKey: 'b2a03670-36ed-48e1-a178-f3ffc9f7194c',
   };

@@ -175,8 +175,16 @@ const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "sche
 
         // Handle form submission
         const form = document.getElementById("delivery-form");
-        form?.addEventListener("submit", (e) => {
+        const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+        form?.addEventListener("submit", async (e) => {
           e.preventDefault();
+
+          // Disable submit button and show loading state
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending...";
+          }
 
           const formData = {
             firstName: (document.getElementById("firstName") as HTMLInputElement).value,
@@ -188,21 +196,47 @@ const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "sche
             order: order
           };
 
-          // Store complete booking data
-          sessionStorage.setItem("completeBooking", JSON.stringify(formData));
+          try {
+            // Send booking data to API endpoint
+            const response = await fetch("/api/send-booking", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            });
 
-          // Here you would normally send this data to a server
-          console.log("Booking submitted:", formData);
+            const result = await response.json();
 
-          // Show success message
-          alert("Thank you for your booking! We'll contact you shortly to confirm your dumpster rental.");
+            if (!response.ok) {
+              throw new Error(result.error || "Failed to send booking");
+            }
 
-          // Clear the order data
-          sessionStorage.removeItem("dumpsterOrder");
-          sessionStorage.removeItem("completeBooking");
+            // Store complete booking data for confirmation
+            sessionStorage.setItem("completeBooking", JSON.stringify(formData));
 
-          // Redirect to home or confirmation page
-          window.location.href = "/";
+            console.log("Booking submitted successfully:", result);
+
+            // Show success message
+            alert("Thank you for your booking! We'll contact you shortly to confirm your dumpster rental.");
+
+            // Clear the order data
+            sessionStorage.removeItem("dumpsterOrder");
+            sessionStorage.removeItem("completeBooking");
+
+            // Redirect to home or confirmation page
+            window.location.href = "/";
+
+          } catch (error) {
+            console.error("Error submitting booking:", error);
+            alert("There was an error submitting your booking. Please try again or call us directly at (843) 263-1737.");
+
+            // Re-enable submit button
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = "Submit Booking Request";
+            }
+          }
         });
       });
     }
