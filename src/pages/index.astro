@@ -5,7 +5,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 
-const keywords = ["Dumpster", "dumpsters", "dumpster", "dumpsters rental", "dumpster rental", "in Spartanburg", "Spartanburg", "home remodeling", "home", "Greenville", "in Greenville", "Greer", "in Greer", "Inman", "in Inman", "Boiling Springs", "in Boiling Springs", "Roebuck", "in Roebuck","home renovation", "renovations", "home renovation", "home remodeling", "remodeling", "home repair", "repairman", "repair man", "upstate", ];
+const keywords = ["Dumpster", "dumpsters", "dumpster", "dumpsters rental", "dumpster rental", "in Spartanburg", "Spartanburg", "home remodeling", "home", "Greenville", "in Greenville", "Greer", "in Greer", "Inman", "in Inman", "Boiling Springs", "in Boiling Springs", "Roebuck", "in Roebuck","home renovation", "renovations", "home renovation", "home remodeling", "remodeling", "home repair", "repairman", "repair man", "handyman", "upstate", ];
 
 // Import service images
 const serviceImages = import.meta.glob<{ default: ImageMetadata }>('/src/images/services/*.png', { eager: true });

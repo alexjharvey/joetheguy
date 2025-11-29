@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/MainLayout.astro';
+import { companyInfo } from '@/data/company-details';
+const phone = companyInfo.phone;
 
 const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "schedule dumpster", "Spartanburg", "Greenville"];
 ---
@@ -93,15 +95,48 @@ const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "sche
 
               <!-- Address -->
               <div>
-                <label for="address" class="block text-sm font-semibold text-gray-700 mb-2">Delivery Address *</label>
-                <textarea
-                  id="address"
-                  name="address"
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Delivery Address *</label>
+
+                <!-- Street Address -->
+                <input
+                  type="text"
+                  id="street"
+                  name="street"
                   required
-                  rows="3"
-                  class="w-full border border-gray-300 rounded-lg p-3 text-sm md:text-base focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
-                  placeholder="123 Main Street, Spartanburg, SC 29123"
-                ></textarea>
+                  class="w-full border border-gray-300 rounded-lg p-3 text-sm md:text-base focus:ring-2 focus:ring-primary focus:border-transparent mb-3"
+                  placeholder="Street Address"
+                />
+
+                <!-- City, State, Zip Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    required
+                    class="w-full border border-gray-300 rounded-lg p-3 text-sm md:text-base focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="City"
+                  />
+                  <input
+                    type="text"
+                    id="state"
+                    name="state"
+                    required
+                    maxlength="2"
+                    class="w-full border border-gray-300 rounded-lg p-3 text-sm md:text-base focus:ring-2 focus:ring-primary focus:border-transparent uppercase"
+                    placeholder="State"
+                  />
+                  <input
+                    type="text"
+                    id="zipCode"
+                    name="zipCode"
+                    required
+                    pattern="[0-9]{5}"
+                    maxlength="5"
+                    class="w-full border border-gray-300 rounded-lg p-3 text-sm md:text-base focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="Zip Code"
+                  />
+                </div>
               </div>
 
               <!-- Delivery Notes -->
@@ -134,27 +169,170 @@ const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "sche
     </div>
   </div>
 
-  <script>
+  <!-- Success Modal -->
+  <div id="success-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-md w-full p-8 relative animate-scale-in">
+      <div class="text-center">
+        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
+          <svg class="h-10 w-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-raleway font-bold text-gray-900 mb-3">Booking Submitted!</h3>
+        <p class="text-gray-600 mb-6">Thank you for your booking! We'll contact you shortly to confirm your dumpster rental.</p>
+        <button id="success-modal-close" class="w-full bg-primary hover:bg-accent1 text-white font-semibold py-3 px-6 rounded-xl transition-colors">
+          Got It
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div id="error-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-md w-full p-8 relative animate-scale-in">
+      <div class="text-center">
+        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
+          <svg class="h-10 w-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-raleway font-bold text-gray-900 mb-3">Submission Failed</h3>
+        <p id="error-modal-message" class="text-gray-600 mb-6">There was an error submitting your booking. Please try again or call us directly at {phone}</p>
+        <button id="error-modal-close" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-xl transition-colors">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes scale-in {
+      0% {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    .animate-scale-in {
+      animation: scale-in 0.2s ease-out;
+    }
+  </style>
+
+  <script define:vars={{ phone }}>
     if (typeof window !== "undefined") {
       window.addEventListener("DOMContentLoaded", () => {
+        // Modal utility functions
+        const showSuccessModal = () => {
+          console.log('showSuccessModal called');
+          const modal = document.getElementById("success-modal");
+          console.log('Success modal element:', modal);
+          if (modal) {
+            modal.classList.remove("hidden");
+            console.log('Success modal classes after remove:', modal.className);
+          } else {
+            console.error('Success modal element not found!');
+          }
+        };
+
+        const showErrorModal = (message) => {
+          console.log('showErrorModal called with message:', message);
+          const modal = document.getElementById("error-modal");
+          console.log('Error modal element:', modal);
+          const messageEl = document.getElementById("error-modal-message");
+          if (message && messageEl) {
+            messageEl.textContent = message;
+          }
+          if (modal) {
+            modal.classList.remove("hidden");
+            console.log('Error modal classes after remove:', modal.className);
+          } else {
+            console.error('Error modal element not found!');
+          }
+        };
+
+        const hideModal = (modalId) => {
+          const modal = document.getElementById(modalId);
+          modal?.classList.add("hidden");
+        };
+
+        // Modal close button handlers
+        document.getElementById("success-modal-close")?.addEventListener("click", () => {
+          hideModal("success-modal");
+          // Clear the order data
+          sessionStorage.removeItem("dumpsterOrder");
+          sessionStorage.removeItem("completeBooking");
+          // Redirect to home
+          window.location.href = "/";
+        });
+
+        document.getElementById("error-modal-close")?.addEventListener("click", () => {
+          hideModal("error-modal");
+        });
+
+        // Close modals on backdrop click
+        document.getElementById("success-modal")?.addEventListener("click", (e) => {
+          if (e.target === document.getElementById("success-modal")) {
+            hideModal("success-modal");
+          }
+        });
+
+        document.getElementById("error-modal")?.addEventListener("click", (e) => {
+          if (e.target === document.getElementById("error-modal")) {
+            hideModal("error-modal");
+          }
+        });
+
+        // Close modals on escape key
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            hideModal("success-modal");
+            hideModal("error-modal");
+          }
+        });
+
+        console.log('=== DELIVERY INFO PAGE LOADED ===');
+
         // Check if order data exists
+        console.log('Checking sessionStorage for dumpsterOrder...');
         const orderData = sessionStorage.getItem("dumpsterOrder");
+        console.log('Retrieved orderData from sessionStorage:', orderData);
 
         if (!orderData) {
+          console.error('ERROR: No order data found in sessionStorage!');
+          console.log('All sessionStorage keys:', Object.keys(sessionStorage));
+          console.log('SessionStorage length:', sessionStorage.length);
+
           // Redirect to dumpsters page if no order data
-          alert("Please select a dumpster and dates first.");
-          window.location.href = "/dumpsters";
+          showErrorModal("Please select a dumpster and dates first.");
+          setTimeout(() => {
+            window.location.href = "/dumpsters";
+          }, 2000);
           return;
         }
 
+        console.log('Order data found, parsing...');
         // Parse order data
         const order = JSON.parse(orderData);
+        console.log('Parsed order:', order);
 
         // Populate order summary
+        console.log('Populating order summary...');
         const summaryDiv = document.getElementById("order-summary");
         const totalSpan = document.getElementById("order-total");
+        console.log('Summary div element:', summaryDiv);
+        console.log('Total span element:', totalSpan);
 
         if (summaryDiv && totalSpan) {
+          console.log('Populating with order data:', {
+            type: order.type,
+            deliveryDate: order.deliveryDate,
+            pickupDate: order.pickupDate,
+            price: order.price
+          });
+
           summaryDiv.innerHTML = `
             <div>
               <p class="text-sm text-gray-600">Dumpster Size</p>
@@ -171,38 +349,82 @@ const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "sche
           `;
 
           totalSpan.textContent = `$${order.price}`;
+          console.log('Order summary populated successfully');
+        } else {
+          console.error('ERROR: Summary elements not found!');
         }
 
         // Handle form submission
         const form = document.getElementById("delivery-form");
-        form?.addEventListener("submit", (e) => {
+        const submitButton = form?.querySelector('button[type="submit"]');
+
+        form?.addEventListener("submit", async (e) => {
           e.preventDefault();
 
+          // Disable submit button and show loading state
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending...";
+          }
+
           const formData = {
-            firstName: (document.getElementById("firstName") as HTMLInputElement).value,
-            lastName: (document.getElementById("lastName") as HTMLInputElement).value,
-            email: (document.getElementById("email") as HTMLInputElement).value,
-            phone: (document.getElementById("phone") as HTMLInputElement).value,
-            address: (document.getElementById("address") as HTMLTextAreaElement).value,
-            deliveryNotes: (document.getElementById("deliveryNotes") as HTMLTextAreaElement).value,
+            firstName: document.getElementById("firstName").value,
+            lastName: document.getElementById("lastName").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            street: document.getElementById("street").value,
+            city: document.getElementById("city").value,
+            state: document.getElementById("state").value,
+            zipCode: document.getElementById("zipCode").value,
+            deliveryNotes: document.getElementById("deliveryNotes").value,
             order: order
           };
 
-          // Store complete booking data
-          sessionStorage.setItem("completeBooking", JSON.stringify(formData));
+          try {
+            console.log('=== BOOKING FORM SUBMISSION ===');
+            console.log('Form data:', formData);
 
-          // Here you would normally send this data to a server
-          console.log("Booking submitted:", formData);
+            // Send booking data to API endpoint
+            const response = await fetch("/api/send-booking", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            });
 
-          // Show success message
-          alert("Thank you for your booking! We'll contact you shortly to confirm your dumpster rental.");
+            console.log('Response status:', response.status);
+            console.log('Response ok:', response.ok);
 
-          // Clear the order data
-          sessionStorage.removeItem("dumpsterOrder");
-          sessionStorage.removeItem("completeBooking");
+            const result = await response.json();
+            console.log('Response body:', result);
 
-          // Redirect to home or confirmation page
-          window.location.href = "/";
+            if (!response.ok) {
+              throw new Error(result.error || "Failed to send booking");
+            }
+
+            console.log("SUCCESS - Booking submitted successfully:", result);
+
+            // Store complete booking data for confirmation
+            sessionStorage.setItem("completeBooking", JSON.stringify(formData));
+
+            // Show success modal
+            console.log('Showing success modal');
+            showSuccessModal();
+
+          } catch (error) {
+            console.error("CATCH ERROR - Error submitting booking:", error);
+
+            // Show error modal
+            console.log('Showing error modal');
+            showErrorModal(`There was an error submitting your booking. Please try again or call us directly at ${phone}`);
+
+            // Re-enable submit button
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = "Submit Booking Request";
+            }
+          }
         });
       });
     }

@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/MainLayout.astro';
+---
+
+<Layout title="404 - Page Not Found | Joe The Guy">
+  <div class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex items-center justify-center px-4 py-16">
+    <div class="max-w-2xl w-full text-center">
+      <!-- 404 Illustration -->
+      <div class="mb-8">
+        <h1 class="text-9xl font-raleway font-bold text-primary mb-4">404</h1>
+        <div class="flex justify-center mb-6">
+          <svg class="w-24 h-24 text-accent1 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <div class="bg-white rounded-xl shadow-lg p-8 md:p-12 mb-8">
+        <h2 class="text-3xl md:text-4xl font-raleway font-bold text-gray-900 mb-4">
+          Oops! Page Not Found
+        </h2>
+        <p class="text-lg text-gray-600 mb-6">
+          Looks like this page took a detour. Don't worry, Joe's got you covered!
+        </p>
+        <p class="text-base text-gray-500 mb-8">
+          The page you're looking for doesn't exist or may have been moved.
+        </p>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a
+            href="/"
+            class="w-full sm:w-auto bg-primary hover:bg-accent1 text-white font-semibold py-3 px-8 rounded-xl text-base transition-colors inline-flex items-center justify-center"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+            </svg>
+            Go Home
+          </a>
+          <a
+            href="/contact"
+            class="w-full sm:w-auto bg-white hover:bg-gray-50 text-primary border-2 border-primary font-semibold py-3 px-8 rounded-xl text-base transition-colors inline-flex items-center justify-center"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            Contact Us
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="text-gray-600">
+        <p class="text-sm mb-4">Or explore these popular pages:</p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="/dumpsters" class="text-primary hover:text-accent1 underline text-sm">
+            Dumpster Rentals
+          </a>
+          <span class="text-gray-400">•</span>
+          <a href="/services" class="text-primary hover:text-accent1 underline text-sm">
+            Services
+          </a>
+          <span class="text-gray-400">•</span>
+          <a href="/contact" class="text-primary hover:text-accent1 underline text-sm">
+            Contact
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
