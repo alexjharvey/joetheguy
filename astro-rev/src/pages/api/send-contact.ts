@@ -94,7 +94,7 @@ export const POST: APIRoute = async ({ request }) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Origin': 'http://localhost:4321', // Required for CORS validation on Vercel API todo: change for prod
+        'Origin': 'http://joetheguy.com',
         'x-client-key': companyInfo.emailKey, // 👈 Joe The Guy's client key in your clients.js on Vercel
       },
       body: JSON.stringify(payload),
