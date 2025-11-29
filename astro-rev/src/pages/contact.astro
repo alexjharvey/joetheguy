@@ -1,10 +1,15 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import StructuredData from '@/components/StructuredData.astro';
 import { companyInfo } from '@/data/company-details';
+import { Image } from 'astro:assets';
+import contactBg from '@/images/appointment/13.png';
 const phone = companyInfo.phone;
+const description = "Contact Joe The Guy for a free quote on home renovations, repairs, remodeling, or dumpster rentals in Spartanburg, Greenville, and Upstate SC. Fast, reliable service.";
 ---
 
-<MainLayout title="Request a Quote Form">
+<MainLayout title="Contact Us | Joe The Guy" description={description}>
+	<StructuredData type="LocalBusiness" slot="head" />
   <div class="page-container">
     <!-- Dark overlay -->
     <div class="overlay"></div>
@@ -200,7 +205,7 @@ const phone = companyInfo.phone;
     });
   }
 </script>
-<style>
+<style define:vars={{ 'bg-image': `url(${contactBg.src})` }}>
   .page-container {
     font-family: "Segoe UI", Arial, sans-serif;
     min-height: 100vh;
@@ -208,7 +213,7 @@ const phone = companyInfo.phone;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url("@/images/appointment/13.png") left center/cover no-repeat;
+    background: var(--bg-image) left center/cover no-repeat;
     position: relative;
   }
   .overlay {

@@ -1,9 +1,14 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/MainLayout.astro';
+import StructuredData from '@/components/StructuredData.astro';
+import { Image } from 'astro:assets';
+import rollOffImg from '/public/images/dumpsters/roll-off.png';
+import dumpster10yd from '/public/images/dumpsters/10yd.jpg';
 import "flatpickr/dist/flatpickr.min.css";
 
 const keywords = ["dumpsters", "dumpster", "dumpsters rental", "dumpster rental", "roll off dumpster", "rental", "roll of dumpster","in Spartanburg", "Spartanburg", "home remodeling", "home", "Greenville", "in Greenville", "Greer", "in Greer", "home renovation", "renovations", "home renovation", "home remodeling", "remodeling", "home repair", "repairman", "repair", "dumpster rental near me", "trash removal", "garbage", "trash", "Inman", "in Inman", "trash pick up", "trash removal service", "trash removal near me", "trash removal service near me", "trash removal service in Spartanburg", "trash removal service in Greenville", "trash removal service in Greer", "trash removal service in Inman"];
+const description = "Affordable roll-off dumpster rentals in Spartanburg County. 15, 20, and 30 yard dumpsters for home renovations, construction, and cleanouts. Fast delivery, competitive pricing.";
 
 // Dumpster Pricing (in dollars per week)
 const price15Yard = 500;
@@ -11,13 +16,14 @@ const price20Yard = 525;
 const price30Yard = 750;
 
 ---
-<Layout title="Joe the Guy - Dumpster Rental", keywords={keywords}>
+<Layout title="Dumpster Rental | Joe The Guy" description={description} keywords={keywords}>
+  <StructuredData type="Product" productName="15 Yard Dumpster Rental" productDescription="Roll-off dumpster rental for home renovations and cleanouts" productPrice="500" slot="head" />
   <div class="w-full h-auto relative max-h-[400px] sm:max-h-[500px] md:max-h-[600px] lg:max-h-none overflow-hidden">
 
-      <img src="/images/dumpsters/roll-off.png" alt="Dumpster Rental" class="opacity-50 w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-auto lg:max-h-96 object-cover"/>
+      <Image src={rollOffImg} alt="Dumpster Rental" class="opacity-50 w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-auto lg:max-h-96 object-cover" />
       <div class="absolute top-4 bottom-4 left-4 sm:top-6 sm:bottom-6 sm:left-8 md:left-16 lg:top-8 lg:bottom-8 lg:left-28 flex-col text-left bg-black bg-opacity-50 w-[85%] sm:w-3/4 md:w-2/3 lg:max-w-2xl">
         <div class="relative font-raleway uppercase text-xl sm:text-2xl lg:text-3xl font-semibold border-b-2 border-primary bg-opacity-85">
-          <h1 class="text-primary pt-4 px-4 sm:pt-6 sm:px-6 lg:pt-8 lg:px-8">Need a dumpster?</h1>
+          <h1 class="text-primary pt-4 px-4 sm:pt-6 sm:px-6 lg:pt-8 lg:px-8 font-extrabold">Need a dumpster?</h1>
           <h2 class="text-white mt-1 px-4 sm:px-6 lg:px-8 pb-2">Dumpster Rental Services</h2>
         </div>
         <div class="relative bg-opacity-5">
@@ -31,7 +37,7 @@ const price30Yard = 750;
   <!-- 15 Yard Dumpster Section -->
   <div class="flex flex-col lg:flex-row justify-center align-middle px-4 md:px-8 lg:px-16 mb-12 md:mb-16 lg:mb-20">
     <div class="w-full lg:w-1/2 mx-auto mt-8">
-      <img src="/images/dumpsters/10yd.jpg" class="w-full h-auto" alt="15 Yard Dumpster"/>
+      <Image src={dumpster10yd} class="w-full h-auto" alt="15 Yard Dumpster" />
     </div>
     <div class="w-full lg:w-1/2 mx-auto mt-8 lg:ml-8">
       <div class="flex flex-col">
@@ -69,7 +75,7 @@ const price30Yard = 750;
   <!-- 20 Yard Dumpster Section -->
   <div class="flex flex-col lg:flex-row justify-center align-middle px-4 md:px-8 lg:px-16 mb-12 md:mb-16 lg:mb-20">
     <div class="w-full lg:w-1/2 mx-auto mt-8">
-      <img src="/images/dumpsters/10yd.jpg" class="w-full h-auto" alt="20 Yard Dumpster"/>
+      <Image src={dumpster10yd} class="w-full h-auto" alt="20 Yard Dumpster" />
     </div>
   <div class="w-full lg:w-1/2 mx-auto mt-8 lg:ml-8">
     <div class="flex flex-col">
@@ -107,7 +113,7 @@ const price30Yard = 750;
   <!-- 30 Yard Dumpster Section -->
   <div class="flex flex-col lg:flex-row justify-center align-middle px-4 md:px-8 lg:px-16 mb-12 md:mb-16 lg:mb-20">
     <div class="w-full lg:w-1/2 mx-auto mt-8">
-      <img src="/images/dumpsters/10yd.jpg" class="w-full h-auto" alt="30 Yard Dumpster"/>
+      <Image src={dumpster10yd} class="w-full h-auto" alt="30 Yard Dumpster" />
     </div>
     <div class="w-full lg:w-1/2 mx-auto mt-8 lg:ml-8">
       <div class="flex flex-col">

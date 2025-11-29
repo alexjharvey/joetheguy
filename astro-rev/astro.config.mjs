@@ -10,7 +10,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://www.joetheguy.com',
   output: 'hybrid',
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp'
+    },
+    formats: ['webp', 'avif', 'png', 'jpg']
+  },
   integrations: [tailwind(), react(), icon()],
   vite: {
     resolve: {

@@ -1,0 +1,128 @@
+---
+import { companyInfo } from '@/data/company-details';
+
+interface Props {
+  type?: 'LocalBusiness' | 'Service' | 'Product' | 'Breadcrumb';
+  serviceName?: string;
+  serviceDescription?: string;
+  breadcrumbs?: Array<{ name: string; url?: string }>;
+  productName?: string;
+  productDescription?: string;
+  productPrice?: string;
+}
+
+const {
+  type = 'LocalBusiness',
+  serviceName,
+  serviceDescription,
+  breadcrumbs,
+  productName,
+  productDescription,
+  productPrice
+} = Astro.props;
+
+let schema: any;
+
+if (type === 'LocalBusiness') {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": companyInfo.name,
+    "description": "Home Renovations, Repairs, Remodeling and Dumpster Rentals in Spartanburg, Greenville, and Upstate SC",
+    "url": "https://www.joetheguy.com",
+    "telephone": companyInfo.phone,
+    "email": companyInfo.email,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Spartanburg",
+      "addressRegion": "SC",
+      "addressCountry": "US"
+    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Spartanburg"
+      },
+      {
+        "@type": "City",
+        "name": "Greenville"
+      },
+      {
+        "@type": "City",
+        "name": "Greer"
+      },
+      {
+        "@type": "City",
+        "name": "Inman"
+      },
+      {
+        "@type": "City",
+        "name": "Boiling Springs"
+      },
+      {
+        "@type": "City",
+        "name": "Roebuck"
+      }
+    ],
+    "priceRange": "$$",
+    "openingHours": [
+      "Mo-Fr 07:30-18:00",
+      "Sa-Su 10:00-16:00"
+    ],
+    "sameAs": [
+      companyInfo.socials.facebook,
+      companyInfo.socials.instagram,
+      companyInfo.socials.twitter
+    ]
+  };
+} else if (type === 'Service' && serviceName && serviceDescription) {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": serviceName,
+    "description": serviceDescription,
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": companyInfo.name,
+      "telephone": companyInfo.phone,
+      "url": "https://www.joetheguy.com"
+    },
+    "areaServed": {
+      "@type": "State",
+      "name": "South Carolina"
+    }
+  };
+} else if (type === 'Product' && productName && productDescription && productPrice) {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": productName,
+    "description": productDescription,
+    "offers": {
+      "@type": "Offer",
+      "price": productPrice,
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": companyInfo.name
+      }
+    }
+  };
+} else if (type === 'Breadcrumb' && breadcrumbs && breadcrumbs.length > 0) {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": crumb.name,
+      ...(crumb.url && { "item": crumb.url })
+    }))
+  };
+}
+---
+
+{schema && (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+)}

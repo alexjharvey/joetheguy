@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/MainLayout.astro';
+import StructuredData from '@/components/StructuredData.astro';
 import { Image } from 'astro:assets';
 
 // Import service images
@@ -72,9 +73,11 @@ const services = [
 ];
 
 const keywords = ["Home Repair", "Interior Renovation", "Kitchen Remodeling", "Bathroom Remodeling", "Flooring Installation", "Painting Services", "Exterior Renovation", "Deck & Patio", "Roofing Services", "Spartanburg", "Greenville", "Upstate SC"];
+const description = "Professional home improvement services in Spartanburg, Greenville, and Upstate SC. Kitchen remodeling, bathroom renovation, flooring, painting, roofing, and more. Quality service, fair pricing.";
 ---
 
-<Layout title="Our Services | Joe The Guy" keywords={keywords}>
+<Layout title="Our Services | Joe The Guy" description={description} keywords={keywords}>
+	<StructuredData type="LocalBusiness" slot="head" />
   <main class="w-full bg-white">
     <!-- Hero Section -->
     <section class="w-full bg-secondary-light py-16">

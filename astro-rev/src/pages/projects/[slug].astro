@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import MainLayout from '@/layouts/MainLayout.astro';
+import StructuredData from '@/components/StructuredData.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -14,9 +15,16 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const stats = project.data.projectStats;
 const keywords = project.data.tags || [];
+const description = project.data.description || `${project.data.title} - ${project.data.subTitle || 'Professional renovation project by Joe The Guy in Spartanburg, Greenville, and Upstate SC'}`;
+const breadcrumbs = [
+  { name: "Home", url: "https://www.joetheguy.com" },
+  { name: "Projects", url: "https://www.joetheguy.com/projects" },
+  { name: project.data.title }
+];
 ---
 
-<MainLayout title={`${project.data.title} | Joe The Guy`} keywords={keywords}>
+<MainLayout title={`${project.data.title} | Joe The Guy`} description={description} keywords={keywords}>
+  <StructuredData type="Breadcrumb" breadcrumbs={breadcrumbs} slot="head" />
 
   <!-- Project Header -->
   <div class="w-full h-auto font-raleway bg-secondary-light items-center py-8">

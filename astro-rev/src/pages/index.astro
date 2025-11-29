@@ -1,10 +1,12 @@
 ---
 import Carousel from '@/components/Carousel.astro';
 import MainLayout from '@/layouts/MainLayout.astro';
+import StructuredData from '@/components/StructuredData.astro';
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 
 const keywords = ["Dumpster", "dumpsters", "dumpster", "dumpsters rental", "dumpster rental", "in Spartanburg", "Spartanburg", "home remodeling", "home", "Greenville", "in Greenville", "Greer", "in Greer", "Inman", "in Inman", "Boiling Springs", "in Boiling Springs", "Roebuck", "in Roebuck","home renovation", "renovations", "home renovation", "home remodeling", "remodeling", "home repair", "repairman", "repair man", "handyman", "upstate", ];
+const description = "Professional home renovations, repairs, remodeling, and dumpster rentals in Spartanburg, Greenville, and Upstate SC. Over 15 years of quality service. When you need a guy, call Joe The Guy!";
 
 // Import service images
 const serviceImages = import.meta.glob<{ default: ImageMetadata }>('/src/images/services/*.png', { eager: true });
@@ -30,11 +32,12 @@ const carouselSlides = [
 
 // Get up to 4 recent projects
 const allProjects = await getCollection('projects');
-const recentProjects = allProjects.slice(0, 4);
+const recentProjects = allProjects.slice(0, 4) as typeof allProjects;
 ---
 
 
-<MainLayout title="Joe The Guy | When You Need a Guy", keywords={keywords}>
+<MainLayout title="Joe The Guy | When You Need a Guy" description={description} keywords={keywords}>
+	<StructuredData type="LocalBusiness" slot="head" />
 
 		<!-- <Slider /> -->
 		<Carousel slides={carouselSlides} class="w-full h-auto" />
@@ -166,7 +169,7 @@ const recentProjects = allProjects.slice(0, 4);
 					<p class="mt-4">Our team is dedicated to ensuring that every project is completed on time and within budget. We believe in building lasting relationships with our clients through trust, integrity, and exceptional service.</p>
 				</div>
 				<div class="flex justify-center align-middle">
-					<a href="/contact"><button class="mx-auto my-8 bg-primary uppercase text-white font-semibold text-sm px-8 py-2 rounded-2xl hover:bg-accent1 hover:text-white">Learn More</button></a>
+					<a href="/contact"><button class="mx-auto my-8 bg-primary uppercase text-white font-semibold text-sm px-8 py-2 rounded-2xl hover:bg-accent1 hover:text-white">Contact Us</button></a>
 				</div>
 			</div>
 		</div>

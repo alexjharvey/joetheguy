@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/MainLayout.astro';
+import StructuredData from '@/components/StructuredData.astro';
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 
@@ -59,9 +60,11 @@ const categoriesWithProjects = categories.map(category => {
 }).filter(category => category.projects.length > 0); // Only show categories with projects
 
 const keywords = ["Home Remodeling", "dumpsters", "dumpster",];
+const description = "View our portfolio of completed renovation projects in Spartanburg, Greenville, and Upstate SC. Kitchen remodels, bathroom renovations, interior and exterior work, and commercial projects.";
 ---
 
-<Layout title="Project Portfolio | Joe The Guy" keywords={keywords}>
+<Layout title="Project Portfolio | Joe The Guy" description={description} keywords={keywords}>
+	<StructuredData type="LocalBusiness" slot="head" />
   <main class="w-full bg-white">
     <!-- Hero Section -->
     <section class="w-full bg-secondary-light py-16">

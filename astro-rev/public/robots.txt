@@ -30,5 +30,5 @@ Allow: /terms-of-service
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
 
-# Sitemap location (you can add this when you create a sitemap)
-# Sitemap: https://yourdomain.com/sitemap.xml
+# Sitemap location
+Sitemap: https://www.joetheguy.com/sitemap.xml
