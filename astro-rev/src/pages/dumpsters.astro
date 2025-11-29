@@ -265,34 +265,61 @@ const price30Yard = 750;
 
         // Handle Book Now buttons
         const bookNowButtons = document.querySelectorAll(".book-now-btn");
+        console.log('=== DUMPSTERS PAGE LOADED ===');
+        console.log('Found Book Now buttons:', bookNowButtons.length);
+
         bookNowButtons.forEach(button => {
           button.addEventListener("click", (e) => {
+            console.log('=== BOOK NOW CLICKED ===');
             e.preventDefault();
+
             const dumpsterType = button.getAttribute("data-dumpster-type");
             const dumpsterPrice = button.getAttribute("data-dumpster-price");
+            console.log('Dumpster type:', dumpsterType);
+            console.log('Dumpster price:', dumpsterPrice);
 
             // Find the corresponding date inputs
-            const deliveryInput = document.getElementById(`datepicker-start-${dumpsterType}`) as HTMLInputElement;
-            const pickupInput = document.getElementById(`datepicker-end-${dumpsterType}`) as HTMLInputElement;
+            const deliveryInput = document.getElementById(`datepicker-start-${dumpsterType}`);
+            const pickupInput = document.getElementById(`datepicker-end-${dumpsterType}`);
+            console.log('Delivery input element:', deliveryInput);
+            console.log('Pickup input element:', pickupInput);
 
-            const deliveryDate = deliveryInput?.value;
-            const pickupDate = pickupInput?.value;
+            const deliveryDate = (deliveryInput as HTMLInputElement)?.value;
+            const pickupDate = (pickupInput as HTMLInputElement)?.value;
+            console.log('Delivery date value:', deliveryDate);
+            console.log('Pickup date value:', pickupDate);
 
             // Validate dates are selected
             if (!deliveryDate || !pickupDate) {
+              console.warn('VALIDATION FAILED - Missing dates');
               alert("Please select both delivery and pickup dates before booking.");
               return;
             }
 
             // Store data in sessionStorage
-            sessionStorage.setItem("dumpsterOrder", JSON.stringify({
+            const orderData = {
               type: dumpsterType,
               price: dumpsterPrice,
               deliveryDate: deliveryDate,
               pickupDate: pickupDate
-            }));
+            };
+            console.log('Order data to store:', orderData);
+
+            sessionStorage.setItem("dumpsterOrder", JSON.stringify(orderData));
+            console.log('Data stored in sessionStorage');
+
+            // Verify storage
+            const storedData = sessionStorage.getItem("dumpsterOrder");
+            console.log('Verification - Retrieved from sessionStorage:', storedData);
+
+            if (storedData) {
+              console.log('Parsed stored data:', JSON.parse(storedData));
+            } else {
+              console.error('ERROR: Data was not stored in sessionStorage!');
+            }
 
             // Navigate to delivery info page
+            console.log('Navigating to /dumpster-delivery-info');
             window.location.href = "/dumpster-delivery-info";
           });
         });

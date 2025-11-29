@@ -226,20 +226,34 @@ const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "sche
       window.addEventListener("DOMContentLoaded", () => {
         // Modal utility functions
         const showSuccessModal = () => {
+          console.log('showSuccessModal called');
           const modal = document.getElementById("success-modal");
-          modal?.classList.remove("hidden");
+          console.log('Success modal element:', modal);
+          if (modal) {
+            modal.classList.remove("hidden");
+            console.log('Success modal classes after remove:', modal.className);
+          } else {
+            console.error('Success modal element not found!');
+          }
         };
 
-        const showErrorModal = (message?: string) => {
+        const showErrorModal = (message) => {
+          console.log('showErrorModal called with message:', message);
           const modal = document.getElementById("error-modal");
+          console.log('Error modal element:', modal);
           const messageEl = document.getElementById("error-modal-message");
           if (message && messageEl) {
             messageEl.textContent = message;
           }
-          modal?.classList.remove("hidden");
+          if (modal) {
+            modal.classList.remove("hidden");
+            console.log('Error modal classes after remove:', modal.className);
+          } else {
+            console.error('Error modal element not found!');
+          }
         };
 
-        const hideModal = (modalId: string) => {
+        const hideModal = (modalId) => {
           const modal = document.getElementById(modalId);
           modal?.classList.add("hidden");
         };
@@ -279,10 +293,18 @@ const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "sche
           }
         });
 
+        console.log('=== DELIVERY INFO PAGE LOADED ===');
+
         // Check if order data exists
+        console.log('Checking sessionStorage for dumpsterOrder...');
         const orderData = sessionStorage.getItem("dumpsterOrder");
+        console.log('Retrieved orderData from sessionStorage:', orderData);
 
         if (!orderData) {
+          console.error('ERROR: No order data found in sessionStorage!');
+          console.log('All sessionStorage keys:', Object.keys(sessionStorage));
+          console.log('SessionStorage length:', sessionStorage.length);
+
           // Redirect to dumpsters page if no order data
           showErrorModal("Please select a dumpster and dates first.");
           setTimeout(() => {
@@ -291,14 +313,26 @@ const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "sche
           return;
         }
 
+        console.log('Order data found, parsing...');
         // Parse order data
         const order = JSON.parse(orderData);
+        console.log('Parsed order:', order);
 
         // Populate order summary
+        console.log('Populating order summary...');
         const summaryDiv = document.getElementById("order-summary");
         const totalSpan = document.getElementById("order-total");
+        console.log('Summary div element:', summaryDiv);
+        console.log('Total span element:', totalSpan);
 
         if (summaryDiv && totalSpan) {
+          console.log('Populating with order data:', {
+            type: order.type,
+            deliveryDate: order.deliveryDate,
+            pickupDate: order.pickupDate,
+            price: order.price
+          });
+
           summaryDiv.innerHTML = `
             <div>
               <p class="text-sm text-gray-600">Dumpster Size</p>
@@ -315,11 +349,14 @@ const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "sche
           `;
 
           totalSpan.textContent = `$${order.price}`;
+          console.log('Order summary populated successfully');
+        } else {
+          console.error('ERROR: Summary elements not found!');
         }
 
         // Handle form submission
         const form = document.getElementById("delivery-form");
-        const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
+        const submitButton = form?.querySelector('button[type="submit"]');
 
         form?.addEventListener("submit", async (e) => {
           e.preventDefault();
@@ -331,19 +368,22 @@ const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "sche
           }
 
           const formData = {
-            firstName: (document.getElementById("firstName") as HTMLInputElement).value,
-            lastName: (document.getElementById("lastName") as HTMLInputElement).value,
-            email: (document.getElementById("email") as HTMLInputElement).value,
-            phone: (document.getElementById("phone") as HTMLInputElement).value,
-            street: (document.getElementById("street") as HTMLInputElement).value,
-            city: (document.getElementById("city") as HTMLInputElement).value,
-            state: (document.getElementById("state") as HTMLInputElement).value,
-            zipCode: (document.getElementById("zipCode") as HTMLInputElement).value,
-            deliveryNotes: (document.getElementById("deliveryNotes") as HTMLTextAreaElement).value,
+            firstName: document.getElementById("firstName").value,
+            lastName: document.getElementById("lastName").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            street: document.getElementById("street").value,
+            city: document.getElementById("city").value,
+            state: document.getElementById("state").value,
+            zipCode: document.getElementById("zipCode").value,
+            deliveryNotes: document.getElementById("deliveryNotes").value,
             order: order
           };
 
           try {
+            console.log('=== BOOKING FORM SUBMISSION ===');
+            console.log('Form data:', formData);
+
             // Send booking data to API endpoint
             const response = await fetch("/api/send-booking", {
               method: "POST",
@@ -353,24 +393,30 @@ const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "sche
               body: JSON.stringify(formData),
             });
 
+            console.log('Response status:', response.status);
+            console.log('Response ok:', response.ok);
+
             const result = await response.json();
+            console.log('Response body:', result);
 
             if (!response.ok) {
               throw new Error(result.error || "Failed to send booking");
             }
 
-            console.log("Booking submitted successfully:", result);
+            console.log("SUCCESS - Booking submitted successfully:", result);
 
             // Store complete booking data for confirmation
             sessionStorage.setItem("completeBooking", JSON.stringify(formData));
 
             // Show success modal
+            console.log('Showing success modal');
             showSuccessModal();
 
           } catch (error) {
-            console.error("Error submitting booking:", error);
+            console.error("CATCH ERROR - Error submitting booking:", error);
 
             // Show error modal
+            console.log('Showing error modal');
             showErrorModal(`There was an error submitting your booking. Please try again or call us directly at ${phone}`);
 
             // Re-enable submit button

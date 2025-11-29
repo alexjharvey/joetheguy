@@ -8,18 +8,18 @@ export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    console.log('=== SEND-BOOKING API CALLED ===');
+    console.log('=== SEND-CONTACT API CALLED ===');
 
     // Parse the request body from the frontend
     const body = await request.json();
     console.log('Received body:', JSON.stringify(body, null, 2));
 
-    const { firstName, lastName, email, phone, street, city, state, zipCode, deliveryNotes, order } = body;
+    const { name, email, phone, service, message } = body;
 
     // Validate required fields
-    if (!firstName || !lastName || !email || !phone || !street || !city || !state || !zipCode || !order) {
+    if (!name || !email || !phone || !service || !message) {
       console.error('Validation failed - missing required fields');
-      console.log('Missing fields check:', { firstName, lastName, email, phone, street, city, state, zipCode, order: !!order });
+      console.log('Missing fields check:', { name, email, phone, service, message });
       return new Response(
         JSON.stringify({ error: 'Missing required fields' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
@@ -28,14 +28,11 @@ export const POST: APIRoute = async ({ request }) => {
 
     console.log('Validation passed');
 
-    // Build a nice HTML-formatted summary to send as the "message" field
-    const customerName = `${firstName} ${lastName}`;
-    const serviceLabel = `${order.type}yd Dumpster Booking`;
-
+    // Build a nice HTML-formatted message
     const messageText = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
         <h2 style="color: #2563eb; border-bottom: 3px solid #2563eb; padding-bottom: 10px; margin-bottom: 20px;">
-          New Dumpster Booking Request
+          New Contact Form Submission
         </h2>
 
         <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
@@ -45,7 +42,7 @@ export const POST: APIRoute = async ({ request }) => {
           <table style="width: 100%; border-collapse: collapse;">
             <tr>
               <td style="padding: 8px 0; font-weight: bold; color: #4b5563; width: 140px;">Name:</td>
-              <td style="padding: 8px 0; color: #1f2937;">${customerName}</td>
+              <td style="padding: 8px 0; color: #1f2937;">${name}</td>
             </tr>
             <tr>
               <td style="padding: 8px 0; font-weight: bold; color: #4b5563;">Email:</td>
@@ -56,60 +53,31 @@ export const POST: APIRoute = async ({ request }) => {
               <td style="padding: 8px 0;"><a href="tel:${phone}" style="color: #2563eb; text-decoration: none;">${phone}</a></td>
             </tr>
             <tr>
-              <td style="padding: 8px 0; font-weight: bold; color: #4b5563; vertical-align: top;">Address:</td>
-              <td style="padding: 8px 0; color: #1f2937; line-height: 1.6;">
-                ${street}<br>
-                ${city}, ${state.toUpperCase()} ${zipCode}
-              </td>
+              <td style="padding: 8px 0; font-weight: bold; color: #4b5563;">Service:</td>
+              <td style="padding: 8px 0; color: #1f2937; font-weight: 600;">${service}</td>
             </tr>
           </table>
         </div>
 
         <div style="background-color: #ecfdf5; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #10b981;">
           <h3 style="color: #1f2937; margin-top: 0; font-size: 18px; border-bottom: 2px solid #a7f3d0; padding-bottom: 8px;">
-            Dumpster Details
+            Message
           </h3>
-          <table style="width: 100%; border-collapse: collapse;">
-            <tr>
-              <td style="padding: 8px 0; font-weight: bold; color: #4b5563; width: 140px;">Size:</td>
-              <td style="padding: 8px 0; color: #1f2937; font-size: 16px;"><strong>${order.type} Cubic Yard</strong></td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; font-weight: bold; color: #4b5563;">Price:</td>
-              <td style="padding: 8px 0; color: #059669; font-size: 18px; font-weight: bold;">$${order.price}/week</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; font-weight: bold; color: #4b5563;">Delivery Date:</td>
-              <td style="padding: 8px 0; color: #1f2937; font-weight: 600;">${order.deliveryDate}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; font-weight: bold; color: #4b5563;">Pickup Date:</td>
-              <td style="padding: 8px 0; color: #1f2937; font-weight: 600;">${order.pickupDate}</td>
-            </tr>
-          </table>
+          <p style="margin: 0; color: #1f2937; white-space: pre-line; line-height: 1.6;">${message}</p>
         </div>
-
-        ${deliveryNotes ? `
-        <div style="background-color: #fef3c7; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #f59e0b;">
-          <h3 style="color: #1f2937; margin-top: 0; font-size: 18px; border-bottom: 2px solid #fde68a; padding-bottom: 8px;">
-            Delivery Notes
-          </h3>
-          <p style="margin: 0; color: #1f2937; white-space: pre-line;">${deliveryNotes}</p>
-        </div>
-        ` : ''}
 
         <div style="text-align: center; padding-top: 20px; border-top: 2px solid #e5e7eb; color: #6b7280; font-size: 14px;">
-          <p style="margin: 5px 0;">This booking request was submitted through <strong>JoeTheGuy.com</strong></p>
+          <p style="margin: 5px 0;">This inquiry was submitted through <strong>JoeTheGuy.com</strong></p>
         </div>
       </div>
     `.trim();
 
     // Shape payload for your Vercel email-api service
     const payload = {
-      name: customerName,
+      name,
       email,
       phone,
-      service: serviceLabel,
+      service,
       message: messageText,
     };
 
@@ -141,22 +109,22 @@ export const POST: APIRoute = async ({ request }) => {
     if (!apiRes.ok) {
       console.error('Email API error:', apiRes.status, apiJson);
       return new Response(
-        JSON.stringify({ error: 'Failed to send booking email via email service' }),
+        JSON.stringify({ error: 'Failed to send contact email via email service' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
-    console.log('=== SEND-BOOKING SUCCESS ===');
+    console.log('=== SEND-CONTACT SUCCESS ===');
     return new Response(
       JSON.stringify({ success: true }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
 
   } catch (error) {
-    console.error('Error in booking API route:', error);
+    console.error('Error in contact API route:', error);
     return new Response(
       JSON.stringify({
-        error: 'Failed to send booking email',
+        error: 'Failed to send contact email',
         details: error instanceof Error ? error.message : 'Unknown error',
       }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
