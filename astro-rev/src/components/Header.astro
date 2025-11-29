@@ -28,17 +28,15 @@ const {phone, email, hours} = companyInfo;
         </div>
         <!-- Social Icons Container-->
         <div class="items-center flex px-2 lg:px-4">
-            <a target="_blank" href="#" class="" title="Facebook">
+            <a target={companyInfo.socials.facebook} href={companyInfo.socials.facebook} class="" title="Facebook">
                 <Icon name="socials/facebook" class="size-5 lg:size-6 mr-1 lg:mr-2"/></a>
 
-            <a target="_blank" href="#" class="" title="Instagram">
+            <a target={companyInfo.socials.instagram} href={companyInfo.socials.instagram} class="" title="Instagram">
                 <Icon name="socials/instagram" class="size-5 lg:size-6 mx-1 lg:mx-2"/></a>
 
-            <a target="_blank" href="#" class="" title="Twitter">
+            <a target={companyInfo.socials.twitter} href={companyInfo.socials.twitter} class="" title="Twitter">
                 <Icon name="socials/twitter" class="size-5 lg:size-6 mx-1 lg:mx-2"/></a>
 
-            <a target="_blank" href="#" class="" title="Search">
-                <Icon name="search" class="size-5 lg:size-6 ml-1 lg:ml-2"/></a>
         </div>
     </div>
     <!-- Navigation Container-->
