@@ -1,5 +1,3 @@
-import { EmitFlags } from "typescript";
-
 export const companyInfo = {
     name: "Joe The Guy",
     phone: "(864) 256-0864",

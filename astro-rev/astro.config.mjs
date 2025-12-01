@@ -11,7 +11,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.joetheguy.com',
-  output: 'hybrid',
+  output: 'static',
   image: {
     service: {
       entrypoint: 'astro/assets/services/sharp'

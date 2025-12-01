@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       minDate: "today",
     }) as flatpickr.Instance;
 
-    const startPicker = flatpickr(startSelector, {
+    flatpickr(startSelector, {
       enableTime: false,
       dateFormat: "m/d/Y",
       minDate: "today",

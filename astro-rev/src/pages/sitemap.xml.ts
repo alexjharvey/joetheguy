@@ -4,7 +4,7 @@ import type { APIRoute } from 'astro';
 export const GET: APIRoute = async () => {
   const projects = await getCollection('projects');
 
-  const staticPages = [
+  const staticPages: Array<{ url: string; priority: string; changefreq: string; lastmod?: string }> = [
     { url: '', priority: '1.0', changefreq: 'weekly' },
     { url: 'services', priority: '0.9', changefreq: 'weekly' },
     { url: 'projects', priority: '0.9', changefreq: 'weekly' },

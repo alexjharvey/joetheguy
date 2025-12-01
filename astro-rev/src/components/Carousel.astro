@@ -24,7 +24,7 @@ const getImageSrc = (image: string | ImageMetadata): string => {
 };
 
 // Use slides if provided, otherwise create simple slides from images array
-const slideData = slides || (images || []).map((image, index) => ({
+const slideData = slides || (images || []).map((image) => ({
   image,
   topComment: undefined,
   bottomComment: undefined

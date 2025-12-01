@@ -131,8 +131,8 @@ const links = [
     });
 
     // Animate the curly arrow drawing on load
-    const arrowPath = document.getElementById('arrow-path') as SVGPathElement;
-    if (arrowPath) {
+    const arrowPath = document.getElementById('arrow-path');
+    if (arrowPath && arrowPath instanceof SVGPathElement) {
         // Get the total length of the path
         const pathLength = arrowPath.getTotalLength();
 

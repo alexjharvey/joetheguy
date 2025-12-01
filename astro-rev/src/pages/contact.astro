@@ -2,9 +2,9 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import StructuredData from '@/components/StructuredData.astro';
 import { companyInfo } from '@/data/company-details';
-import { Image } from 'astro:assets';
 import contactBg from '@/images/appointment/13.png';
 const phone = companyInfo.phone;
+const emailKey = companyInfo.emailKey;
 const description = "Contact Joe The Guy for a free quote on home renovations, repairs, remodeling, or dumpster rentals in Spartanburg, Greenville, and Upstate SC. Fast, reliable service.";
 ---
 
@@ -78,7 +78,7 @@ const description = "Contact Joe The Guy for a free quote on home renovations, r
     </div>
   </div>
 </MainLayout>
-<script define:vars={{ phone }}>
+<script define:vars={{ phone, emailKey }}>
   // Modal utility functions
   const showSuccessModal = () => {
     console.log('showSuccessModal called');
@@ -167,16 +167,16 @@ const description = "Contact Joe The Guy for a free quote on home renovations, r
         console.log('=== CONTACT FORM SUBMISSION ===');
         console.log('Form data:', data);
 
-        const response = await fetch(
-          "/api/send-contact",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          }
-        );
+        // Send to Vercel API endpoint
+        const apiUrl = 'https://email-api-liard.vercel.app/api/contact';
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-client-key": emailKey,
+          },
+          body: JSON.stringify(data),
+        });
 
         console.log('Response status:', response.status);
         console.log('Response ok:', response.ok);

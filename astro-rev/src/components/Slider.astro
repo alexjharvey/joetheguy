@@ -1,22 +1,12 @@
 ---
 // Slider.astro
-import { useState } from 'react';
-
 const images = [
     '/path/to/image1.jpg',
     '/path/to/image2.jpg',
     '/path/to/image3.jpg'
 ];
 
-const [currentIndex, setCurrentIndex] = useState(0);
-
-const nextSlide = () => {
-    setCurrentIndex((currentIndex + 1) % images.length);
-};
-
-const prevSlide = () => {
-    setCurrentIndex((currentIndex - 1 + images.length) % images.length);
-};
+const currentIndex = 0;
 ---
 
 <style>

@@ -2,6 +2,7 @@
 import Layout from '../layouts/MainLayout.astro';
 import { companyInfo } from '@/data/company-details';
 const phone = companyInfo.phone;
+const emailKey = companyInfo.emailKey;
 
 const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "schedule dumpster", "Spartanburg", "Greenville"];
 ---
@@ -221,7 +222,7 @@ const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "sche
     }
   </style>
 
-  <script define:vars={{ phone }}>
+  <script define:vars={{ phone, emailKey }}>
     if (typeof window !== "undefined") {
       window.addEventListener("DOMContentLoaded", () => {
         // Modal utility functions
@@ -384,11 +385,13 @@ const keywords = ["dumpster rental", "dumpster delivery", "book dumpster", "sche
             console.log('=== BOOKING FORM SUBMISSION ===');
             console.log('Form data:', formData);
 
-            // Send booking data to API endpoint
-            const response = await fetch("/api/send-booking", {
+            // Send booking data to Vercel API endpoint
+            const apiUrl = 'https://email-api-liard.vercel.app/api/send-booking';
+            const response = await fetch(apiUrl, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
+                "x-client-key": emailKey,
               },
               body: JSON.stringify(formData),
             });
