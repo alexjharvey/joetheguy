@@ -1,0 +1,34 @@
+# Joe The Guy - Home Renovations & Dumpster Rentals
+# Spartanburg, Greenville, and Upstate SC
+
+User-agent: *
+
+# Allow main pages - Home Renovations & Dumpster Services
+Allow: /
+Allow: /dumpsters
+Allow: /services/
+Allow: /projects/
+Allow: /contact
+
+# Disallow API endpoints
+Disallow: /api/
+
+# Disallow booking/form pages (not useful for SEO)
+Disallow: /dumpster-delivery-info
+
+# Disallow duplicate and draft pages
+Disallow: /dumpsters2
+Disallow: /coming_soon
+
+# Disallow utility pages
+Disallow: /_drafts/
+
+# Allow policy pages (good for trust signals)
+Allow: /privacy-policy
+Allow: /terms-of-service
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://www.joetheguy.com/sitemap.xml
