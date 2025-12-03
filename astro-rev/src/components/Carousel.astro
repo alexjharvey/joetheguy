@@ -1,5 +1,6 @@
 ---
 import CarouselOverlay from "./CarouselOverlay.astro"
+import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 interface SlideData {
@@ -18,11 +19,6 @@ interface Props {
 
 const { images, slides, showCaptions = false, captions = [], class: className = '' } = Astro.props;
 
-// Helper function to get image src from either string or ImageMetadata
-const getImageSrc = (image: string | ImageMetadata): string => {
-  return typeof image === 'string' ? image : image.src;
-};
-
 // Use slides if provided, otherwise create simple slides from images array
 const slideData = slides || (images || []).map((image) => ({
   image,
@@ -34,10 +30,26 @@ const slideData = slides || (images || []).map((image) => ({
 <div class={`carousel ${className}`}>
     <div class="carousel-track" id="carousel-track">
       {slideData.map((slide, index) => {
-        const imageSrc = getImageSrc(slide.image);
         return (
           <div class="slide">
-            <img src={index === 0 ? imageSrc : undefined} data-src={imageSrc} alt={captions[index] || `Image ${index + 1}`}>
+            {typeof slide.image === 'string' ? (
+              <img
+                src={slide.image}
+                alt={captions[index] || `Image ${index + 1}`}
+                loading={index === 0 ? 'eager' : 'lazy'}
+              />
+            ) : (
+              <Image
+                src={slide.image}
+                alt={captions[index] || `Image ${index + 1}`}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchpriority={index === 0 ? 'high' : undefined}
+                quality={85}
+                widths={[640, 768, 1024, 1280, 1920]}
+                sizes="100vw"
+                class="carousel-image"
+              />
+            )}
             {slide.topComment && slide.bottomComment ? (
               <CarouselOverlay topComment={slide.topComment} bottomComment={slide.bottomComment} />
             ) : showCaptions && captions[index] && (

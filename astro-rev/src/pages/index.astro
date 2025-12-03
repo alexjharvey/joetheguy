@@ -5,26 +5,31 @@ import StructuredData from '@/components/StructuredData.astro';
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 
+// Import optimized carousel images
+import carousel01 from '@/images/carousel/image_01.jpg';
+import carousel02 from '@/images/carousel/image_02.jpg';
+import carousel03 from '@/images/carousel/image_03.jpg';
+
 const keywords = ["Dumpster", "dumpsters", "dumpster", "dumpsters rental", "dumpster rental", "in Spartanburg", "Spartanburg", "home remodeling", "home", "Greenville", "in Greenville", "Greer", "in Greer", "Inman", "in Inman", "Boiling Springs", "in Boiling Springs", "Roebuck", "in Roebuck","home renovation", "renovations", "home renovation", "home remodeling", "remodeling", "home repair", "repairman", "repair man", "handyman", "upstate", ];
 const description = "Professional home renovations, repairs, remodeling, and dumpster rentals in Spartanburg, Greenville, and Upstate SC. Over 15 years of quality service. When you need a guy, call Joe The Guy!";
 
-// Import service images
-const serviceImages = import.meta.glob<{ default: ImageMetadata }>('/src/images/services/*.png', { eager: true });
+// Import service images (lazy loaded, not eager)
+const serviceImages = import.meta.glob<{ default: ImageMetadata }>('/src/images/services/*.png');
 
-// Carousel slides data
+// Carousel slides data with optimized images
 const carouselSlides = [
   {
-    image: '/images/carousel/image_01.jpg',
+    image: carousel01,
     topComment: 'Home Improvement and Remodeling',
     bottomComment: 'With over 15 years experience and a real focus on customer satisfaction, you can rely on us for your next renovation, remodeling or home repair in Spartanburg, Greenville or any of our Upstate communities.'
   },
   {
-    image: '/images/carousel/image_02.jpg',
+    image: carousel02,
     topComment: 'Professional Tile work and Painting',
     bottomComment: 'We combine quality workmanship, superior knowledge and low prices to provide you with service unmatched by our competitors in Spartanburg, Greenville or any of our Upstate communities.'
   },
   {
-    image: '/images/carousel/image_03.jpg',
+    image: carousel03,
     topComment: 'High Quality Work at Affordable Prices',
     bottomComment: 'We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget. If you\'re in Spartanburg, Greenville, or anywhere in the Upstate, Joe\'s your Guy!'
   }
@@ -73,20 +78,20 @@ const recentProjects = allProjects.slice(0, 4) as typeof allProjects;
 			<div id="services-row-2" class="mx-4 md:mx-8 lg:mx-32 mt-8 md:mt-12 flex flex-col md:flex-row gap-4 md:gap-6 bg-white px-4 md:px-0 hidden">
 				<div class="w-full md:w-1/3 ml-6 flex-col">
 					<a href="#">
-						<Image src={serviceImages['/src/images/services/Kitchen_Reno.png']?.default} alt="Kitchen Remodeling" class="w-full mt-4 md:mt-6 h-auto"/>
+						<Image src={serviceImages['/src/images/services/Kitchen_Reno.png']?.default} alt="Kitchen Remodeling" class="w-full mt-4 md:mt-6 h-auto" loading="lazy"/>
 						<h3 class="text-xl md:text-2xl text-center font-semibold text-primary uppercase p-2">Kitchen Remodeling</h3>
 						<p class="text-center p-2 text-sm md:text-base">We combine quality workmanship, superior knowledge and low prices to provide you with service unmatched by our competitors.</p>
 				</a>
 				</div>
 				<div class="w-full md:w-1/3">
-					<Image src={serviceImages['/src/images/services/Bathroom_Reno.png']?.default} alt="Bathroom Remodeling" class="w-full mt-4 md:mt-6 h-auto"/>
+					<Image src={serviceImages['/src/images/services/Bathroom_Reno.png']?.default} alt="Bathroom Remodeling" class="w-full mt-4 md:mt-6 h-auto" loading="lazy"/>
 					<h3 class="text-xl md:text-2xl text-center font-semibold text-primary p-2 uppercase">Bathroom Remodeling</h3>
 					<p class="text-center p-2 text-sm md:text-base">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
 				</div>
 
 				<div class="w-full md:w-1/3 mr-6">
 					<a href="/services/flooring">
-					<Image src={serviceImages['/src/images/services/Flooring_Install.png']?.default} alt="Flooring Installation" class="w-full mt-4 md:mt-6 h-auto"/>
+					<Image src={serviceImages['/src/images/services/Flooring_Install.png']?.default} alt="Flooring Installation" class="w-full mt-4 md:mt-6 h-auto" loading="lazy"/>
 					<h3 class="text-xl md:text-2xl text-center font-semibold text-primary p-2 uppercase">Flooring Installation</h3>
 					<p class="text-center p-2 text-sm md:text-base">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
 					</a>
@@ -98,18 +103,18 @@ const recentProjects = allProjects.slice(0, 4) as typeof allProjects;
 			<div id="services-row-3" class="mx-4 md:mx-8 lg:mx-32 mt-8 md:mt-12 mb-8 flex flex-col md:flex-row gap-4 md:gap-6 bg-white px-4 md:px-0 hidden">
 				<div class="w-full md:w-1/3 ml-6 flex-col">
 					<a href="#">
-						<Image src={serviceImages['/src/images/services/Painting.png']?.default} alt="Painting Services" class="w-full mt-4 md:mt-6 h-auto"/>
+						<Image src={serviceImages['/src/images/services/Painting.png']?.default} alt="Painting Services" class="w-full mt-4 md:mt-6 h-auto" loading="lazy"/>
 						<h3 class="text-xl md:text-2xl text-center font-semibold text-primary uppercase p-2">Painting Services</h3>
 						<p class="text-center p-2 text-sm md:text-base">We combine quality workmanship, superior knowledge and low prices to provide you with service unmatched by our competitors.</p>
 				</a>
 				</div>
 				<div class="w-full md:w-1/3">
-					<Image src={serviceImages['/src/images/services/Deck_Patio.png']?.default} alt="Deck & Patio" class="w-full mt-4 md:mt-6 h-auto"/>
+					<Image src={serviceImages['/src/images/services/Deck_Patio.png']?.default} alt="Deck & Patio" class="w-full mt-4 md:mt-6 h-auto" loading="lazy"/>
 					<h3 class="text-xl md:text-2xl text-center font-semibold text-primary p-2 uppercase">Deck & Patio</h3>
 					<p class="text-center p-2 text-sm md:text-base">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
 				</div>
 				<div class="w-full md:w-1/3 mr-6">
-					<Image src={serviceImages['/src/images/services/Roofing.png']?.default} alt="Roofing Services" class="w-full mt-4 md:mt-6 h-auto"/>
+					<Image src={serviceImages['/src/images/services/Roofing.png']?.default} alt="Roofing Services" class="w-full mt-4 md:mt-6 h-auto" loading="lazy"/>
 					<h3 class="text-xl md:text-2xl text-center font-semibold text-primary p-2 uppercase">Roofing Services</h3>
 					<p class="text-center p-2 text-sm md:text-base">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
 				</div>
