@@ -13,8 +13,8 @@ import carousel03 from '@/images/carousel/image_03.jpg';
 const keywords = ["Dumpster", "dumpsters", "dumpster", "dumpsters rental", "dumpster rental", "in Spartanburg", "Spartanburg", "home remodeling", "home", "Greenville", "in Greenville", "Greer", "in Greer", "Inman", "in Inman", "Boiling Springs", "in Boiling Springs", "Roebuck", "in Roebuck","home renovation", "renovations", "home renovation", "home remodeling", "remodeling", "home repair", "repairman", "repair man", "handyman", "upstate", ];
 const description = "Professional home renovations, repairs, remodeling, and dumpster rentals in Spartanburg, Greenville, and Upstate SC. Over 15 years of quality service. When you need a guy, call Joe The Guy!";
 
-// Import service images (lazy loaded, not eager)
-const serviceImages = import.meta.glob<{ default: ImageMetadata }>('/src/images/services/*.png');
+// Import service images eagerly at build time (browser lazy loading controlled by loading attribute)
+const serviceImages = import.meta.glob<{ default: ImageMetadata }>('/src/images/services/*.png', { eager: true });
 
 // Carousel slides data with optimized images
 const carouselSlides = [
@@ -54,17 +54,17 @@ const recentProjects = allProjects.slice(0, 4) as typeof allProjects;
 				With over 15 years experience in Spartanburg, Greenville and our Upstate communities if you <span class="text-primary font-bold">need a guy</span> for your renovation, remodel or home repair, <span class="text-primary"><a href="#" class="font-bold">Call Joe the Guy!</a></span> We offer a wide range of services to meet your needs. We are a full-service contractor providing quality service to residential and commercial clients.
 			</h2>
 			<div class="mx-4 md:mx-8 lg:mx-32 mt-8 md:mt-12 flex flex-col md:flex-row gap-4 md:gap-6 bg-white px-4 md:px-0">
-				<div class="w-full md:w-1/3 ml-6">
+				<div class="w-full md:w-1/3 md:ml-6 ml-0">
 					<Image src={serviceImages['/src/images/services/Interior_Reno1.png']?.default} alt="Home Repair" class="w-full mt-4 md:mt-6 h-auto"/>
 					<h3 class="text-xl md:text-2xl text-center font-semibold text-primary p-2 uppercase">Home Repair</h3>
 					<p class="text-center p-2 text-sm md:text-base">We have the experience, personnel, and resources to make the project run smoothly and to ensure your job is done on time and on budget.</p>
 				</div>
 				<div class="w-full md:w-1/3 flex-col">
-					<a href="#">
+					
 						<Image src={serviceImages['/src/images/services/Interior_Reno2.png']?.default} alt="Interior Renovation" class="w-full mt-4 md:mt-6 h-auto"/>
 						<h3 class="text-xl md:text-2xl text-center font-semibold text-primary uppercase p-2">Interior Renovation</h3>
 						<p class="text-center p-2 text-sm md:text-base">We combine quality workmanship, superior knowledge and low prices to provide you with service unmatched by our competitors.</p>
-				</a>
+				
 				</div>
 				<div class="w-full md:w-1/3 mr-6">
 					<Image src={serviceImages['/src/images/services/Exterior_Reno1.png']?.default} alt="Exterior Renovation" class="w-full mt-4 md:mt-6 h-auto"/>
